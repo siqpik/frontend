@@ -9,6 +9,7 @@ export class MyCamera extends Component {
         return (
             <View style={styles.container}>
                 <Text>oELO</Text>
+                {/* So here you were never calling the RN Camera element that you imported. This I took from react native camera github */}
                 <RNCamera
                     style={styles.preview}
                     type={RNCamera.Constants.Type.back}
@@ -43,6 +44,7 @@ export class MyCamera extends Component {
 
     takePicture = async function () {
         if (this.camera) {
+            console.log('this.camera :', this.camera);
             const options = { width: 50, quality: 0.5, base64: true };
             this.setState({
                 loading: true
@@ -60,12 +62,16 @@ export class MyCamera extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
+        // Not sure why you had a black clolumn here
+        // flexDirection: 'column',
+        // backgroundColor: 'black',
     },
     preview: {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
+
+        //set the size of the RNCamera Element
         height: 500
     },
     capture: {

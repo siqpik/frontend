@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import { Button, ScrollView } from 'react-native';
 import { MyCamera } from "./camera/MyCamera";
 
-//Typescript??
+// This is forTypescript..
 //type Props = {};
 export default class App extends Component {
 
