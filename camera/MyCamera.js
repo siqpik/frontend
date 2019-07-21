@@ -1,16 +1,23 @@
 'use strict';
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, TouchableOpacity, SafeAreaView, View } from 'react-native';
+import { AppRegistry, StyleSheet, Text, TouchableOpacity, Image, View, Button } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import App from "../App";
 
 export class MyCamera extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            showImage: false,
+            imageUri: undefined
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Text>oELO</Text>
-                {/* So here you were never calling the RN Camera element that you imported. This I took from react native camera github */}
-                <RNCamera
+                <Text>SIqpIK</Text>
+                {!this.state.showImage && <RNCamera
                     style={styles.preview}
                     type={RNCamera.Constants.Type.back}
                     flashMode={RNCamera.Constants.FlashMode.on}
@@ -18,7 +25,7 @@ export class MyCamera extends Component {
                         title: 'Permission to use camera',
                         message: 'We need your permission to use your camera',
                         buttonPositive: 'Ok',
-                        buttonNegative: 'Cancel',
+                        buttonNegative: 'Cancel?',
                     }}
                     androidRecordAudioPermissionOptions={{
                         title: 'Permission to use audio recording',
@@ -37,24 +44,66 @@ export class MyCamera extends Component {
                             </View>
                         );
                     }}
-                </RNCamera>
+                </RNCamera>}
+                {this.state.showImage && <Image source={{uri: this.state.imageUri}}
+                                                style={{width: 400, height: 400}} />}
+                {this.state.showImage && <Button title={'Discard'} onPress={this.showCameraAgain}/>}
+                {this.state.showImage && <Button title={'Select this Pic'} onPress={this.savePic}/>}
+
             </View>
         );
     }
 
-    takePicture = async function () {
-        if (this.camera) {
-            console.log('this.camera :', this.camera);
-            const options = { width: 50, quality: 0.5, base64: true };
-            this.setState({
-                loading: true
-            });
-            try {
-                const data = await this.camera.takePictureAsync(options);
-                console.log(data.uri);
-            } catch (e) {
-                console.log(e)
+
+    getFormData = () => {
+        const fd = new FormData();
+
+        fd.append("file", {
+            uri: this.state.imageUri,
+            type: 'image/jpg',
+            name: 'image.jpg',
+        });
+
+        return fd;
+    }
+
+    showCameraAgain = () => this.setState({
+        showImage: false,
+    })
+
+    savePic = () => {
+        this.postToServer()
+    }
+
+    postToServer = () => {
+        fetch('https://siqpik.herokuapp.com/image', {
+            method: 'POST',
+            body: this.getFormData(),
+            headers: {
+                'Content-Type': 'multipart/form-data'
             }
+        }).then(response => {
+            if (response.ok){
+                return response.json()
+            }
+            alert(response)
+            throw new Error(response.status)
+        })
+            .then(json => alert("All went well :D " + JSON.stringify(json)))
+            .catch(error => alert("Something went wrong :( : " + error))
+    }
+
+    takePicture = camera => {
+        if (camera){
+            const options = { quality: 0.5, base64: true };
+            camera.takePictureAsync(options)
+                .then(photo => {
+                    this.setState({
+                        showImage: true,
+                        imageUri: photo.uri
+                    })
+                })
+                .catch(error => alert("An error has ocurred" + error))
         }
     };
 }
