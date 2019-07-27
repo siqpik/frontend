@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, TouchableOpacity, Image, View, Button } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import App from "../App";
+import App from "../../App";
 
 export class MyCamera extends Component {
     constructor(props){
@@ -83,12 +83,10 @@ export class MyCamera extends Component {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(response => {
-            if (response.ok){
-                return response.json()
+            if (!response.ok){
+                throw new Error(response.status)
             }
-            throw new Error(response.status)
         })
-            .then(json => alert("All went well :D " + JSON.stringify(json)))
             .catch(error => alert("Something went wrong :( : " + error))
     }
 
