@@ -76,7 +76,7 @@ export class MyCamera extends Component {
     }
 
     postToServer = () => {
-        fetch('https://siqpik.herokuapp.com/picture/3', {
+        fetch('https://siqpik.herokuapp.com/picture/21', {
             method: 'POST',
             body: this.getFormData(),
             headers: {
