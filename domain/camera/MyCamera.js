@@ -76,7 +76,7 @@ export class MyCamera extends Component {
     }
 
     postToServer = () => {
-        fetch('https://siqpik.herokuapp.com/image', {
+        fetch('https://siqpik.herokuapp.com/picture/3', {
             method: 'POST',
             body: this.getFormData(),
             headers: {
@@ -86,7 +86,6 @@ export class MyCamera extends Component {
             if (response.ok){
                 return response.json()
             }
-            alert(response)
             throw new Error(response.status)
         })
             .then(json => alert("All went well :D " + JSON.stringify(json)))

@@ -8,31 +8,44 @@
 
 import React, { Component } from 'react';
 import { Button, ScrollView } from 'react-native';
-import { MyCamera } from "./camera/MyCamera";
+import { MyCamera } from './domain/camera/MyCamera';
+import { Profile } from './domain/profile/Profile';
 
-// This is forTypescript..
-//type Props = {};
 export default class App extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      showCamera: false
+      showCamera: false,
+      showProfile: false
     }
-  }
-
-  pic = {
-    uri: 'https://cdnimg.webstaurantstore.com/images/products/large/166694/271843.jpg'
   }
 
   render() {
     return (
       <ScrollView>
-
         {this.state.showCamera && <MyCamera />}
+        {this.state.showProfile && <Profile />}
 
-        {!this.state.showCamera && <Button title={'Open fking camera'} onPress={() => this.setState({ showCamera: true })} />}
+        <Button
+            title={'Take a new Pic'}
+            onPress={
+              () => this.setState({
+                showCamera: true,
+                showProfile: false
+              })
+            }
+        />
+        <Button
+            title={'Go to my Profile'}
+            onPress={
+              () => this.setState({
+                showCamera: false,
+                showProfile: true
+              })
+            }
+        />
       </ScrollView>
     );
   }
