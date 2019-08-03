@@ -1,26 +1,15 @@
 'use strict';
 import React, { Component } from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Image,
-    View,
-    Button,
-    Dimensions
-} from 'react-native';
+import { AppRegistry, StyleSheet, Text, TouchableOpacity, Image, View, Button } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import App from "../../App";
 
 export class MyCamera extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             showImage: false,
-            imageUri: undefined,
-            deviceCamera: 'back',
-            flashMode: 'off',
+            imageUri: undefined
         }
     }
 
@@ -30,8 +19,8 @@ export class MyCamera extends Component {
                 <Text>SIqpIK</Text>
                 {!this.state.showImage && <RNCamera
                     style={styles.preview}
-                    type={this.state.deviceCamera}
-                    flashMode={this.state.flashMode}
+                    type={RNCamera.Constants.Type.back}
+                    flashMode={RNCamera.Constants.FlashMode.on}
                     androidCameraPermissionOptions={{
                         title: 'Permission to use camera',
                         message: 'We need your permission to use your camera',
@@ -49,34 +38,22 @@ export class MyCamera extends Component {
 
                         return (
                             <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => this.toggleDeviceCamera()} style={styles.capture}>
-                                    <Text style={{ fontSize: 14 }}> Change Cam </Text>
-                                </TouchableOpacity>
                                 <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
                                     <Text style={{ fontSize: 14 }}> SNAP </Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.toggleFlash()} style={styles.capture}>
-                                    <Text style={{ fontSize: 14 }}> Change {this.state.flashMode === 'on' ? 'Off' : 'On'} </Text>
                                 </TouchableOpacity>
                             </View>
                         );
                     }}
                 </RNCamera>}
-                {this.state.showImage && <Image source={{uri: this.state.imageUri}}
-                                                style={styles.takenPic} />}
-                {this.state.showImage && <Button title={'Discard'} onPress={this.showCameraAgain}/>}
-                {this.state.showImage && <Button title={'Select this Pic'} onPress={this.savePic}/>}
+                {this.state.showImage && <Image source={{ uri: this.state.imageUri }}
+                    style={{ width: 400, height: 400 }} />}
+                {this.state.showImage && <Button title={'Discard'} onPress={this.showCameraAgain} />}
+                {this.state.showImage && <Button title={'Select this Pic'} onPress={this.savePic} />}
+
             </View>
         );
     }
 
-    toggleDeviceCamera = () => this.setState({
-        deviceCamera: this.state.deviceCamera === 'back' ? 'front' : 'back'
-    })
-
-    toggleFlash = () => this.setState({
-        flashMode: this.state.flashMode === 'on' ? 'off' : 'on'
-    })
 
     getFormData = () => {
         const fd = new FormData();
@@ -99,14 +76,14 @@ export class MyCamera extends Component {
     }
 
     postToServer = () => {
-        fetch('https://siqpik.herokuapp.com/picture/21', {
+        fetch('https://siqpik.herokuapp.com/picture/1', {
             method: 'POST',
             body: this.getFormData(),
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(response => {
-            if (!response.ok){
+            if (!response.ok) {
                 throw new Error(response.status)
             }
         })
@@ -114,12 +91,8 @@ export class MyCamera extends Component {
     }
 
     takePicture = camera => {
-        if (camera){
-            const options = {
-                quality: 0.5,
-                base64: true,
-                mirrorImage: this.state.deviceCamera === "front"
-            };
+        if (camera) {
+            const options = { quality: 0.5, base64: true };
             camera.takePictureAsync(options)
                 .then(photo => {
                     this.setState({
@@ -135,17 +108,17 @@ export class MyCamera extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height: Dimensions.get('window').height
-    },
-    takenPic:{
-        flex: 1,
-        resizeMode: 'contain',
-        transform: [{ rotate: '90deg' }]
+        // Not sure why you had a black clolumn here
+        // flexDirection: 'column',
+        // backgroundColor: 'black',
     },
     preview: {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
+
+        //set the size of the RNCamera Element
+        height: 500
     },
     capture: {
         flex: 0,

@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from 'react';
-import { Button, ScrollView } from 'react-native';
+import { Button, View } from 'react-native';
 import { MyCamera } from './domain/camera/MyCamera';
 import { Profile } from './domain/profile/Profile';
 
@@ -24,29 +24,39 @@ export default class App extends Component {
 
   render() {
     return (
-      <ScrollView>
+      <View>
         {this.state.showCamera && <MyCamera />}
         {this.state.showProfile && <Profile />}
 
         <Button
-            title={'Take a new Pic'}
-            onPress={
-              () => this.setState({
-                showCamera: true,
-                showProfile: false
-              })
-            }
+          title={'Go to my Profile'}
+          onPress={
+            () => this.setState({
+              showCamera: false,
+              showProfile: true
+            })
+          }
+        />
+
+        <Button
+          title={'Take a new Pic'}
+          onPress={
+            () => this.setState({
+              showCamera: true,
+              showProfile: false
+            })
+          }
         />
         <Button
-            title={'Go to my Profile'}
-            onPress={
-              () => this.setState({
-                showCamera: false,
-                showProfile: true
-              })
-            }
+          title={'Go to my Profile'}
+          onPress={
+            () => this.setState({
+              showCamera: false,
+              showProfile: true
+            })
+          }
         />
-      </ScrollView>
+      </View>
     );
   }
 }
