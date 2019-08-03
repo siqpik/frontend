@@ -19,8 +19,8 @@ export class MyCamera extends Component {
                 <Text>SIqpIK</Text>
                 {!this.state.showImage && <RNCamera
                     style={styles.preview}
-                    type={RNCamera.Constants.Type.back}
-                    flashMode={RNCamera.Constants.FlashMode.on}
+                    type={RNCamera.Constants.Type.front}
+                    flashMode={RNCamera.Constants.FlashMode.off}
                     androidCameraPermissionOptions={{
                         title: 'Permission to use camera',
                         message: 'We need your permission to use your camera',
@@ -46,7 +46,7 @@ export class MyCamera extends Component {
                     }}
                 </RNCamera>}
                 {this.state.showImage && <Image source={{uri: this.state.imageUri}}
-                                                style={{width: 400, height: 400}} />}
+                                                style={{width: 400, height: 400, transform: [{ rotate: '90deg' }]}} />}
                 {this.state.showImage && <Button title={'Discard'} onPress={this.showCameraAgain}/>}
                 {this.state.showImage && <Button title={'Select this Pic'} onPress={this.savePic}/>}
 
@@ -92,7 +92,11 @@ export class MyCamera extends Component {
 
     takePicture = camera => {
         if (camera){
-            const options = { quality: 0.5, base64: true };
+            const options = {
+                quality: 0.5,
+                base64: true,
+                mirrorImage: true
+            };
             camera.takePictureAsync(options)
                 .then(photo => {
                     this.setState({
@@ -108,9 +112,6 @@ export class MyCamera extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // Not sure why you had a black clolumn here
-        // flexDirection: 'column',
-        // backgroundColor: 'black',
     },
     preview: {
         flex: 1,
