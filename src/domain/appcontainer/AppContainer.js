@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Button, ScrollView} from "react-native";
 import {Profile} from "../profile/Profile";
-import {MyCamera} from "../camera/MyCamera";
+import {TakeNewPic} from "../camera/TakeNewPic";
 
 export default class AppContainer extends Component{
 
@@ -17,7 +17,7 @@ export default class AppContainer extends Component{
     render(){
         return (
             <ScrollView>
-                {this.state.showCamera && <MyCamera />}
+                {this.state.showCamera && <TakeNewPic />}
                 {this.state.showProfile && <Profile />}
 
                 <Button

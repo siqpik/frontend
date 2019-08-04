@@ -36,7 +36,7 @@ export class Profile extends Component{
     }
 
     getUser = () => {
-        fetch("https://siqpik.herokuapp.com/user/21")
+        fetch("https://siqpik.herokuapp.com/user/1")
             .then(resp => resp.json())
             .then(json => new User(json))
             .then(user => this.setState({user}))
