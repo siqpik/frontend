@@ -18,7 +18,8 @@ export default class App extends Component {
 
     this.state = {
       showCamera: false,
-      showProfile: false
+      showProfile: false,
+      isLogged: false
     }
   }
 
@@ -27,6 +28,7 @@ export default class App extends Component {
       <ScrollView>
         {this.state.showCamera && <MyCamera />}
         {this.state.showProfile && <Profile />}
+          {!this.state.isLogged && <Login />}
 
         <Button
             title={'Take a new Pic'}
@@ -49,4 +51,6 @@ export default class App extends Component {
       </ScrollView>
     );
   }
+
+
 }
