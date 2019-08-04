@@ -1,17 +1,8 @@
 'use strict';
-import React, { Component } from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Image,
-    View,
-    Button,
-    Dimensions
-} from 'react-native';
-import { RNCamera } from 'react-native-camera';
-import App from "../../App";
+import React, {Component} from 'react';
+import {AppRegistry, Button, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {RNCamera} from 'react-native-camera';
+import App from "../../../App";
 
 export class MyCamera extends Component {
     constructor(props){
@@ -27,7 +18,6 @@ export class MyCamera extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>SIqpIK</Text>
                 {!this.state.showImage && <RNCamera
                     style={styles.preview}
                     type={this.state.deviceCamera}

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {AppRegistry, Image, ScrollView, View} from 'react-native';
-import App from "../../App";
+import App from "../../../App";
 import User from '../model/User'
 
 export class Profile extends Component{

@@ -6,51 +6,12 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import { Button, ScrollView } from 'react-native';
-import { MyCamera } from './domain/camera/MyCamera';
-import { Profile } from './domain/profile/Profile';
+import React, {Component} from 'react';
+import AppContainer from "./src/domain/appcontainer/AppContainer";
 
 export default class App extends Component {
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      showCamera: false,
-      showProfile: false,
-      isLogged: false
+    render(){
+        return <AppContainer/>
     }
-  }
-
-  render() {
-    return (
-      <ScrollView>
-        {this.state.showCamera && <MyCamera />}
-        {this.state.showProfile && <Profile />}
-          {!this.state.isLogged && <Login />}
-
-        <Button
-            title={'Take a new Pic'}
-            onPress={
-              () => this.setState({
-                showCamera: true,
-                showProfile: false
-              })
-            }
-        />
-        <Button
-            title={'Go to my Profile'}
-            onPress={
-              () => this.setState({
-                showCamera: false,
-                showProfile: true
-              })
-            }
-        />
-      </ScrollView>
-    );
-  }
-
-
 }
