@@ -25,4 +25,24 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         margin: 20,
     },
+    alertContainer: {
+        flex: 1
+    },
+    alertText: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        // marginHorizontal: 20
+    },
+    alertButtons: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+    button: {
+        width: '40%',
+    }
+
+    git merge feaalrt
 });
