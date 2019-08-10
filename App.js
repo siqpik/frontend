@@ -6,12 +6,21 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import AppContainer from "./src/domain/appcontainer/AppContainer";
+import React from 'react';
+import {createAppContainer, createStackNavigator} from "react-navigation";
+import {HomeScreen} from "./src/HomeScreen";
+import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
+import {Profile} from "./src/domain/profile/Profile";
 
-export default class App extends Component {
-
-    render(){
-        return <AppContainer/>
+const App = createStackNavigator(
+    {
+        Home: HomeScreen,
+        TakeNewPic: TakeNewPic,
+        Profile: Profile,
+    },
+    {
+        initialRouteName: 'Home'
     }
-}
+);
+
+export default createAppContainer(App);
