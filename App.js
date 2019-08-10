@@ -14,7 +14,6 @@ import {Profile} from "./src/domain/profile/Profile";
 import {LoginScreen} from "./src/domain/login/Login"
 
 const App = createStackNavigator(
-
     {
         Home: HomeScreen,
         TakeNewPic: TakeNewPic,

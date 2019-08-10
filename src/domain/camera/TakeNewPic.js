@@ -1,6 +1,7 @@
 'use strict';
 import React, {Component} from 'react';
 import {CameraView} from "./CameraView";
+import base64 from 'react-native-base64'
 
 export class TakeNewPic extends Component {
 
@@ -27,7 +28,7 @@ export class TakeNewPic extends Component {
                 imageUri={this.state.imageUri}
                 savePic={this.savePic.bind(this)}
             />
-            );
+         );
     }
 
     toggleDeviceCamera = () => () => this.setState({
@@ -38,36 +39,9 @@ export class TakeNewPic extends Component {
         flashMode: this.state.flashMode === 'on' ? 'off' : 'on'
     })
 
-    getFormData = () => {
-        const fd = new FormData();
-
-        fd.append("file", {
-            uri: this.state.imageUri,
-            type: 'image/jpg',
-            name: 'image.jpg',
-        });
-
-        return fd;
-    }
-
     showCameraAgain = () => () => this.setState({
         showImage: false,
     })
-
-    savePic = () => () => this.postToServer()
-
-    postToServer = () => fetch('https://siqpik.herokuapp.com/picture/1', {
-        method: 'POST',
-        body: this.getFormData(),
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    })
-    .then(response => {
-        if (!response.ok){
-            throw new Error(response.status)
-        }
-    }).catch(error => alert("Something went wrong :( : " + error))
 
     takePicture = camera => {
         if (camera){
@@ -85,7 +59,33 @@ export class TakeNewPic extends Component {
                         imageUri: photo.uri
                     })
                 })
-                .catch(error => alert("An error has ocurred" + error))
+                .catch(error => alert("An error has ocurred: " + error))
         }
     };
+
+    savePic = () => () => fetch('https://aqueous-castle-34128.herokuapp.com/picture/1', {
+        method: 'POST',
+        body: this.getFormData(),
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            authorization: 'Basic ' + base64.encode("ronnie" + ":" + "passwordRonnie")
+        }
+    })
+    .then(response => {
+        if (!response.ok){
+            throw new Error(response.status)
+        }
+    }).catch(error => alert("Something went wrong :( : " + error))
+
+    getFormData = () => {
+        const fd = new FormData();
+
+        fd.append("file", {
+            uri: this.state.imageUri,
+            type: 'image/jpg',
+            name: 'image.jpg',
+        });
+
+        return fd;
+    }
 }
