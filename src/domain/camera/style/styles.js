@@ -43,6 +43,4 @@ export const styles = StyleSheet.create({
     button: {
         width: '40%',
     }
-
-    git merge feaalrt
 });
