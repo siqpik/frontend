@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import {Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 
 
-export class Form extends Component {
+export const Form = props => (
+    <View style={styles.container}>
+        <TextInput style={styles.inputBox}
+                   placeholder='Username'
+                   placeholderTextColor='#000'
+                   onChangeText={userName => props.readUserName(userName)}
+                   value={props.username}
+        />
+        <TextInput style={styles.inputBox}
+                   placeholder='Password'
+                   secureTextEntry={true}
+                   placeholderTextColor='#000'
+                   onChangeText={pass => props.readPass(pass)}
+                   value={props.pass}
 
-    render() {
-        const {navigate} = this.props.navigation;
-        return (
-            <View style={styles.container}>
-                <TextInput style={styles.inputBox}
-                           placeholder='Username'
-                           placeholderTextColor='#000' />
-                <TextInput style={styles.inputBox}
-                           placeholder='Password'
-                           secureTextEntry={true}
-                           placeholderTextColor='#000' />
-                <TouchableOpacity style={styles.button} onPress={() => navigate('Home')} >
-                    <Text style={styles.buttonText}> {this.props.type} </Text>
-                </TouchableOpacity>
-            </View>
-
-        )
-    }
-}
+        />
+        <TouchableOpacity style={styles.button} onPress={props.loginClicked()/*() => props.navigation.navigate('Home')*/} >
+            <Text style={styles.buttonText}> {props.type} </Text>
+        </TouchableOpacity>
+    </View>
+)
 
 const styles = StyleSheet.create({
     container: {

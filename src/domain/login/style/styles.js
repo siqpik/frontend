@@ -1,28 +1,27 @@
-import {Dimensions, StyleSheet} from "react-native";
+import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: 'black',
-        height: Dimensions.get('window').height
-    },
-    takenPic:{
-        flex: 1,
-        resizeMode: 'contain',
-    },
-    preview: {
-        flex: 1,
-        justifyContent: 'flex-end',
+        backgroundColor: "#e0e0e0",
+        flexGrow: 2,
         alignItems: 'center',
+        justifyContent: 'flex-end',
     },
-    capture: {
-        flex: 0,
-        backgroundColor: '#FF0000',
-        borderRadius: 50,
-        padding: 15,
-        paddingHorizontal: 20,
-        alignSelf: 'center',
-        margin: 20,
+    logoText: {
+        flexDirection: "row",
+        marginVertical: 15,
+        fontSize: 50,
+        color: '#757575',
     },
-});
+    signupTextCont: {
+        flexGrow: 1,
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingVertical: 16,
+        justifyContent: 'center',
+    },
+    signupText: {
+        fontSize: 16,
+        fontWeight: "500"
+    }
+})
