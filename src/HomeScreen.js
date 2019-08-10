@@ -3,9 +3,8 @@ import {AppRegistry, Button, ScrollView} from "react-native";
 import App from "../App";
 
 export class HomeScreen extends React.Component {
-    static navigationOptions = {
-        title: 'Welcome',
-    };
+
+
     render() {
         const {navigate} = this.props.navigation;
         return (
@@ -23,4 +22,4 @@ export class HomeScreen extends React.Component {
     }
 }
 
-AppRegistry.registerComponent('Profile', () => App);
+AppRegistry.registerComponent('HomeScreen', () => App);
