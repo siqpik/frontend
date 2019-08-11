@@ -5,7 +5,7 @@ import {Logo} from './Logo';
 import {Form} from './Form';
 import {SignUpButton} from "./SignUpButton";
 import base64 from 'react-native-base64'
-import {executeBasicAuthenticationService} from "../service/AuthenticationService";
+import {executeBasicAuthenticationService, registerSuccessfulLogin} from "../service/AuthenticationService";
 
 
 export class LoginScreen extends Component {
@@ -33,7 +33,7 @@ export class LoginScreen extends Component {
                     readUserName={this.readUserName.bind(this)}
                     readPass={this.readPass.bind(this)}
                 />
-                {this.state.hasLoginFailed && <Text>Invalid Credentials</Text>}
+                {this.state.hasLoginFailed && <Text style={{color: 'red'}}>Invalid Credentials</Text>}
                 {this.state.showSuccessMessage && <Text>Login Sucessful</Text>}
                 <SignUpButton navigation={this.props.navigation}/>
             </View>
@@ -46,6 +46,13 @@ export class LoginScreen extends Component {
 
     loginClicked = () => () => {
         executeBasicAuthenticationService(this.state.userName, this.state.pass)
+            .then(() => {
+                this.props.navigation.navigate('Home')
+            })
+            .catch(error => {
+                this.setState({ showSuccessMessage: false })
+                this.setState({ hasLoginFailed: true })
+            })
     }
 }
 
