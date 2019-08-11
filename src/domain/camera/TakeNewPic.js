@@ -1,7 +1,7 @@
 'use strict';
 import React, {Component} from 'react';
 import {CameraView} from "./CameraView";
-import base64 from 'react-native-base64'
+import axios from "axios";
 
 export class TakeNewPic extends Component {
 
@@ -63,19 +63,19 @@ export class TakeNewPic extends Component {
         }
     };
 
-    savePic = () => () => fetch('https://aqueous-castle-34128.herokuapp.com/picture/1', {
-        method: 'POST',
-        body: this.getFormData(),
-        headers: {
-            'Content-Type': 'multipart/form-data',
-            authorization: 'Basic ' + base64.encode("ronnie" + ":" + "passwordRonnie")
-        }
-    })
-    .then(response => {
-        if (!response.ok){
-            throw new Error(response.status)
-        }
-    }).catch(error => alert("Something went wrong :( : " + error))
+    savePic = () => () => {
+
+        alert('made with axios')
+        axios.post(
+            'https://aqueous-castle-34128.herokuapp.com/picture',
+            this.getFormData(),
+            {headers: {
+                    'Content-Type': 'multipart/form-data'
+            }}
+            ).then(response => {
+            if (response.status !== 201) throw new Error(response.status)
+        }).catch(error => alert("Something went wrong: " + error))
+    }
 
     getFormData = () => {
         const fd = new FormData();

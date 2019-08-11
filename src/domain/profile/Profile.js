@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {AppRegistry, Image, ScrollView, View} from 'react-native';
 import App from "../../../App";
 import User from '../model/User'
+import axios from 'axios'
 
 export class Profile extends Component{
 
@@ -36,8 +37,8 @@ export class Profile extends Component{
     }
 
     getUser = () => {
-        fetch("https://aqueous-castle-34128.herokuapp.com//user/1")
-            .then(resp => resp.json())
+        axios.get('https://aqueous-castle-34128.herokuapp.com/profile/RDave')
+            .then(resp => resp.data)
             .then(json => new User(json))
             .then(user => this.setState({user}))
             .catch(error => alert(error))
