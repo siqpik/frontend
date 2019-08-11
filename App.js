@@ -19,7 +19,7 @@ const App = createStackNavigator(
         Home: HomeScreen,
         Alert: AlertBeforePic,
         Profile: Profile,
-        Login: LoginScreen
+        Login: LoginScreen,
         TakeNewPic: TakeNewPic
     },
     {
