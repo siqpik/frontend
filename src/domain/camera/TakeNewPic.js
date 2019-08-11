@@ -67,7 +67,8 @@ export class TakeNewPic extends Component {
         if (!response.ok){
             throw new Error(response.status)
         }
-    }).catch(error => alert("Something went wrong :( : " + error))
+        this.props.navigation.navigate('Profile');
+    }).catch(error => alert("Something went wrong :( : " + error));
 
     takePicture = camera => {
         if (camera){
