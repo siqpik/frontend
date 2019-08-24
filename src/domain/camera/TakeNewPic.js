@@ -64,8 +64,6 @@ export class TakeNewPic extends Component {
     };
 
     savePic = () => () => {
-
-        alert('made with axios')
         axios.post(
             'https://siqpik.herokuapp.com/picture',
             this.getFormData(),

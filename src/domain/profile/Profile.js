@@ -3,6 +3,8 @@ import {AppRegistry, Image, ScrollView, View} from 'react-native';
 import App from "../../../App";
 import User from '../model/User'
 import axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage';
+import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
 
 export class Profile extends Component{
 
@@ -14,7 +16,8 @@ export class Profile extends Component{
     }
 
     componentDidMount() {
-        this.getUser()
+        AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+            .then(userName => this.getUser(userName))
     }
 
     render(){
@@ -36,8 +39,8 @@ export class Profile extends Component{
         </ScrollView>)
     }
 
-    getUser = () => {
-        axios.get('https://siqpik.herokuapp.com/profile/RDave')
+    getUser = userName => {
+        axios.get('https://siqpik.herokuapp.com/profile/' + userName)
             .then(resp => resp.data)
             .then(json => new User(json))
             .then(user => this.setState({user}))

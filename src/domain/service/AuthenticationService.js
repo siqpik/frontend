@@ -2,7 +2,7 @@ import base64 from 'react-native-base64'
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage';
 
-const USER_NAME_SESSION_ATTRIBUTE_NAME = 'USER_NAME_SESSION_ATTRIBUTE_NAME';
+export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'USER_NAME_SESSION_ATTRIBUTE_NAME';
 
 export const executeBasicAuthenticationService = (userName, pass) => axios.get('https://siqpik.herokuapp.com/basicauth', {
     headers: { authorization: createBasicAuthToken(userName, pass) }
