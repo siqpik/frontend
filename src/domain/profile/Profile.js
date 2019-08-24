@@ -37,7 +37,7 @@ export class Profile extends Component{
     }
 
     getUser = () => {
-        axios.get('https://aqueous-castle-34128.herokuapp.com/profile/RDave')
+        axios.get('https://siqpik.herokuapp.com/profile/RDave')
             .then(resp => resp.data)
             .then(json => new User(json))
             .then(user => this.setState({user}))

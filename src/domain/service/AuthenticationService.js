@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const USER_NAME_SESSION_ATTRIBUTE_NAME = 'USER_NAME_SESSION_ATTRIBUTE_NAME';
 
-export const executeBasicAuthenticationService = (userName, pass) => axios.get('https://aqueous-castle-34128.herokuapp.com/basicauth', {
+export const executeBasicAuthenticationService = (userName, pass) => axios.get('https://siqpik.herokuapp.com/basicauth', {
     headers: { authorization: createBasicAuthToken(userName, pass) }
 })
     .then(response => {

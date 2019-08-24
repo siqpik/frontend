@@ -67,7 +67,7 @@ export class TakeNewPic extends Component {
 
         alert('made with axios')
         axios.post(
-            'https://aqueous-castle-34128.herokuapp.com/picture',
+            'https://siqpik.herokuapp.com/picture',
             this.getFormData(),
             {headers: {
                     'Content-Type': 'multipart/form-data'
