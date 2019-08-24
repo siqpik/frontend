@@ -1,11 +1,7 @@
-import {Button, View} from "react-native";
-import React from "react";
+import {Button, View} from 'react-native';
+import React from 'react';
 import CountDown from 'react-native-countdown-component';
-
 export const PicturePreview = props => (
-
-
-
     <View>
         <CountDown
             until={60 * 5}

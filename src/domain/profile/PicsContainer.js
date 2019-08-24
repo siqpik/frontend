@@ -4,7 +4,6 @@ import {FlatGrid} from "react-native-super-grid";
 import {styles} from "./style/styles";
 
 export const PicsContainer = props => {
-    alert(props.pics[0].url)
     return (
         <FlatGrid
             style={styles.gridView}
