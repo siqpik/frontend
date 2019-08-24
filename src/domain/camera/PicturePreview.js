@@ -4,8 +4,6 @@ import CountDown from 'react-native-countdown-component';
 
 export const PicturePreview = props => (
 
-
-
     <View>
         <CountDown
             until={60 * 5}
@@ -17,4 +15,4 @@ export const PicturePreview = props => (
         <Button title={'Discard'} onPress={props.showCameraAgain()}/>
         <Button title={'Post!'} onPress={props.savePic()}/>
     </View>
-)
+);
