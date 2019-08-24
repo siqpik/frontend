@@ -14,7 +14,10 @@ import {Profile} from "./src/domain/profile/Profile";
 import {AlertBeforePic} from "./src/domain/camera/AlertBeforePic"
 import {LoginScreen} from "./src/domain/login/Login"
 
+
+
 const App = createStackNavigator(
+
     {
         Home: HomeScreen,
         Alert: AlertBeforePic,
@@ -23,7 +26,7 @@ const App = createStackNavigator(
         TakeNewPic: TakeNewPic
     },
     {
-        initialRouteName: 'Login'
+        initialRouteName: 'Home'
     }
 );
 
