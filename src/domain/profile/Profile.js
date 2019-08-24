@@ -40,7 +40,7 @@ export class Profile extends Component{
     }
 
     getUser = userName => {
-        axios.get('https://siqpik.herokuapp.com/profile/' + userName)
+        axios.get('https://siqpik.herokuapp.com/api/profile/' + userName)
             .then(resp => resp.data)
             .then(json => new User(json))
             .then(user => this.setState({user}))
