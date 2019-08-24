@@ -1,15 +1,15 @@
 import React from 'react';
 import {Image, View} from "react-native";
+import {styles} from "./style/styles";
 
 export const Pic = props => {
     return(
         <View key={props.index + 'view'}>
             <Image
-                key={index}
-                style={{width: 400, height: 400}}
+                key={props.index}
+                style={styles.picStyle}
                 source={{uri: props.url}}
             />
-            <View key={props.index + 'space'} style={{height: 15, backgroundColor: 'white'}}/>
         </View>
     )
 };

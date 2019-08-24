@@ -21,19 +21,16 @@ export class Profile extends Component{
     render(){
         return (
             <ScrollView>
-                {this.state.user &&
-                <PicsContainer
-                    pics={this.state.user.pics}
-                />
+                {this.state.user
+                    ? <PicsContainer pics={this.state.user.pics}/>
+                    : <Text>Yerrrrrrrryyyy</Text>
                 }
-                {!this.state.user &&
-                <Text>Yerrrrrrrryyyy</Text>}
             </ScrollView>
             )
     }
 
     getUser = () => {
-        axios.get('https://siqpik.herokuapp.com/profile/RDave')
+        axios.get('https://siqpik.herokuapp.com/api/profile/Yery')
             .then(resp => resp.data)
             .then(json => new User(json))
             .then(user => this.setState({user}))

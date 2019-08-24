@@ -1,15 +1,19 @@
 import React from 'react';
 import {Pic} from "./Pic";
+import {FlatGrid} from "react-native-super-grid";
+import {styles} from "./style/styles";
 
 export const PicsContainer = props => {
-    alert(props.pics);
+    alert(props.pics[0].url)
     return (
-    props.pics
-        .splice()
-        .reverse()
-        .map((pic, index) =>
-            <Pic index={index}
-                 url={pic.url}/>
-        )
+        <FlatGrid
+            style={styles.gridView}
+            items={props.pics}
+            renderItem={({ item, index }) => (
+                <Pic index={index}
+                     url={item.url}
+                />
+            )}
+        />
     )
 };
