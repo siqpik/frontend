@@ -12,17 +12,19 @@ import {HomeScreen} from "./src/HomeScreen";
 import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
 import {Profile} from "./src/domain/profile/Profile";
 import {AlertBeforePic} from "./src/domain/camera/AlertBeforePic"
+import {LoginScreen} from "./src/domain/login/Login"
 
 const App = createStackNavigator(
     {
         Home: HomeScreen,
         Alert: AlertBeforePic,
         Profile: Profile,
+        Login: LoginScreen,
         TakeNewPic: TakeNewPic
     },
     {
-        initialRouteName: 'Home',
-    },
+        initialRouteName: 'Login'
+    }
 );
 
 export default createAppContainer(App);

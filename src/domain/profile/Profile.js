@@ -2,19 +2,20 @@ import React, {Component} from 'react';
 import {AppRegistry, ScrollView, Text} from 'react-native';
 import App from "../../../App";
 import User from '../model/User'
+import axios from 'axios'
 import {PicsContainer} from "./PicsContainer"
 
 export class Profile extends Component{
 
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
             user: undefined
         }
     }
 
     componentDidMount() {
-        this.getUser();
+        this.getUser()
     }
 
     render(){
@@ -32,11 +33,10 @@ export class Profile extends Component{
     }
 
     getUser = () => {
-        fetch("https://siqpik.herokuapp.com/profile/RDave")
-            .then(resp => resp.json())
+        axios.get('https://siqpik.herokuapp.com/profile/RDave')
+            .then(resp => resp.data)
             .then(json => new User(json))
             .then(user => this.setState({user}))
-            .then(alert(this.state.user))
             .catch(error => alert(error))
     }
 }

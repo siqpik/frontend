@@ -27,4 +27,4 @@ export class HomeScreen extends React.Component {
     }
 }
 
-AppRegistry.registerComponent('Profile', () => App);
+AppRegistry.registerComponent('HomeScreen', () => App);
