@@ -1,6 +1,7 @@
 import React from 'react';
 import {AppRegistry, Button, ScrollView} from "react-native";
 import App from "../App";
+import {SearchProfile} from "./domain/profile/search/SearchProfile";
 
 export class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -14,6 +15,7 @@ export class HomeScreen extends React.Component {
         const {navigate} = this.props.navigation;
         return (
             <ScrollView>
+                <SearchProfile />
                 <Button
                     title={'Take a new Pic'}
                     onPress={() => navigate('Alert')}
