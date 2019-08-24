@@ -51,7 +51,7 @@ export class SearchProfile extends Component{
                         title={profile.name}
                         subtitle={profile.userName}
                         leftAvatar={{ source: { uri: profile.avatarUrl} }}
-                        onPress={() => alert(profile.userName)}
+                        onPress={() => this.props.navigate('Profile', {userName: profile.userName})}
                     />
                     ))
                 }

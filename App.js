@@ -13,7 +13,7 @@ import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
 import {Profile} from "./src/domain/profile/Profile";
 import {AlertBeforePic} from "./src/domain/camera/AlertBeforePic"
 import {LoginScreen} from "./src/domain/login/Login"
-
+import {SearchProfile} from "./src/domain/profile/search/SearchProfile";
 
 
 const App = createStackNavigator(
@@ -23,7 +23,8 @@ const App = createStackNavigator(
         Alert: AlertBeforePic,
         Profile: Profile,
         Login: LoginScreen,
-        TakeNewPic: TakeNewPic
+        TakeNewPic: TakeNewPic,
+        SearchProfile: SearchProfile
     },
     {
         initialRouteName: 'Login'

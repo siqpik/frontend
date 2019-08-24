@@ -1,8 +1,10 @@
 export default class User {
     constructor(json){
-        this.id = json.id
-        this.name = json.name
+        this.name = json.name;
         this.pics = json.pics.map(jsonPic => new Pic(jsonPic))
+        this.admirers = json.admirers
+        this.admiring = json.admiring
+        this.profilePicUrl = json.profilePicUrl
     }
 }
 
