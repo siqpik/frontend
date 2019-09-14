@@ -27,7 +27,7 @@ const App = createStackNavigator(
         SearchProfile: SearchProfile
     },
     {
-        initialRouteName: 'Profile'
+        initialRouteName: 'Login'
     }
 );
 

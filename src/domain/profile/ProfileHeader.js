@@ -13,14 +13,14 @@ export const ProfileHeader = props => {
                 style={styles.profilePic}
                 source={{uri: props.profilePicUrl}}
             />
-            <View>
-                <View>
+            <View style={styles.admireContainer}>
+                <View style={styles.centerHorizontal}>
                     <Text>Admirers</Text>
-                    <Text>{props.admirers}</Text>
+                    <Text style={{fontWeight: 'bold'}}>{props.admirers}</Text>
                 </View>
-                <View>
+                <View style={styles.centerHorizontal}>
                     <Text>Admiring</Text>
-                    <Text>{props.admiring}</Text>
+                    <Text style={{fontWeight: 'bold'}}>{props.admiring}</Text>
                 </View>
             </View>
         </View>
