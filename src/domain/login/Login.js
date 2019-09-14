@@ -4,7 +4,6 @@ import {StyleSheet, View, Text} from 'react-native';
 import {Logo} from './Logo';
 import {Form} from './Form';
 import {SignUpButton} from "./SignUpButton";
-import base64 from 'react-native-base64'
 import {executeBasicAuthenticationService, registerSuccessfulLogin} from "../service/AuthenticationService";
 
 

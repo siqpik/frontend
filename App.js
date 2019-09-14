@@ -14,6 +14,7 @@ import {Profile} from "./src/domain/profile/Profile";
 import {AlertBeforePic} from "./src/domain/camera/AlertBeforePic"
 import {LoginScreen} from "./src/domain/login/Login"
 import {SearchProfile} from "./src/domain/profile/search/SearchProfile";
+import SignupScreen from "./src/domain/Signin/Signup";
 
 
 const App = createStackNavigator(
@@ -24,7 +25,8 @@ const App = createStackNavigator(
         Profile: Profile,
         Login: LoginScreen,
         TakeNewPic: TakeNewPic,
-        SearchProfile: SearchProfile
+        SearchProfile: SearchProfile,
+        Signup: SignupScreen
     },
     {
         initialRouteName: 'Login'
