@@ -1,20 +1,33 @@
 import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
-    gridView: {
-        borderWidth: 2,
-        borderColor: 'red',
-    },
     picStyle: {
         justifyContent: 'flex-end',
         width: 120,
         height: 140,
+        borderRadius: 10,
     },
     profilePic: {
-        width: 200,
-        height: 200,
+        width: 150,
+        height: 150,
         borderRadius: 100,
-        borderWidth: 2,
+        borderWidth: 3,
         borderColor: 'black'
+    },
+    header: {
+        alignItems: 'center',
+        paddingBottom: 20
+    },
+    name: {
+        fontWeight: 'bold',
+        fontSize: 36
+    },
+    admireContainer: {
+        flexDirection: 'row',
+    },
+    centerHorizontal: {
+        flex: 1,
+        alignItems: 'center'
     }
+
 });
