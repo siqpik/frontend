@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import {CameraView} from "./CameraView";
 import axios from "axios";
+import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
+import {AsyncStorage} from "react-native";
 
 export class TakeNewPic extends Component {
 
@@ -72,6 +74,8 @@ export class TakeNewPic extends Component {
             }}
             ).then(response => {
             if (response.status !== 201) throw new Error(response.status)
+            AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+                .then(userName => this.props.navigation.navigate('Profile', {userName}))
         }).catch(error => alert("Something went wrong: " + error))
     }
 
