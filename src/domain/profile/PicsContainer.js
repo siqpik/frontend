@@ -6,7 +6,7 @@ import {styles} from "./style/styles";
 export const PicsContainer = props => {
     return (
         <FlatGrid
-            style={styles.gridView}
+            contentContainerStyle={{alignItems: 'center'}}
             items={props.pics}
             renderItem={({ item, index }) => (
                 <Pic index={index}

@@ -4,23 +4,23 @@ import {styles} from "./style/styles";
 
 export const ProfileHeader = props => {
     return(
-        <View>
+        <View style={styles.header}>
             <View>
-                <Text>{props.name}</Text>
+                <Text style={styles.name}>{props.name}</Text>
             </View>
             <Image
                 key={props.name}
                 style={styles.profilePic}
                 source={{uri: props.profilePicUrl}}
             />
-            <View>
-                <View>
+            <View style={styles.admireContainer}>
+                <View style={styles.centerHorizontal}>
                     <Text>Admirers</Text>
-                    <Text>{props.admirers}</Text>
+                    <Text style={{fontWeight: 'bold'}}>{props.admirers}</Text>
                 </View>
-                <View>
+                <View style={styles.centerHorizontal}>
                     <Text>Admiring</Text>
-                    <Text>{props.admiring}</Text>
+                    <Text style={{fontWeight: 'bold'}}>{props.admiring}</Text>
                 </View>
             </View>
         </View>
