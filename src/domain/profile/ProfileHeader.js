@@ -4,9 +4,9 @@ import {styles} from "./style/styles";
 
 export const ProfileHeader = props => {
     return(
-        <View>
+        <View style={styles.header}>
             <View>
-                <Text>{props.name}</Text>
+                <Text style={styles.name}>{props.name}</Text>
             </View>
             <Image
                 key={props.name}

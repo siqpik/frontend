@@ -16,5 +16,13 @@ export const styles = StyleSheet.create({
         borderRadius: 100,
         borderWidth: 2,
         borderColor: 'black'
+    },
+    header: {
+        alignItems: 'center'
+    },
+    name: {
+        fontWeight: 'bold',
+        fontSize: 36
     }
+
 });

@@ -26,7 +26,7 @@ const App = createStackNavigator(
         TakeNewPic: TakeNewPic
     },
     {
-        initialRouteName: 'Login'
+        initialRouteName: 'Profile'
     }
 );
 
