@@ -4,8 +4,8 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: 'black',
-        height: Dimensions.get('window').height
+        height: Dimensions.get('window').height,
+        alignSelf: 'stretch',
     },
     takenPic:{
         flex: 1,

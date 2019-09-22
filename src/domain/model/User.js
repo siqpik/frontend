@@ -11,5 +11,6 @@ export default class User {
 class Pic {
     constructor(jsonPic){
         this.url = jsonPic.url
+        this.date = jsonPic.date
     }
 }
