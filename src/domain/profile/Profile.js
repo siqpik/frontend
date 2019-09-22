@@ -32,7 +32,11 @@ export class Profile extends Component{
                                            admiring={this.state.user.admiring}
                                            user={this.state.user}
                             />
-                            <PicsContainer pics={this.state.user.pics}/>
+                            <PicsContainer
+                                pics={this.state.user.pics}
+                                navigate={this.props.navigation.navigate}
+                                username={this.state.user.name}
+                            />
                         </View>
                     )
                     : (<Text>Loading</Text>)

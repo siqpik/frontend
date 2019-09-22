@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
-import {Text, View} from "react-native";
+import {Image, Text, View} from "react-native"
+import {styles} from "../camera/style/styles"
+import Swiper from 'react-native-swiper'
 
 export class Picture extends Component {
 
@@ -8,10 +10,21 @@ export class Picture extends Component {
     }
 
     render(){
+        const {pics, username} = this.props.navigation.state.params
+
         return(
-            <View>
-                <Text>Hola hptas!</Text>
+            <View style={styles.container}>
+                <Text>{username}</Text>
+                <Swiper style={styles.wrapper} showsButtons loop={false}>
+                    {getPics(pics, username)}
+                </Swiper>
             </View>
         )
     }
 }
+
+const getPics = (pics) => pics.map((pic, index) =>
+    <View key={index + 'pictureView'} style={styles.container}>
+        <Text>{pic.date}</Text>
+        <Image source={{uri: pic.url}} style={styles.takenPic} />
+    </View>)
