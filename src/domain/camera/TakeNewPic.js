@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {CameraView} from "./CameraView";
 import axios from "axios";
 import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
-import {AsyncStorage} from "react-native";
+import AsyncStorage from '@react-native-community/async-storage'
 
 export class TakeNewPic extends Component {
 
@@ -15,6 +15,12 @@ export class TakeNewPic extends Component {
             deviceCamera: 'back',
             flashMode: 'off',
         }
+
+        this.toggleDeviceCamera.bind(this)
+        this.showCameraAgain.bind(this)
+        this.toggleFlash.bind(this)
+        this.takePicture.bind(this)
+        this.savePic.bind(this)
     }
 
     render() {
@@ -23,12 +29,12 @@ export class TakeNewPic extends Component {
                 showImage={this.state.showImage}
                 deviceCamera={this.state.deviceCamera}
                 flashMode={this.state.flashMode}
-                toggleDeviceCamera={this.toggleDeviceCamera.bind(this)}
-                showCameraAgain={this.showCameraAgain.bind(this)}
-                toggleFlash={this.toggleFlash.bind(this)}
-                takePicture={this.takePicture.bind(this)}
+                toggleDeviceCamera={this.toggleDeviceCamera}
+                showCameraAgain={this.showCameraAgain}
+                toggleFlash={this.toggleFlash}
+                takePicture={this.takePicture}
+                savePic={this.savePic}
                 imageUri={this.state.imageUri}
-                savePic={this.savePic.bind(this)}
             />
          );
     }

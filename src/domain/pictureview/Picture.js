@@ -10,12 +10,12 @@ export class Picture extends Component {
     }
 
     render(){
-        const {pics, username} = this.props.navigation.state.params
+        const {pics, username, index} = this.props.navigation.state.params
 
         return(
             <View style={styles.container}>
                 <Text>{username}</Text>
-                <Swiper style={styles.wrapper} showsButtons loop={false}>
+                <Swiper style={styles.wrapper} index={index} showsButtons loop={false}>
                     {getPics(pics, username)}
                 </Swiper>
             </View>
