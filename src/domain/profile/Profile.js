@@ -5,19 +5,30 @@ import User from '../model/User'
 import axios from 'axios'
 import {PicsContainer} from "./PicsContainer"
 import {ProfileHeader} from "./ProfileHeader";
+import AsyncStorage from "@react-native-community/async-storage";
+import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
 
 export class Profile extends Component{
 
     constructor(props){
         super(props)
+
         this.state = {
             user: undefined,
-            userName: props.navigation.state.params.userName
+            userName: props.navigation.state.params ? props.navigation.state.params.userName : undefined
         }
     }
 
     componentDidMount() {
-        this.getUser(this.state.userName)
+        if(this.state.userName){
+            this.getUser(this.state.userName)
+        } else {
+            AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+                .then(userName =>  {
+                    this.setState({userName})
+                    this.getUser(this.state.userName)
+                })
+        }
     }
 
     render(){
@@ -39,7 +50,7 @@ export class Profile extends Component{
                             />
                         </View>
                     )
-                    : (<Text>Loading</Text>)
+                    : (<Text>Loading...</Text>)
                 }
             </ScrollView>
             )

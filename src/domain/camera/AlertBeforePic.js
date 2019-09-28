@@ -14,7 +14,7 @@ export class AlertBeforePic extends React.Component {
                 </View>
                 <View style={styles.alertButtons}>
                     <Button style={styles.button} title="Cancel" onPress={() => navigate('Home')}/>
-                    <Button style={styles.button} title="Accept" onPress={() => navigate('TakeNewPic')}/>
+                    <Button style={styles.button} title="Accept" onPress={() => navigate('Camera')}/>
                 </View>
             </View>
 
