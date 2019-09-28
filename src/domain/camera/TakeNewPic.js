@@ -81,7 +81,7 @@ export class TakeNewPic extends Component {
             ).then(response => {
             if (response.status !== 201) throw new Error(response.status)
             AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
-                .then(userName => this.props.navigation.navigate('Profile', {userName}))
+                .then(userName => this.props.navigation.navigate('MyProfile'))
         }).catch(error => alert("Something went wrong: " + error))
     }
 
