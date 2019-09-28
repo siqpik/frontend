@@ -1,7 +1,7 @@
 import {createBottomTabNavigator, createStackNavigator} from "react-navigation";
 import * as React from "react";
 import {Text} from "react-native";
-import {HomeScreen} from "../../HomeScreen";
+import {HomeScreen} from "../home/HomeScreen";
 import {Profile} from "../profile/Profile";
 import {AlertBeforePic} from "../camera/AlertBeforePic";
 import {SearchProfile} from "../profile/search/SearchProfile";
