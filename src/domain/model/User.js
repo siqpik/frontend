@@ -1,3 +1,5 @@
+import Pic from "../shared/model/Pic";
+
 export default class User {
     constructor(json){
         this.name = json.name;
@@ -5,12 +7,5 @@ export default class User {
         this.admirers = json.admirers
         this.admiring = json.admiring
         this.profilePicUrl = json.profilePicUrl
-    }
-}
-
-class Pic {
-    constructor(jsonPic){
-        this.url = jsonPic.url
-        this.date = jsonPic.date
     }
 }
