@@ -7,6 +7,13 @@ export const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
         alignSelf: 'stretch',
     },
+    post: {
+        flex: 1,
+        flexDirection: 'column',
+        height: 380,
+        alignSelf: 'stretch',
+        borderStyle: 'solid'
+    },
     takenPic:{
         flex: 1,
         resizeMode: 'contain',

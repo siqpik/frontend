@@ -1,7 +1,8 @@
 import React from 'react';
-import {ScrollView, Text} from "react-native";
+import {ScrollView} from "react-native";
 import axios from "axios";
-import Post from "../navigation/model/Post";
+import PostView from "./components/Post";
+import Post from "./model/Post";
 
 export class HomeScreen extends React.Component {
 
@@ -20,7 +21,14 @@ export class HomeScreen extends React.Component {
     render() {
         return (
             <ScrollView>
-                {this.state.posts.map(post => <Text >{post.userName}</Text>)}
+                {this.state.posts.map((post, index) =>
+                    <PostView
+                        key={index + ':postView'}
+                        photo={post.photo}
+                        userName={post.userName}
+                        profilePicUrl={post.profilePicUrl}
+                    />
+                )}
             </ScrollView>
         );
     }

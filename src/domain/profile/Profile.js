@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, ScrollView, Text, View} from 'react-native';
-import App from "../../../App";
+import {ScrollView, Text, View} from 'react-native';
 import User from '../model/User'
 import axios from 'axios'
 import {PicsContainer} from "./PicsContainer"
@@ -64,5 +63,3 @@ export class Profile extends Component{
             .catch(error => alert(error))
     }
 }
-
-AppRegistry.registerComponent('Profile', () => App);
