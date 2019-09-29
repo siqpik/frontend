@@ -26,11 +26,16 @@ export class Profile extends Component{
                 {this.state.user
                     ? (
                         <View>
-                            <ProfileHeader name={this.state.user.name}
-                                           profilePicUrl={this.state.user.profilePicUrl}
-                                           admirers={this.state.user.admirers}
-                                           admiring={this.state.user.admiring}
-                                           user={this.state.user}
+                            <ProfileHeader
+                                name={this.state.user.name}
+                                profilePicUrl={this.state.user.profilePicUrl}
+                                admirers={this.state.user.admirers}
+                                admiring={this.state.user.admiring}
+                                user={this.state.user}
+                                isAdmiring={this.state.user.isAdmiring}
+                                isActualUser={this.state.user.isActualUser}
+                                requestStatus={this.state.user.requestStatus}
+                                sendRequest={() => this.sendAdmireRequest(this.state.user.name)}
                             />
                             <PicsContainer
                                 pics={this.state.user.pics}
@@ -51,7 +56,24 @@ export class Profile extends Component{
             .then(json => new User(json))
             .then(user => this.setState({user}))
             .catch(error => alert(error))
-    }
+    };
+    sendAdmireRequest = userName => {
+        axios.post('https://siqpik.herokuapp.com/api/request/' + userName)
+            .then(resp => {
+                if (resp.status === 201) {
+                    this.setState(prevState => (
+                        {
+                            user: {
+                                ...prevState.user,
+                                requestStatus: 'Pending'
+                            },
+                            userName: prevState.userName
+                        }
+                        )
+                    );
+                }
+            }).catch(error => alert(error))
+    };
 }
 
 AppRegistry.registerComponent('Profile', () => App);
