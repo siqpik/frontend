@@ -1,32 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, TextInput, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 
-export default class SignupForm extends Component {
+export const SignupForm = props => (
 
-    render() {
-        return (
             <View style={styles.container}>
                 <Text>Sign up here!</Text>
 
                 <TextInput style={styles.inputBox}
                            placeholder='Email'
-                           placeholderTextColor='#000' />
-                <TextInput style={styles.inputBox}
-                           placeholder='Username'
-                           placeholderTextColor='#000' />
+                           placeholderTextColor='#000'
+                           onChangeText={userName => props.readUserName(userName)}
+                           value={props.username}
+                />
+
+
+
+
                 <TextInput style={styles.inputBox}
                            placeholder='Password'
                            secureTextEntry={true}
-                           placeholderTextColor='#000' />
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}> {this.props.type} </Text>
+                           placeholderTextColor='#000'
+                           onChangeText={pass => props.readPass(pass)}
+                           value={props.pass}
+                />
+                <TouchableOpacity style={styles.button} onPress={props.signInClicked()} >
+                    <Text style={styles.buttonText}> {props.type} </Text>
                 </TouchableOpacity>
             </View>
 
-        )
-    }
-}
+        );
 
 const styles = StyleSheet.create({
     container: {

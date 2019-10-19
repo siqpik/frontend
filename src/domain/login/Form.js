@@ -22,7 +22,9 @@ export const Form = props => (
             <Text style={styles.buttonText}> {props.type} </Text>
         </TouchableOpacity>
     </View>
-)
+);
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -55,5 +57,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: 10,
     }
-})
+});
 
