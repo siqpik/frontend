@@ -39,52 +39,43 @@ export default class SignupScreen extends Component {
 
     readPass = pass => this.setState({pass});
 
-
-    // signInClicked = () => () => {
-    //   if (this.state.userName) {
-    //       console.log(this.state.userName, this.state.pass);
-    //       this.props.navigation.navigate('Home')
-    //   }
-    //
-    //
-    //     this.setState({ showSuccessMessage: false });
-    //     this.setState({ hasLoginFailed: true });
-    // }
-
     signInClicked = async () => {
 
 
-        let username = this.state.userName;
+        let userName = this.state.userName;
         let password = this.state.pass;
 
 
         try {
-            let response = await fetch("https://siqpik.herokuapp.com/basicauth", {
+            let response = await fetch("https://siqpik.herokuapp.com/register", {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({userName: username, password: password})
+                body: JSON.stringify({userName: userName, password: password})
             });
 
 
             const data = await response.json();
 
-            console.log(username);
-            console.log(password);
+
 
             if (response.status === 409 || response.status === 403 || response.status === 401 || response.status === 500) {
 
                 this.setState({ hasLoginFailed: true });
                 this.setState({ showSuccessMessage: false });
-                console.log(data.error);
-                console.log(response);
+                alert(data.error);
+                alert(response);
+
+                alert(userName);
+                alert(password);
             }else if (response.status === 200) {
 
                 this.props.navigation.navigate('Home');
-                console.log("Signed up!", data);
+                this.setState({ showSuccessMessage: true });
+                alert("Signed up!");
 
             }else {
                 console.log(data.error);
@@ -96,11 +87,6 @@ export default class SignupScreen extends Component {
             alert(error);
         }
     };
-
-
-
-
-
 
 }
 

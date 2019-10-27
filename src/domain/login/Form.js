@@ -16,7 +16,6 @@ export const Form = props => (
                    placeholderTextColor='#000'
                    onChangeText={pass => props.readPass(pass)}
                    value={props.pass}
-
         />
         <TouchableOpacity style={styles.button} onPress={props.loginClicked()/*() => props.navigation.navigate('Home')*/} >
             <Text style={styles.buttonText}> {props.type} </Text>

@@ -11,11 +11,8 @@ export const SignupForm = props => (
                            placeholder='Email'
                            placeholderTextColor='#000'
                            onChangeText={userName => props.readUserName(userName)}
-                           value={props.username}
+                           value={props.userName}
                 />
-
-
-
 
                 <TextInput style={styles.inputBox}
                            placeholder='Password'
@@ -24,7 +21,7 @@ export const SignupForm = props => (
                            onChangeText={pass => props.readPass(pass)}
                            value={props.pass}
                 />
-                <TouchableOpacity style={styles.button} onPress={props.signInClicked()} >
+                <TouchableOpacity style={styles.button} onPress={() => props.signInClicked()} >
                     <Text style={styles.buttonText}> {props.type} </Text>
                 </TouchableOpacity>
             </View>
