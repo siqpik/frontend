@@ -10,8 +10,8 @@ export const SignupForm = props => (
                 <TextInput style={styles.inputBox}
                            placeholder='Email'
                            placeholderTextColor='#000'
-                           onChangeText={userName => props.readUserName(userName)}
-                           value={props.userName}
+                           onChangeText={username => props.readUserName(username)}
+                           value={props.username}
                 />
 
                 <TextInput style={styles.inputBox}

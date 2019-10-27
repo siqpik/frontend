@@ -26,13 +26,12 @@ const App = createStackNavigator(
         Camera: TakeNewPic
     },
     {
+        initialRouteName: 'Login',
         headerMode: 'none',
         navigationOptions: {
             headerVisible: false,
         }
-    },
-    {
-        initialRouteName: 'Login'
+
     }
 );
 

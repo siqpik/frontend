@@ -9,7 +9,7 @@ export default class SignupScreen extends Component {
     constructor(props){
         super(props)
         this.state = {
-            userName: '',
+            username: '',
             pass: '',
             hasLoginFailed: false,
             showSuccessMessage: false
@@ -23,7 +23,7 @@ export default class SignupScreen extends Component {
                     type="Signup"
                     navigation={this.props.navigation}
                     signInClicked={this.signInClicked.bind(this)}
-                    userName={this.state.userName}
+                    username={this.state.username}
                     pass={this.state.pass}
                     readUserName={this.readUserName.bind(this)}
                     readPass={this.readPass.bind(this)}
@@ -35,14 +35,14 @@ export default class SignupScreen extends Component {
         );
     }
 
-    readUserName = userName => this.setState({userName});
+    readUserName = username => this.setState({username});
 
     readPass = pass => this.setState({pass});
 
     signInClicked = async () => {
 
 
-        let userName = this.state.userName;
+        let userName = this.state.username;
         let password = this.state.pass;
 
 
@@ -57,28 +57,20 @@ export default class SignupScreen extends Component {
                 body: JSON.stringify({userName: userName, password: password})
             });
 
-
-            const data = await response.json();
-
-
-
             if (response.status === 409 || response.status === 403 || response.status === 401 || response.status === 500) {
 
                 this.setState({ hasLoginFailed: true });
                 this.setState({ showSuccessMessage: false });
-                alert(data.error);
-                alert(response);
 
-                alert(userName);
-                alert(password);
-            }else if (response.status === 200) {
 
-                this.props.navigation.navigate('Home');
+            }else if (response.status === 201) {
+
+                this.props.navigation.navigate('Login');
                 this.setState({ showSuccessMessage: true });
                 alert("Signed up!");
 
             }else {
-                console.log(data.error);
+
                 console.log(response);
             }
 
