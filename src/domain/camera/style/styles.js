@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
     },
     capture: {
         flex: 0,
-        backgroundColor: '#FF0000',
         borderRadius: 50,
         padding: 15,
         paddingHorizontal: 20,
