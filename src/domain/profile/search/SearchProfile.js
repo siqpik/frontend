@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View} from "react-native";
 import {ListItem, SearchBar} from 'react-native-elements';
-import axios from "axios";
 import ProfileResult from "../../model/ProfileResult";
+import {getJson} from "../../service/AuthenticationService";
 
 export class SearchProfile extends Component{
 
@@ -26,8 +26,7 @@ export class SearchProfile extends Component{
     };
 
     searchProfiles = name => {
-        axios.get('https://siqpik.herokuapp.com/api/profile/search/' + name)
-            .then(resp => resp.data)
+        getJson('/profile/search/' + name)
             .then(profiles => profiles.map(profile => new ProfileResult(profile)))
             .then(profiles => this.setState({profiles}))
             .catch(error => console.log(error))

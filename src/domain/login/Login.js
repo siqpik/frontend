@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import {Logo} from './Logo';
 import {Form} from './Form';
 import {SignUpButton} from "./SignUpButton";
-import {executeBasicAuthenticationService, registerSuccessfulLogin} from "../service/AuthenticationService";
+import {authenticate} from "../service/AuthenticationService";
 
 
 export class LoginScreen extends Component {
@@ -44,11 +44,11 @@ export class LoginScreen extends Component {
     readPass = pass => this.setState({pass})
 
     loginClicked = () => () => {
-        executeBasicAuthenticationService(this.state.userName, this.state.pass)
+        authenticate(this.state.userName, this.state.pass)
             .then(() => {
                 this.props.navigation.navigate('Home')
             })
-            .catch(error => {
+            .catch(() => {
                 this.setState({ showSuccessMessage: false })
                 this.setState({ hasLoginFailed: true })
             })

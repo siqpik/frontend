@@ -1,8 +1,8 @@
 import React from 'react';
 import {ScrollView} from "react-native";
-import axios from "axios";
 import PostView from "./components/Post";
 import Post from "./model/Post";
+import {getJson} from "../service/AuthenticationService";
 
 export class HomeScreen extends React.Component {
 
@@ -34,10 +34,9 @@ export class HomeScreen extends React.Component {
     }
 
     getPosts = () => {
-        axios.get('https://siqpik.herokuapp.com/api/posts')
-            .then(resp => resp.data)
+        getJson('/posts')
             .then(json => json.map(post => new Post(post)))
             .then(posts => this.setState({posts}))
-            .catch(error => alert(error))
+            .catch(error => alert("Ronnie" + error))
     }
 }

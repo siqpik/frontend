@@ -1,8 +1,7 @@
 'use strict';
 import React, {Component} from 'react';
 import {CameraView} from "./CameraView";
-import axios from "axios";
-import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
+import {post, USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
 import AsyncStorage from '@react-native-community/async-storage'
 
 export class TakeNewPic extends Component {
@@ -72,13 +71,12 @@ export class TakeNewPic extends Component {
     };
 
     savePic = () => () => {
-        axios.post(
-            'https://siqpik.herokuapp.com/api/picture',
+        post(
+            '/picture',
             this.getFormData(),
-            {headers: {
-                    'Content-Type': 'multipart/form-data'
-            }}
-            ).then(response => {
+            'multipart/form-data'
+        )
+            .then(response => {
             if (response.status !== 201) throw new Error(response.status)
             AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
                 .then(userName => this.props.navigation.navigate('MyProfile'))
