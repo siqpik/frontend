@@ -7,15 +7,20 @@ export const CameraButtons = props => (
     <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
         <TouchableOpacity onPress={props.toggleDeviceCamera()} style={styles.capture}>
             <Icon
-                name="flash"
+                name="camera"
                 color="white"
                 size={30}
             />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => props.takePicture(props.camera)} style={styles.capture}>
-            <Text style={{ fontSize: 14 }}> SNAP! </Text>
+            <Icon
+                name="circle-thin"
+                size={45}
+                color="white"
+            />
         </TouchableOpacity>
         <TouchableOpacity onPress={props.toggleFlash()} style={styles.capture}>
+
             <Text style={{ fontSize: 14 }}> Flash {props.flashMode === 'on' ? 'Off' : 'On'} </Text>
         </TouchableOpacity>
 

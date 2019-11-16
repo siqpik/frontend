@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import {AppRegistry, ScrollView, Text, View} from 'react-native';
 import App from "../../../App";
 import User from '../model/User'
-import axios from 'axios'
 import {PicsContainer} from "./PicsContainer"
 import {ProfileHeader} from "./ProfileHeader";
 import AsyncStorage from "@react-native-community/async-storage";
-import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
+import {getJson, post, USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
 
 export class Profile extends Component{
 
@@ -61,14 +60,13 @@ export class Profile extends Component{
     }
 
     getUser = userName => {
-        axios.get('https://siqpik.herokuapp.com/api/profile/' + userName)
-            .then(resp => resp.data)
+        getJson('/profile/' + userName)
             .then(json => new User(json))
             .then(user => this.setState({user}))
             .catch(error => alert(error))
     };
     sendAdmireRequest = userName => {
-        axios.post('https://siqpik.herokuapp.com/api/request/' + userName)
+        post('/request/' + userName)
             .then(resp => {
                 if (resp.status === 201) {
                     this.setState(prevState => (
