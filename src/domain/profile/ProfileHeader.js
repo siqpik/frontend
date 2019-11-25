@@ -34,7 +34,7 @@ export const ProfileHeader = props => {
                                     name='adn'
                                     type='font-awesome'
                                     color='#293329'
-                                    onPress={props.sendRequest}
+                                    onPress={props.sendAdmireRequest}
                                 />
                     }
                 </View>

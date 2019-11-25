@@ -45,7 +45,7 @@ export class Profile extends Component{
                                 isAdmiring={this.state.user.isAdmiring}
                                 isActualUser={this.state.user.isActualUser}
                                 requestStatus={this.state.user.requestStatus}
-                                sendRequest={() => this.sendAdmireRequest(this.state.user.name)}
+                                sendAdmireRequest={() => this.sendAdmireRequest(this.state.user.name)}
                             />
                             <PicsContainer
                                 pics={this.state.user.pics}
