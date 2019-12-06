@@ -23,23 +23,40 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    capture: {
-        flex: 0,
-        borderRadius: 50,
-        padding: 15,
-        paddingHorizontal: 20,
-        alignSelf: 'center',
-        margin: 20,
+    buttonsContainer: {
+        flex: 2,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        width: "100%",
+        justifyContent: "space-around",
+        marginBottom: "5%"
     },
     alertContainer: {
         flex: 1
     },
     alertText: {
         flex: 1,
-        justifyContent: "center",
+        justifyContent: "flex-end",
         alignItems: "center",
-        // marginHorizontal: 20
     },
+    rules: {
+        flex: 2,
+        justifyContent: 'space-between',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '5%',
+
+    },
+    rulesText: {
+        fontSize: 20,
+        margin: '2%'
+    },
+    title: {
+        flex: 1,
+        fontSize: 30,
+        marginTop: '20%'
+    },
+
     alertButtons: {
         flex: 1,
         flexDirection: 'row',

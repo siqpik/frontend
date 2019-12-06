@@ -8,15 +8,33 @@ export class AlertBeforePic extends React.Component {
         return(
             <View style={styles.alertContainer}>
                 <View style={styles.alertText}>
-                    <Text>
-                        Be careful! You will only have 5 minutes to decide if you want to keep the photo or not.
+                    <Text style={styles.title}>
+                        SIQPIK RULES:
                     </Text>
+                    <View style={styles.rules}>
+
+                        <View>
+                            <Text style={styles.rulesText}>1. If you discard a picture you have taken it will not save on your phone</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.rulesText}>2. Once you take a picture a timer will start and you must post within that time or risk losing the photo.</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.rulesText}>3. If you discard 2 pictures then you will lose the ability to take pictures for a period of time. </Text>
+                        </View>
+                    </View>
                 </View>
+
+
                 <View style={styles.alertButtons}>
                     <Button style={styles.button} title="Cancel" onPress={() => navigate('Home')}/>
                     <Button style={styles.button} title="Accept" onPress={() => navigate('Camera')}/>
                 </View>
             </View>
+
+
+
+
 
         )
     }

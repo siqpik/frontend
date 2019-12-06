@@ -27,6 +27,9 @@ export const CameraView = props => (
                 />
                 )}
         </RNCamera>}
+
+        {props.showImage && <Image source={{uri: props.imageUri}} style={styles.takenPic} />}
+
         {props.showImage &&
         <PicturePreview
             imageUri={props.imageUri}
@@ -34,5 +37,5 @@ export const CameraView = props => (
             savePic={() => props.savePic()}
         />
         }
-        {props.showImage && <Image source={{uri: props.imageUri}} style={styles.takenPic} />}
+
     </View>)
