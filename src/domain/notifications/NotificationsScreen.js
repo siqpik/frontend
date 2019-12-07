@@ -5,7 +5,7 @@ export class NotificationsScreen extends React.Component {
     render() {
         return (
             <ScrollView>
-                <Text >Notificatioooooons!!!</Text>
+                <Text>Notificatioooooons!!!</Text>
             </ScrollView>
         );
     }

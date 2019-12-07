@@ -23,31 +23,82 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    capture: {
-        flex: 0,
-        backgroundColor: '#FF0000',
-        borderRadius: 50,
-        padding: 15,
-        paddingHorizontal: 20,
-        alignSelf: 'center',
-        margin: 20,
+    buttonsContainer: {
+        flex: 2,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        width: "100%",
+        justifyContent: "space-around",
+        marginBottom: "5%"
     },
     alertContainer: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: Dimensions.get('window').height
     },
     alertText: {
-        flex: 1,
-        justifyContent: "center",
+        flex: 2,
+        justifyContent: "flex-end",
         alignItems: "center",
-        // marginHorizontal: 20
+
+    },
+    rules: {
+        flex: 2,
+        justifyContent: 'space-between',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '5%',
+
+    },
+    rulesText: {
+        fontSize: 20,
+        margin: '2%'
+    },
+    title: {
+        flex: 1,
+        fontSize: 30,
+        marginTop: '20%'
+    },
+    capture: {
+        width: '15%',
+        height: '15%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+
     },
     alertButtons: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
+    },
+
+    buttonText: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#ffffff',
     },
     button: {
-        width: '40%',
+        width: 100,
+        backgroundColor: '#000',
+        borderRadius: 25,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 10,
+    },
+    removeWarning : {
+        height: 30,
+        width: '90%',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        marginBottom: '10%',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+    },
+    removeWarningText: {
+        fontSize: 15,
+        marginHorizontal: '5%'
     }
 });

@@ -10,6 +10,8 @@ export const PicturePreview = props => (
             size={20}
             timeToShow={['M', 'S']}
         />
+
+
         <Button title={'Discard'} onPress={props.showCameraAgain()}/>
         <Button title={'Post!'} onPress={props.savePic()}/>
     </View>
