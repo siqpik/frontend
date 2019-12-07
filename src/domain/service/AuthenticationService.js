@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage'
 import AuthenticationRequest from "../model/AuthenticationRequest"
 
+//const HOST_URL = 'http://192.168.1.84:8080'
 const HOST_URL = 'https://siqpik.herokuapp.com'
 const API_URL = HOST_URL + '/api'
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'USER_NAME_SESSION_ATTRIBUTE_NAME';

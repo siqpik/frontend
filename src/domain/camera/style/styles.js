@@ -34,6 +34,7 @@ export const styles = StyleSheet.create({
     alertContainer: {
         flex: 1,
         justifyContent: 'space-around',
+        alignItems: 'center',
         height: Dimensions.get('window').height
     },
     alertText: {
