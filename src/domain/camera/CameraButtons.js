@@ -27,8 +27,8 @@ export const CameraButtons = props => (
                 name="md-flash"
                 color="white"
                 size={45}
-                style={{ marginRight : "4%" }}
-            /> :
+            />
+            :
                 <IonIcon
                     name="md-flash-off"
                     color="white"

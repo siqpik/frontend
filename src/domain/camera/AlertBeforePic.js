@@ -1,15 +1,23 @@
 import React from 'react';
-import {View, Text, Button} from "react-native";
+import {View, Text, Button, TouchableOpacity} from "react-native";
 import {styles} from "./style/styles";
+import Fontisto from 'react-native-vector-icons/Fontisto';
+
 
 export class AlertBeforePic extends React.Component {
+    state = { stopAlerts: false};
+
+
+
+
+
     render(){
         const {navigate} = this.props.navigation;
         return(
             <View style={styles.alertContainer}>
                 <View style={styles.alertText}>
                     <Text style={styles.title}>
-                        SIQPIK RULES:
+                        HOW SIQPIK WORKS:
                     </Text>
                     <View style={styles.rules}>
 
@@ -20,16 +28,38 @@ export class AlertBeforePic extends React.Component {
                             <Text style={styles.rulesText}>2. Once you take a picture a timer will start and you must post within that time or risk losing the photo.</Text>
                         </View>
                         <View>
-                            <Text style={styles.rulesText}>3. If you discard 2 pictures then you will lose the ability to take pictures for a period of time. </Text>
+                            <Text style={styles.rulesText}>3. You have a maximum of three photos per day. </Text>
                         </View>
                     </View>
                 </View>
 
 
                 <View style={styles.alertButtons}>
-                    <Button style={styles.button} title="Cancel" onPress={() => navigate('Home')}/>
-                    <Button style={styles.button} title="Accept" onPress={() => navigate('Camera')}/>
+                    <TouchableOpacity style={styles.button} onPress={() => navigate('Camera')}>
+                        <Text style={styles.buttonText}> Cancel </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button} onPress={() => navigate('Camera')}>
+                        <Text style={styles.buttonText}> Accept </Text>
+                    </TouchableOpacity>
                 </View>
+                <View style={styles.removeWarning}>
+                    <Text style={styles.removeWarningText}>Don't Show Warning Again</Text>
+
+
+                    {this.state.stopAlerts === false ?
+                        <TouchableOpacity  onPress={() => this.setState ({stopAlerts:  true})}>
+                            <Fontisto name="checkbox-passive" size={30}></Fontisto>
+                        </TouchableOpacity>
+                        :
+                        <TouchableOpacity onPress={() => this.setState ({stopAlerts:  false})}>
+                            <Fontisto name="checkbox-active" size={30}></Fontisto>
+                        </TouchableOpacity>
+                    }
+                </View>
+
+
+
             </View>
 
 
