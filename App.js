@@ -14,6 +14,8 @@ import SignupScreen from "./src/domain/Signin/Signup";
 import {Picture} from "./src/domain/pictureview/Picture";
 import RootNavigation from "./src/domain/navigation/RootNavigation";
 import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
+import {AsyncStorage} from "react-native";
+import {TOKEN_SESSION} from "./src/domain/service/AuthenticationService";
 
 
 const App = createStackNavigator(
@@ -26,7 +28,7 @@ const App = createStackNavigator(
         Camera: TakeNewPic
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: await AsyncStorage.getItem(TOKEN_SESSION) === null ? 'Login': 'RootNavigation',
         headerMode: 'none',
         navigationOptions: {
             headerVisible: false,
