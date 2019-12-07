@@ -14,9 +14,17 @@ import SignupScreen from "./src/domain/Signin/Signup";
 import {Picture} from "./src/domain/pictureview/Picture";
 import RootNavigation from "./src/domain/navigation/RootNavigation";
 import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
-import {AsyncStorage} from "react-native";
+import AsyncStorage from '@react-native-community/async-storage'
 import {TOKEN_SESSION} from "./src/domain/service/AuthenticationService";
 
+let rootNav = 'Login'
+
+AsyncStorage.getItem(TOKEN_SESSION)
+    .then( token => {
+        if (token){
+            rootNav = 'RootNavigation'
+        }
+    })
 
 const App = createStackNavigator(
     {
@@ -28,7 +36,7 @@ const App = createStackNavigator(
         Camera: TakeNewPic
     },
     {
-        initialRouteName: await AsyncStorage.getItem(TOKEN_SESSION) === null ? 'Login': 'RootNavigation',
+        initialRouteName:rootNav,
         headerMode: 'none',
         navigationOptions: {
             headerVisible: false,
