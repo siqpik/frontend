@@ -28,7 +28,7 @@ const App = createStackNavigator(
         Camera: TakeNewPic
     },
     {
-        initialRouteName: await AsyncStorage.getItem(TOKEN_SESSION) === null ? 'Login': 'RootNavigation',
+        initialRouteName: 'Login',
         headerMode: 'none',
         navigationOptions: {
             headerVisible: false,

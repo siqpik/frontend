@@ -50,24 +50,37 @@ export class TakeNewPic extends Component {
         showImage: false,
     })
 
-    takePicture = camera => {
-        if (camera){
-            const options = {
-                quality: 0.5,
-                base64: true,
-                mirrorImage: this.state.deviceCamera === "front",
-                forceUpOrientation: true,
-                fixOrientation: true
-            };
-            camera.takePictureAsync(options)
-                .then(photo => {
-                    this.setState({
-                        showImage: true,
-                        imageUri: photo.uri
-                    })
-                })
-                .catch(error => alert("An error has ocurred: " + error))
+    addAttempt = async () => {
+        try {
+            const response = await post('/attempts', null, 'application/json');
+            return response.status === 200;
+        } catch (error) {
+            alert("An error has ocurred: " + error)
         }
+    }
+
+    takePicture = camera => {
+        this.addAttempt()
+            .then(result => {
+                if (result && camera) {
+                    const options = {
+                        quality: 0.5,
+                        base64: true,
+                        mirrorImage: this.state.deviceCamera === "front",
+                        forceUpOrientation: true,
+                        fixOrientation: true
+                    };
+                    camera.takePictureAsync(options)
+                        .then(photo => {
+                            this.setState({
+                                showImage: true,
+                                imageUri: photo.uri
+                            })
+                        })
+                        .catch(error => alert("An error has occurred: " + error))
+                }
+            })
+            .catch(error => alert("An error has occurred: " + error))
     };
 
     savePic = () => () => {
