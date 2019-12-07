@@ -4,20 +4,10 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Logo} from './Logo';
 import {Form} from './Form';
 import {SignUpButton} from "./SignUpButton";
-import {authenticate, TOKEN_SESSION} from "../service/AuthenticationService";
-import AsyncStorage from '@react-native-community/async-storage'
+import {authenticate} from "../service/AuthenticationService";
 
 
 export class LoginScreen extends Component {
-
-    componentDidMount(): void {
-        AsyncStorage.getItem(TOKEN_SESSION)
-            .then(token => {
-                if (token) {
-                    this.props.navigation.navigate('Home')
-                }
-            })
-    }
 
     constructor(props){
         super(props)
