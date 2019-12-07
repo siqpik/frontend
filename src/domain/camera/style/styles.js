@@ -71,8 +71,9 @@ export const styles = StyleSheet.create({
     alertButtons: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-around',
         alignItems: 'center',
+        justifyContent: 'space-around',
+        width: '100%'
     },
 
     buttonText: {
@@ -85,8 +86,16 @@ export const styles = StyleSheet.create({
         backgroundColor: '#000',
         borderRadius: 25,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         paddingVertical: 10,
+    },
+    buttonHome: {
+        width: 200,
+        backgroundColor: '#000',
+        borderRadius: 25,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        paddingVertical: 15,
     },
     removeWarning : {
         height: 30,

@@ -45,13 +45,14 @@ export class AlertBeforePic extends React.Component {
                         </View>
 
                         <View style={styles.alertButtons}>
+
                             <TouchableOpacity style={styles.button} onPress={() => navigate('Home')}>
                                 <Text style={styles.buttonText}> Cancel </Text>
                             </TouchableOpacity>
-
                             <TouchableOpacity style={styles.button} onPress={() => navigate('Camera')}>
                                 <Text style={styles.buttonText}> Accept </Text>
                             </TouchableOpacity>
+
                         </View>
 
                         <View style={styles.removeWarning}>
@@ -75,12 +76,16 @@ export class AlertBeforePic extends React.Component {
                         <View style={styles.alertContainer}>
                             <View>
                                 <Text style={styles.rulesText}>
-                                    Not more attempts for today! Try again tomorrow
+                                    Not More Attempts For Today!
                                 </Text>
+                                <Text style={styles.rulesText}>
+                                    Try Again Tomorrow
+                                </Text>
+
                             </View>
                             <View>
-                            <TouchableOpacity style={styles.button} onPress={() => navigate('Home')}>
-                                <Text style={styles.buttonText}> Back To Home </Text>
+                            <TouchableOpacity style={styles.buttonHome} onPress={() => navigate('Home')}>
+                                <Text style={styles.buttonText}> Back To Home Page </Text>
                             </TouchableOpacity>
                             </View>
                         </View>
