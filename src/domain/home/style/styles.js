@@ -7,12 +7,11 @@ export const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
         alignSelf: 'stretch',
     },
-    takenPic:{
+    wallPic:{
         flex: 2,
         resizeMode: 'cover',
-        width: '90%',
+        width: Dimensions.get('window').width,
         alignSelf: 'center',
-        borderRadius: 15
     },
     post: {
         flex: 2,
