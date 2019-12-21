@@ -12,7 +12,7 @@ export default props => (
                 <Text> {props.photo.date}</Text>
                 </View>
             </View>
-            <Image source={{uri: props.photo.url}} style={styles.takenPic} />
+            <Image source={{uri: props.photo.url}} style={styles.wallPic} />
             <View style={styles.postDescription}>
                 <Icon
                     name="star-o"
