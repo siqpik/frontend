@@ -10,13 +10,13 @@ export const styles = StyleSheet.create({
     wallPic:{
         flex: 2,
         resizeMode: 'cover',
-        width: Dimensions.get('window').width,
+        // width: Dimensions.get('window').width,
         alignSelf: 'center',
     },
     post: {
         flex: 2,
         flexDirection: 'column',
-        height: 380,
+
         alignSelf: 'stretch',
 
     },
@@ -27,12 +27,11 @@ export const styles = StyleSheet.create({
     },
     titleName: {
         marginLeft: '2%',
-        flexDirection: 'column'
+        flexDirection: 'column',
+
     },
     profilePic: {
-        width: 40,
-        height: 40,
-        borderRadius: 75
+        borderRadius: 80
     },
     postDescription: {
         width: '90%',

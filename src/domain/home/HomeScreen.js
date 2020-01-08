@@ -16,6 +16,8 @@ export class HomeScreen extends React.Component {
 
     componentDidMount(): void {
         this.getPosts()
+
+
     }
 
     render() {
