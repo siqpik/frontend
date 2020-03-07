@@ -18,12 +18,11 @@ export default props => (
             <View style={styles.postDescription}>
                 <TextInput style={styles.commentInput}/>
                 <Icon
-                    onPress={() => {
-                        console.log(props.photo, "Hello");
-                    }}
+                   onPress={() => props.likePost(props.photo.id)}
                     name="star-o"
                     size={35}
-                    color="black"/>
+                    color="black"
+                />
             </View>
 
         </View>

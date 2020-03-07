@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     },
     name: {
         fontWeight: 'bold',
-        fontSize: 36
+        fontSize: 36,
     },
     admireContainer: {
         flexDirection: 'row',
@@ -28,6 +28,10 @@ export const styles = StyleSheet.create({
     centerHorizontal: {
         flex: 1,
         alignItems: 'center'
+    },
+    rightAlign: {
+        flexDirection: 'row-reverse',
+        paddingTop: 10,
+        paddingLeft: 20
     }
-
 });
