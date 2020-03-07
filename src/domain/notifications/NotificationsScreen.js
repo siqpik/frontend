@@ -17,6 +17,10 @@ export class NotificationsScreen extends React.Component {
             // .then(json => alert(JSON.stringify(json)))
             .then(json => this.setState({notifications: json}))
             .catch(alert);
+        getJson('/newNotifications')
+            .then()
+            // .then(json => alert(JSON.stringify(json)))
+            .catch(alert)
     }
 
     render() {
