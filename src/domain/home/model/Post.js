@@ -6,5 +6,6 @@ export default class Post {
         this.profilePicUrl = json.profilePicUrl
         this.userName = json.userName
         this.photo = new Pic(json.photo)
+        this.date = json.date
     }
 }

@@ -16,28 +16,37 @@ export const styles = StyleSheet.create({
     post: {
         flex: 2,
         flexDirection: 'column',
-
         alignSelf: 'stretch',
 
     },
     userTitle: {
-        flex: .2,
+        flex: .3,
         flexDirection: 'row',
         margin: '5%'
     },
     titleName: {
         marginLeft: '2%',
-        flexDirection: 'column',
-
+        flexDirection: 'column'
+    },
+    name: {
+        fontSize: 18,
+        fontWeight: 'bold'
     },
     profilePic: {
         borderRadius: 80
     },
     postDescription: {
-        width: '90%',
+        width: '100%',
         marginTop: '3%',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        justifyContent: 'space-around',
+        flexDirection: 'row'
+    },
+    commentInput: {
+        borderColor: 'gray',
+        height: 40,
+        borderWidth: 2,
+        borderRadius: 1,
+        width: '60%'
     }
-
-
 });

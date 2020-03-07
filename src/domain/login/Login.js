@@ -10,7 +10,7 @@ import {authenticate} from "../service/AuthenticationService";
 export class LoginScreen extends Component {
 
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             userName: '',
             pass: '',
@@ -39,9 +39,9 @@ export class LoginScreen extends Component {
         );
     }
 
-    readUserName = userName => this.setState({userName})
+    readUserName = userName => this.setState({userName});
 
-    readPass = pass => this.setState({pass})
+    readPass = pass => this.setState({pass});
 
     loginClicked = () => () => {
         authenticate(this.state.userName, this.state.pass)
@@ -49,8 +49,8 @@ export class LoginScreen extends Component {
                 this.props.navigation.navigate('Home')
             })
             .catch(() => {
-                this.setState({ showSuccessMessage: false })
-                this.setState({ hasLoginFailed: true })
+                this.setState({ showSuccessMessage: false });
+                this.setState({ hasLoginFailed: true });
             })
     }
 }
@@ -62,4 +62,4 @@ const styles1 = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-})
+});

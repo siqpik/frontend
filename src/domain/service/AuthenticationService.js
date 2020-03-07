@@ -14,7 +14,11 @@ export const authenticate = (username, password) => fetch(HOST_URL + '/authentic
     },
     body: JSON.stringify(new AuthenticationRequest(username, password))
 }).then(response => {
-    if (response.status === 403) throw new Error("Credenciales inválidas")
+    if (response.status === 403){
+        console.log(response);
+       // throw new Error("Credenciales inválidas"();
+    }
+
     return response.json()
 }).then(json => registerSuccessfulLogin(json.jwt, username))
 

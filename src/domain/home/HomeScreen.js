@@ -8,19 +8,17 @@ export class HomeScreen extends React.Component {
 
     constructor(props){
         super(props)
-
         this.state = {
-            posts: []
+            posts: [],
         }
     }
 
     componentDidMount(): void {
         this.getPosts()
-
-
     }
 
     render() {
+
         return (
             <ScrollView>
                 {this.state.posts.map((post, index) =>
@@ -33,6 +31,10 @@ export class HomeScreen extends React.Component {
                 )}
             </ScrollView>
         );
+    }
+
+    likePost = () => {
+
     }
 
     getPosts = () => {
