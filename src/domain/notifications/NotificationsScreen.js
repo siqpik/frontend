@@ -1,7 +1,8 @@
 import React from 'react';
 import {ScrollView, Text, FlatList, View} from "react-native";
-import {getJson} from "../service/AuthenticationService";
+import {getJson, post} from "../service/AuthenticationService";
 import {RequestAdmireNotification} from './RequestAdmireNotification'
+import Notification from './model/Notification'
 
 export class NotificationsScreen extends React.Component {
 
@@ -14,8 +15,14 @@ export class NotificationsScreen extends React.Component {
 
     componentDidMount() {
         getJson('/notifications')
-            // .then(json => alert(JSON.stringify(json)))
-            .then(json => this.setState({notifications: json}))
+            .then(json => json.map(notification => new Notification(notification)))
+            .then(notifications => this.setState({notifications}))
+            .catch(alert);
+    }
+
+    responseToAdmireRequest = (requestId, result) => {
+        post(`/request/${requestId}/${result}`)
+            .then(response => response.status === 404 || response.status === 401 ? alert('Something went wrong') : alert('All OK'))
             .catch(alert);
         getJson('/newNotifications')
             .then()
@@ -27,19 +34,21 @@ export class NotificationsScreen extends React.Component {
         return (
             <ScrollView>
                 {this.state.notifications
-                    ? (
-                        <View>
-                        <FlatList data={this.state.notifications} renderItem={({item}) =>
+                    ? (this.state.notifications.map(not =>
                             <RequestAdmireNotification
-                                name={item.userName}
-                                image={item.userProfilePic}
-                            />
-                        }/>
-                        </View>
+                                key={not.id}
+                                id={not.id}
+                                name={not.senderUserName}
+                                image={not.userProfilePic}
+                                status={not.status}
+                                accept={() => this.responseToAdmireRequest(not.id, true)}
+                                dismiss={() => this.responseToAdmireRequest(not.id, false)}
+                            />)
                     )
-                    : (<Text>Loading...</Text>)
+                    : <Text>Loading...</Text>
                 }
             </ScrollView>
         );
     }
+
 }
