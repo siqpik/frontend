@@ -22,7 +22,13 @@ export class NotificationsScreen extends React.Component {
 
     responseToAdmireRequest = (requestId, result) => {
         post(`/request/${requestId}/${result}`)
-            .then(response => response.status === 404 || response.status === 401 ? alert('Something went wrong') : alert('All OK'))
+            .then(response => {
+                response.status === 200 || response.status === 201
+                    ? this.state.notifications.find(notification => notification.id === requestId)
+                        .status = result ? 'Accepted' : 'Canceled'
+                    : alert("Opps, something went wrong, try again later");
+                this.setState({notifications: this.state.notifications})
+            })
             .catch(alert);
         getJson('/newNotifications')
             .then()
