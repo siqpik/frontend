@@ -1,59 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {ScrollView} from "react-native";
-import PostView from "./components/Post";
+import Wallpost from "./components/Post";
 import Post from "./model/Post";
 import {getJson, post} from "../service/AuthenticationService";
 
-export class HomeScreen extends React.Component {
+function HomeScreen() {
 
-    constructor(props){
-        super(props)
-        this.state = {
-            posts: [],
-            likes: [],
-        }
-    }
+    const [posts, setPosts] = useState([]);
 
-    componentDidMount(): void {
-        this.getPosts()
-    }
 
-    render() {
+    useEffect(() => {
+        getPosts();
+    },[]);
 
         return (
             <ScrollView>
-                {this.state.posts.map((post, index) =>
-                    <PostView
+                {posts.map((post, index) =>
+                    <Wallpost
                         key={index + ':postView'}
                         photo={post.photo}
                         userName={post.userName}
                         profilePicUrl={post.profilePicUrl}
-                        likePost={this.likePost}
+                        likePost={likePost}
+                        ilikeThisPic={post.ilikeThisPic}
                     />
                 )}
             </ScrollView>
         );
-    }
 
-    likePost = (pictureID) => {
+
+    function likePost(pictureID) {
         post('/picture/' + pictureID)
             .then(resp => {
                 console.log(resp);
-                if (resp.status === 201) {
-                    this.setState( addLike => (
-                            {
-                                likes: addLike,
-                            }
-                        )
-                    );
-                }
             }).catch(error => alert(error))
-    };
+    }
 
-    getPosts = () => {
+    function getPosts() {
         getJson('/posts')
             .then(json => json.map(post => new Post(post)))
-            .then(posts => this.setState({posts}))
+            .then(posts => setPosts(posts))
             .catch(error => alert("Ronnie" + error))
     }
 }
+
+export default HomeScreen;
