@@ -9,7 +9,6 @@ function Wallpost (props) {
     const [picLiked, setPicLiked] = useState();
 
     return (
-
         <View style={styles.post}>
             <View style={styles.userTitle}>
                 <Image source={{uri: props.profilePicUrl}} width={60} style={styles.profilePic}/>
