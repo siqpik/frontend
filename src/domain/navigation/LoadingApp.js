@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Text} from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
-import {TOKEN_SESSION} from "./domain/service/AuthenticationService";
+import {TOKEN_SESSION} from "../service/AuthenticationService";
 
-export class LoadinApp extends Component {
+export class LoadingApp extends Component {
 
     constructor(props) {
         super(props);
@@ -12,7 +12,7 @@ export class LoadinApp extends Component {
     componentDidMount(): void {
         AsyncStorage.getItem(TOKEN_SESSION)
             .then(token => {
-                this.props.navigation.navigate(token ? 'App' : 'Login')
+                this.props.navigation.navigate(token ? 'RootNavigation' : 'Login')
 
             })
     }

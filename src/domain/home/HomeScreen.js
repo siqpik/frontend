@@ -31,12 +31,9 @@ function HomeScreen() {
 
     function likePost(pictureID) {
         post('/picture/' + pictureID)
-            .then(response => {
-                if(response.status === 201){
-                 getPosts();
-                }
-            })
-            .catch(error => alert(error))
+            .then(resp => {
+                console.log(resp);
+            }).catch(error => alert(error))
     }
 
     function getPosts() {

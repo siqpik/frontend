@@ -1,18 +1,18 @@
 import React from 'react'
-import {View, Text, Image} from 'react-native'
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {styles} from "./style/styles";
 import {Icon} from "react-native-elements";
 
 export const ProfileHeader = props => {
     return(
         <View>
-            <View style={styles.rightAlign}>
+            <TouchableOpacity style={styles.rightAlign} onPress={() => props.navigation.openDrawer()}>
                 <Icon
                     name='ios-cog'
                     type='ionicon'
 
                 />
-            </View>
+            </TouchableOpacity>
             <View style={styles.header}>
                 <View>
                     <Text style={styles.name}>{props.name}</Text>

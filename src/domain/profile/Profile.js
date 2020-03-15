@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {AppRegistry, ScrollView, Text, View} from 'react-native';
+import {AppRegistry, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import App from "../../../App";
 import User from '../model/User'
 import {PicsContainer} from "./PicsContainer"
 import {ProfileHeader} from "./ProfileHeader";
 import AsyncStorage from "@react-native-community/async-storage";
 import {getJson, post, USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
+import {styles} from './style/styles';
+import {Icon} from 'react-native-elements';
 
 export class Profile extends Component{
 
@@ -13,7 +15,7 @@ export class Profile extends Component{
         super(props)
         this.state = {
             user: undefined,
-            userName: props.navigation.state.params ? props.navigation.state.params.userName : undefined
+            userName: props.route.params ? props.route.params.userName : undefined
         }
     }
 
@@ -28,6 +30,10 @@ export class Profile extends Component{
                 })
         }
     }
+
+  componentDidUpdate(prevProps, prevState) {
+    //TODO detect the change from the search
+  }
 
     render(){
         return (
@@ -45,6 +51,7 @@ export class Profile extends Component{
                                 isActualUser={this.state.user.isActualUser}
                                 requestStatus={this.state.user.requestStatus}
                                 sendAdmireRequest={() => this.sendAdmireRequest(this.state.user.name)}
+                                navigation={this.props.navigation}
                             />
                             <PicsContainer
                                 pics={this.state.user.pics}

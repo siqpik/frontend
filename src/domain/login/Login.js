@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage'
 
 import {Logo} from './Logo';
 import {Form} from './Form';
-import {SignUpButton} from "./SignUpButton";
-import {authenticate} from "../service/AuthenticationService";
-
+import {SignUpButton} from './SignUpButton';
+import {authenticate, USER_NAME_SESSION_ATTRIBUTE_NAME} from '../service/AuthenticationService';
 
 export class LoginScreen extends Component {
 
@@ -15,11 +15,12 @@ export class LoginScreen extends Component {
             userName: '',
             pass: '',
             hasLoginFailed: false,
-            showSuccessMessage: false
+            showSuccessMessage: false,
+            formUnFilled: false
         }
     }
 
-    render() {
+  render() {
         return (
             <View style={styles1.container}>
                 <Logo />
@@ -33,7 +34,8 @@ export class LoginScreen extends Component {
                     readPass={this.readPass.bind(this)}
                 />
                 {this.state.hasLoginFailed && <Text style={{color: 'red'}}>Invalid Credentials</Text>}
-                {this.state.showSuccessMessage && <Text>Login Sucessful</Text>}
+                {this.state.formUnFilled && <Text style={{color: 'red'}}>Please fill the fields</Text>}
+                {this.state.showSuccessMessage && <Text>Login Successful</Text>}
                 <SignUpButton navigation={this.props.navigation}/>
             </View>
         );
@@ -44,14 +46,23 @@ export class LoginScreen extends Component {
     readPass = pass => this.setState({pass});
 
     loginClicked = () => () => {
+      if (!(this.state.userName || this.state.pass)){
+        this.setState({
+          formUnFilled: true
+        })
+      } else {
         authenticate(this.state.userName, this.state.pass)
-            .then(() => {
-                this.props.navigation.navigate('Home')
-            })
-            .catch(() => {
-                this.setState({ showSuccessMessage: false });
-                this.setState({ hasLoginFailed: true });
-            })
+          .then(() => {
+            this.props.navigation.navigate('RootNavigation')
+          })
+          .catch(() => {
+            this.setState({
+              showSuccessMessage: false,
+              formUnFilled: false,
+              hasLoginFailed: true
+            });
+          })
+      }
     }
 }
 

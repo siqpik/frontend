@@ -7,44 +7,44 @@
  */
 
 import React from 'react';
-import {createAppContainer, createStackNavigator, createSwitchNavigator} from "react-navigation";
-import {Profile} from "./src/domain/profile/Profile";
-import {LoginScreen} from "./src/domain/login/Login"
-import SignupScreen from "./src/domain/Signin/Signup";
-import {Picture} from "./src/domain/pictureview/Picture";
-import RootNavigation from "./src/domain/navigation/RootNavigation";
-import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
-import {LoadinApp} from "./src/LoadinApp";
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {LoginScreen} from './src/domain/login/Login';
+import RootNavigator from './src/domain/navigation/RootNavigator';
+import {LoadingApp} from './src/domain/navigation/LoadingApp';
+import SignupScreen from './src/domain/Signin/Signup';
 
-const AppStack = createStackNavigator(
-    {
-        RootNavigation: RootNavigation,
-        Profile: Profile,
-        Signup: SignupScreen,
-        Picture: Picture,
-        Camera: TakeNewPic
-    },
-    {
-        headerMode: 'none',
-        navigationOptions: {
-            headerVisible: false,
-        }
-    }
-);
+const Stack = createStackNavigator()
 
-const LoginStack = createStackNavigator({ Login: LoginScreen });
-
-const NavStack = createSwitchNavigator(
-    {
-        Loading: LoadinApp,
-        App: AppStack,
-        Login: LoginStack,
-    },
-    {
-        initialRoute: 'Loading',
-    }
-);
-
-export default createAppContainer(NavStack)
-
-//export default Root;
+export default () => (<NavigationContainer>
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Loading"
+      component={LoadingApp}
+      options={{
+        title: '',
+      }}
+    />
+    <Stack.Screen
+      name="Login"
+      component={LoginScreen}
+      options={{
+        title: '',
+      }}
+    />
+      <Stack.Screen
+          name="Signup"
+          component={SignupScreen}
+          options={{
+              title: '',
+          }}
+      />
+    <Stack.Screen
+      name="RootNavigation"
+      component={RootNavigator}
+      options={{
+        title: '',
+      }}
+    />
+  </Stack.Navigator>
+</NavigationContainer>)
