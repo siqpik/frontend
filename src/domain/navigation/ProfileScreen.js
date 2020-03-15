@@ -14,6 +14,6 @@ const Drawer = createDrawerNavigator()
 
 export default () => (
   <Drawer.Navigator drawerContent={props => CustomDrawerContent(props)} title={''} drawerPosition={'right'}>
-    <Drawer.Screen name="Profile" component={Profile} />
+    <Drawer.Screen name="Profile" component={Profile}/>
   </Drawer.Navigator>
 )

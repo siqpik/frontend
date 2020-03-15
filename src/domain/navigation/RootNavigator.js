@@ -49,7 +49,7 @@ export default () => (<Tab.Navigator
     options={getOptions('Notification')}
   />
   <Tab.Screen
-    name="Profile"
+    name="ProfileScreen"
     component={ProfileScreen}
     options={getOptions('Profile')}
   />

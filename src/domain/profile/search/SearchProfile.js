@@ -50,7 +50,10 @@ export class SearchProfile extends Component{
                         title={profile.name}
                         subtitle={profile.userName}
                         leftAvatar={{ source: { uri: profile.avatarUrl} }}
-                        onPress={() => this.props.navigation.navigate('Profile', {userName: profile.userName})}
+                        onPress={() => this.props.navigation.navigate('ProfileScreen', {
+                            screen: 'Profile',
+                            params: {userName: profile.userName}
+                        })}
                     />
                     ))
                 }
