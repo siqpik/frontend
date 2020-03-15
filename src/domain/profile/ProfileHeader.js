@@ -1,16 +1,15 @@
 import React from 'react'
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from "./style/styles";
-import {Icon} from "react-native-elements";
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 export const ProfileHeader = props => {
     return(
         <View>
             <TouchableOpacity style={styles.rightAlign} onPress={() => props.navigation.openDrawer()}>
                 <Icon
-                    name='ios-cog'
-                    type='ionicon'
-
+                    name="bars"
+                    size={25}
                 />
             </TouchableOpacity>
             <View style={styles.header}>
@@ -54,6 +53,4 @@ export const ProfileHeader = props => {
             </View>
         </View>
     )
-
-
 }

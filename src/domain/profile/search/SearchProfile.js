@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View} from "react-native";
 import {ListItem, SearchBar} from 'react-native-elements';
 import ProfileResult from "../../model/ProfileResult";
-import {getJson} from "../../service/AuthenticationService";
+import {getJson} from '../../service/ApiService';
 
 export class SearchProfile extends Component{
 

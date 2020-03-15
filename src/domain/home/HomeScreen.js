@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import {ScrollView} from "react-native";
-import Wallpost from "./components/Post";
-import Post from "./model/Post";
-import {getJson, post} from "../service/AuthenticationService";
+import React, {useEffect, useState} from 'react';
+import {ScrollView} from 'react-native';
+import Wallpost from './components/Post';
+import Post from './model/Post';
+import {getJson, post} from '../service/ApiService';
 
 function HomeScreen() {
 

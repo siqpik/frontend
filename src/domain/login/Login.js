@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage'
 
 import {Logo} from './Logo';
 import {Form} from './Form';
 import {SignUpButton} from './SignUpButton';
-import {authenticate, USER_NAME_SESSION_ATTRIBUTE_NAME} from '../service/AuthenticationService';
+import {authenticate} from '../service/AuthenticationService';
 
 export class LoginScreen extends Component {
 

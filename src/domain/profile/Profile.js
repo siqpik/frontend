@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import {AppRegistry, ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import App from "../../../App";
-import User from '../model/User'
-import {PicsContainer} from "./PicsContainer"
-import {ProfileHeader} from "./ProfileHeader";
-import AsyncStorage from "@react-native-community/async-storage";
-import {getJson, post, USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
-import {styles} from './style/styles';
-import {Icon} from 'react-native-elements';
+import {AppRegistry, SafeAreaView, ScrollView, Text, View} from 'react-native';
+import App from '../../../App';
+import User from '../model/User';
+import {PicsContainer} from './PicsContainer';
+import {ProfileHeader} from './ProfileHeader';
+import AsyncStorage from '@react-native-community/async-storage';
+import {getJson, post} from '../service/ApiService';
+import {USER_NAME_SESSION_ATTRIBUTE_NAME} from '../service/AuthenticationService';
 
 export class Profile extends Component{
 
@@ -37,7 +36,7 @@ export class Profile extends Component{
 
     render(){
         return (
-            <ScrollView>
+            <SafeAreaView  style={{flex: 1}}>
                 {this.state.user
                     ? (
                         <View>
@@ -62,7 +61,7 @@ export class Profile extends Component{
                     )
                     : (<Text>Loading...</Text>)
                 }
-            </ScrollView>
+            </SafeAreaView>
             )
     }
 

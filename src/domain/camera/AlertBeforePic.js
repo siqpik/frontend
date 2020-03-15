@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, Button, TouchableOpacity} from "react-native";
-import {styles} from "./style/styles";
+import {Text, TouchableOpacity, View} from 'react-native';
+import {styles} from './style/styles';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import {getJson} from  "../service/AuthenticationService"
+import {getJson} from '../service/ApiService';
 
 export class AlertBeforePic extends React.Component {
     constructor(props) {
