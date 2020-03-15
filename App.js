@@ -6,34 +6,45 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import { Button, ScrollView } from 'react-native';
-import { MyCamera } from "./camera/MyCamera";
+import React from 'react';
+import {createAppContainer, createStackNavigator, createSwitchNavigator} from "react-navigation";
+import {Profile} from "./src/domain/profile/Profile";
+import {LoginScreen} from "./src/domain/login/Login"
+import SignupScreen from "./src/domain/Signin/Signup";
+import {Picture} from "./src/domain/pictureview/Picture";
+import RootNavigation from "./src/domain/navigation/RootNavigation";
+import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
+import {LoadinApp} from "./src/LoadinApp";
 
-// This is forTypescript..
-//type Props = {};
-export default class App extends Component {
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      showCamera: false
+const AppStack = createStackNavigator(
+    {
+        RootNavigation: RootNavigation,
+        Profile: Profile,
+        Signup: SignupScreen,
+        Picture: Picture,
+        Camera: TakeNewPic
+    },
+    {
+        headerMode: 'none',
+        navigationOptions: {
+            headerVisible: false,
+        }
     }
-  }
+);
 
-  pic = {
-    uri: 'https://cdnimg.webstaurantstore.com/images/products/large/166694/271843.jpg'
-  }
+const LoginStack = createStackNavigator({ Login: LoginScreen });
 
-  render() {
-    return (
-      <ScrollView>
+const NavStack = createSwitchNavigator(
+    {
+        Loading: LoadinApp,
+        App: AppStack,
+        Login: LoginStack,
+    },
+    {
+        initialRoute: 'Loading',
+    }
+);
 
-        {this.state.showCamera && <MyCamera />}
+export default createAppContainer(NavStack)
 
-        {!this.state.showCamera && <Button title={'Open fking camera'} onPress={() => this.setState({ showCamera: true })} />}
-      </ScrollView>
-    );
-  }
-}
+//export default Root;
