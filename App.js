@@ -14,6 +14,7 @@ import RootNavigator from './src/domain/navigation/RootNavigator';
 import {LoadingApp} from './src/domain/navigation/LoadingApp';
 import SignupScreen from './src/domain/Signin/Signup';
 import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
+import {Picture} from "./src/domain/pictureview/Picture";
 
 const Stack = createStackNavigator()
 
@@ -50,6 +51,13 @@ export default () => (<NavigationContainer>
       <Stack.Screen
           name="TakePic"
           component={TakeNewPic}
+          options={{
+              title: '',
+          }}
+      />
+      <Stack.Screen
+          name="Picture"
+          component={Picture}
           options={{
               title: '',
           }}

@@ -10,7 +10,7 @@ export class Picture extends Component {
     }
 
     render(){
-        const {pics, username, index} = this.props.navigation.state.params
+        const {pics, username, index} = this.props.route.params
 
         return(
             <View style={styles.container}>
