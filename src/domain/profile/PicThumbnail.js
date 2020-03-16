@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, TouchableOpacity} from "react-native";
 import {styles} from "./style/styles";
 
-export const PicThumbnail = props =>
+export default props =>
     <TouchableOpacity
         onPress={() => props.navigate('Picture', {
             index: props.index,
