@@ -14,6 +14,10 @@ import RootNavigator from './src/domain/navigation/RootNavigator';
 import {LoadingApp} from './src/domain/navigation/LoadingApp';
 import SignupScreen from './src/domain/Signin/Signup';
 
+import Icon from 'react-native-vector-icons/MaterialIcons'
+
+Icon.loadFont();
+
 const Stack = createStackNavigator()
 
 export default () => (<NavigationContainer>

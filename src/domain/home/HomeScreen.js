@@ -31,9 +31,9 @@ function HomeScreen() {
 
     function likePost(pictureID) {
         post('/picture/' + pictureID)
-            .then(resp => {
-                console.log(resp);
-            }).catch(error => alert(error))
+            .then(
+                getPosts()
+            ).catch(error => alert(error))
     }
 
     function getPosts() {

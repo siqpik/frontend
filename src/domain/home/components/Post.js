@@ -22,6 +22,10 @@ function Wallpost (props) {
                 <TextInput style={styles.commentInput}/>
                 {props.ilikeThisPic || picLiked ?
                     <Icon
+                        onPress={() => {
+                            props.likePost(props.photo.id);
+                            setPicLiked(false);
+                        }}
                         name="star"
                         size={35}
                         color="black"

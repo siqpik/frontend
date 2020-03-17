@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './style/styles';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+import Icon from 'react-native-vector-icons/dist/AntDesign';
 import {getJson} from '../service/ApiService';
 
 export class AlertBeforePic extends React.Component {
@@ -61,11 +61,17 @@ export class AlertBeforePic extends React.Component {
 
                             {this.state.stopAlerts === false ?
                                 <TouchableOpacity  onPress={() => this.setState ({stopAlerts:  true})}>
-                                    <Fontisto name="checkbox-passive" size={30}/>
+                                    <Icon
+                                        name="staro"
+                                        size={30}
+                                        color="black"/>
                                 </TouchableOpacity>
                                 :
                                 <TouchableOpacity onPress={() => this.setState ({stopAlerts:  false})}>
-                                    <Fontisto name="checkbox-active" size={30}/>
+                                    <Icon
+                                        name="staro"
+                                        size={30}
+                                        color="black"/>
                                 </TouchableOpacity>
                             }
                         </View>
