@@ -15,6 +15,7 @@ import {LoadingApp} from './src/domain/navigation/LoadingApp';
 import SignupScreen from './src/domain/Signin/Signup';
 import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
 import {Picture} from "./src/domain/pictureview/Picture";
+import {Profile} from "./src/domain/profile/Profile";
 
 const Stack = createStackNavigator()
 
@@ -58,6 +59,13 @@ export default () => (<NavigationContainer>
       <Stack.Screen
           name="Picture"
           component={Picture}
+          options={{
+              title: '',
+          }}
+      />
+      <Stack.Screen
+          name="ProfileOther"
+          component={Profile}
           options={{
               title: '',
           }}
