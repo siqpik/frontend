@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Image, Text, View} from "react-native"
 import {styles} from "../camera/style/styles"
-import Swiper from 'react-native-swiper'
+import ViewPager from '@react-native-community/viewpager';
 
 export class Picture extends Component {
 
@@ -10,14 +10,14 @@ export class Picture extends Component {
     }
 
     render(){
-        const {pics, username, index} = this.props.navigation.state.params
+        const {pics, username, index} = this.props.route.params
 
         return(
             <View style={styles.container}>
                 <Text>{username}</Text>
-                <Swiper style={styles.wrapper} index={index} showsButtons loop={false}>
+                <ViewPager style={styles.takenPic} initialPage={index} showPageIndicator={true} orientation={'horizontal'}>
                     {getPics(pics, username)}
-                </Swiper>
+                </ViewPager>
             </View>
         )
     }

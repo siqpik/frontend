@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "1.8.1",
     "@react-native-community/masked-view": "0.1.7",
+    "@react-native-community/viewpager": "^3.3.0",
     "@react-navigation/bottom-tabs": "5.1.1",
     "@react-navigation/drawer": "5.1.1",
     "@react-navigation/native": "5.0.9",
@@ -28,7 +29,6 @@
     "react-native-scalable-image": "1.0.0",
     "react-native-screens": "2.3.0",
     "react-native-super-grid": "3.1.2",
-    "react-native-swiper": "1.5.14",
     "react-native-vector-icons": "6.6.0"
   },
   "devDependencies": {

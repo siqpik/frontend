@@ -25,7 +25,7 @@ export const genericFetch = (url, method, headers, body) => fetch(API_URL + url,
     body: body
 }).then(response => {
     if (!response.ok) {
-        alert('Something went wrong: ' + response)
+        alert('Something went wrong: ' + JSON.stringify(response))
     }
     return response;
 })
