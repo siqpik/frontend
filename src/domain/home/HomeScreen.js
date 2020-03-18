@@ -1,17 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView} from 'react-native';
+import {BackHandler, ScrollView} from 'react-native';
 import Wallpost from './components/Post';
 import Post from './model/Post';
 import {getJson, post} from '../service/ApiService';
+import {useFocusEffect} from "@react-navigation/core";
 
 function HomeScreen() {
 
-    const [posts, setPosts] = useState([]);
-
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         getPosts();
     },[]);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            const onBackPress = () => BackHandler.exitApp()
+
+            BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+            return () =>
+                BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        }, [])
+    );
 
         return (
             <ScrollView>
@@ -40,7 +51,7 @@ function HomeScreen() {
         getJson('/posts')
             .then(json => json.map(post => new Post(post)))
             .then(posts => setPosts(posts))
-            .catch(error => alert("Ronnie" + error))
+            .catch(error => alert("Error getting posts: " + error))
     }
 }
 
