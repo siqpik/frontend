@@ -17,6 +17,10 @@ import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
 import {Picture} from "./src/domain/pictureview/Picture";
 import {Profile} from "./src/domain/profile/Profile";
 
+import Icon from 'react-native-vector-icons/MaterialIcons'
+
+Icon.loadFont();
+
 const Stack = createStackNavigator()
 
 export default () => (<NavigationContainer>
