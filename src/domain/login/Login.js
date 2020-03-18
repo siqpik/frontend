@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {BackHandler, StyleSheet, Text, View} from 'react-native';
 
 import {Logo} from './Logo';
 import {Form} from './Form';
@@ -17,9 +17,21 @@ export class LoginScreen extends Component {
             showSuccessMessage: false,
             formUnFilled: false
         }
+
+        this.backAction = this.backAction.bind(this)
     }
 
-  render() {
+    backAction = () => BackHandler.exitApp()
+
+    componentDidMount(): void {
+        BackHandler.addEventListener("hardwareBackPress", this.backAction);
+    }
+
+    componentWillUnmount(): void {
+        return () => BackHandler.removeEventListener("hardwareBackPress", this.backAction);
+    }
+
+    render() {
         return (
             <View style={styles1.container}>
                 <Logo />
