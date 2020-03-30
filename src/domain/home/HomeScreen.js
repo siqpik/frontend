@@ -5,7 +5,7 @@ import Post from './model/Post';
 import {getJson, post} from '../service/ApiService';
 import {useFocusEffect} from "@react-navigation/core";
 
-function HomeScreen() {
+function HomeScreen(props) {
 
     const [posts, setPosts] = useState([])
 
@@ -42,16 +42,19 @@ function HomeScreen() {
 
     function likePost(pictureID) {
         post('/picture/' + pictureID)
-            .then(
-                getPosts()
-            ).catch(error => alert(error))
+            .then(getPosts())
+            .catch(error => alert(error))
     }
 
     function getPosts() {
         getJson('/posts')
             .then(json => json.map(post => new Post(post)))
             .then(posts => setPosts(posts))
-            .catch(error => alert("Error getting posts: " + error))
+            .catch(error => {
+                if (error.message === '403'){
+                    props.navigation.navigate('Login')
+                }
+            })
     }
 }
 

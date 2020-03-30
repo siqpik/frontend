@@ -18,13 +18,17 @@ import {Picture} from "./src/domain/pictureview/Picture";
 import {Profile} from "./src/domain/profile/Profile";
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import {Logo} from "./src/domain/login/Logo";
+import HeaderLogo from "./src/domain/shared/HeaderLogo";
 
 Icon.loadFont();
 
 const Stack = createStackNavigator()
 
 export default () => (<NavigationContainer>
-  <Stack.Navigator>
+  <Stack.Navigator
+      headerLayoutPreset={'center'}
+  >
     <Stack.Screen
       name="Loading"
       component={LoadingApp}
@@ -36,7 +40,8 @@ export default () => (<NavigationContainer>
       name="Login"
       component={LoginScreen}
       options={{
-        title: '',
+          headerTitle: 'Login',
+          headerLeft: null
       }}
     />
       <Stack.Screen
@@ -51,6 +56,7 @@ export default () => (<NavigationContainer>
       component={RootNavigator}
       options={{
         title: '',
+          headerLeft: () => (<HeaderLogo />)
       }}
     />
       <Stack.Screen
@@ -71,7 +77,7 @@ export default () => (<NavigationContainer>
           name="ProfileOther"
           component={Profile}
           options={{
-              title: '',
+              headerTitle: () => (<HeaderLogo />),
           }}
       />
   </Stack.Navigator>
