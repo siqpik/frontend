@@ -13,7 +13,6 @@ export class LoadingApp extends Component {
         AsyncStorage.getItem(TOKEN_SESSION)
             .then(token => {
                 this.props.navigation.navigate(token ? 'RootNavigation' : 'Login')
-
             })
     }
 
