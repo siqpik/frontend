@@ -4,8 +4,6 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity } from 'react-nativ
 
 export const SignupForm = props => (
     <View style={styles.container}>
-        <Text>Sign up here!</Text>
-
         <TextInput style={styles.inputBox}
                    placeholder='Email'
                    placeholderTextColor='#000'

@@ -4,6 +4,7 @@ import {SignupForm} from './SignupForm';
 import {LoginButton} from "./LoginButton";
 import {genericPost} from "../service/ApiService";
 import {authenticate} from "../service/AuthenticationService";
+import {Logo} from "../login/Logo";
 
 
 export default class SignupScreen extends Component {
@@ -23,6 +24,7 @@ export default class SignupScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Logo />
                 <SignupForm
                     type="Signup"
                     navigation={this.props.navigation}
