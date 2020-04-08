@@ -14,12 +14,17 @@ export const authenticatedRequest = (url, method, body, contentType) => AsyncSto
     .then(token => genericFetch(url, method,
         {
         'Authorization': 'Bearer ' + token,
-        'Content-Type': contentType != null ? contentType : 'application/json'
+        'Content-Type': contentType || 'application/json'
         },
         body
-        ))
+    ))
 
-export const genericFetch = (url, method, headers, body) => fetch(API_URL + url, {
+export const genericPost = (url, body) =>
+    genericFetch(url, 'POST', {'Content-Type': 'application/json'}, JSON.stringify(body))
+        .then(response =>  response.json())
+
+
+const genericFetch = (url, method, headers, body) => fetch(API_URL + url, {
     method: method,
     headers: headers,
     body: body
