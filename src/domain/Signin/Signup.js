@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import {SignupForm} from './SignupForm';
 import {LoginButton} from "./LoginButton";
+import {genericPost} from "../service/ApiService";
+import {authenticate} from "../service/AuthenticationService";
 
 
 export default class SignupScreen extends Component {
@@ -9,10 +11,12 @@ export default class SignupScreen extends Component {
     constructor(props){
         super(props)
         this.state = {
+            email: '',
             username: '',
             pass: '',
-            hasLoginFailed: false,
-            showSuccessMessage: false
+            showSuccessMessage: false,
+            formUnFilled: false,
+            correctEmail: true
         }
     }
 
@@ -25,61 +29,62 @@ export default class SignupScreen extends Component {
                     signInClicked={this.signInClicked.bind(this)}
                     username={this.state.username}
                     pass={this.state.pass}
+                    readEmail={this.readEmail.bind(this)}
                     readUserName={this.readUserName.bind(this)}
                     readPass={this.readPass.bind(this)}
                 />
-                {this.state.hasLoginFailed && <Text style={{color: 'red'}}>Invalid Credentials</Text>}
-                {this.state.showSuccessMessage && <Text>Login Sucessful</Text>}
+
+                {this.state.formUnFilled && <Text style={{color: 'red'}}>Please fill the fields</Text>}
+                {!this.state.correctEmail && <Text style={{color: 'red'}}>Email is not correct</Text>}
+
                 <LoginButton navigation={this.props.navigation}/>
             </View>
         );
     }
 
+    readEmail = email => this.setState({email});
     readUserName = username => this.setState({username});
+    readPass = pass => this.setState({pass})
 
-    readPass = pass => this.setState({pass});
+    isValidEmail = () => {
+        let reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+
+        const correctEmail = reg.test(this.state.email)
+        this.setState({ correctEmail })
+
+        return correctEmail
+    }
 
     signInClicked = async () => {
-
-
-        let userName = this.state.username;
-        let password = this.state.pass;
-
-
-        try {
-            let response = await fetch("https://siqpik.herokuapp.com/register", {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({userName: userName, password: password})
-            });
-
-            if (response.status === 409 || response.status === 403 || response.status === 401 || response.status === 500) {
-
-                this.setState({ hasLoginFailed: true });
-                this.setState({ showSuccessMessage: false });
-
-
-            }else if (response.status === 201) {
-
-                this.props.navigation.navigate('Login');
-                this.setState({ showSuccessMessage: true });
-                alert("Signed up!");
-
-            }else {
-
-                console.log(response);
-            }
-
-
-        } catch(error) {
-            alert(error);
+        if (!this.isValidEmail()) {
+            return
         }
+
+        if (!(this.state.email && this.state.username && this.state.pass)){
+            this.setState({
+                formUnFilled: true
+            })
+
+            return
+        }
+
+        this.setState({
+            formUnFilled: false
+        })
+
+        this.signup()
+            .then(() => authenticate(this.state.username, this.state.pass)
+                .then(() => this.props.navigation.navigate('RootNavigation'))
+                .catch(error => alert("Error at login: " + error.message))
+            )
     };
 
+    signup = () => genericPost('/register', {email: this.state.email, userName: this.state.username, password: this.state.pass})
+        .catch(error => {
+            if (error.message === '409'){
+                alert("username or email already exist")
+            }
+        })
 }
 
 
