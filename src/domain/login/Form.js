@@ -17,7 +17,7 @@ export const Form = props => (
                    onChangeText={pass => props.readPass(pass)}
                    value={props.pass}
         />
-        <TouchableOpacity style={styles.button} onPress={props.loginClicked()/*() => props.navigation.navigate('Home')*/} >
+        <TouchableOpacity style={styles.button} onPress={props.loginClicked()} >
             <Text style={styles.buttonText}> {props.type} </Text>
         </TouchableOpacity>
     </View>
