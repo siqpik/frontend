@@ -18,7 +18,6 @@ import {Picture} from "./src/domain/pictureview/Picture";
 import {Profile} from "./src/domain/profile/Profile";
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {Logo} from "./src/domain/login/Logo";
 import HeaderLogo from "./src/domain/shared/HeaderLogo";
 
 Icon.loadFont();
