@@ -47,7 +47,7 @@ export default () => (<NavigationContainer>
           name="Signup"
           component={SignupScreen}
           options={{
-              title: '',
+              headerTitle: 'Signup',
           }}
       />
     <Stack.Screen
