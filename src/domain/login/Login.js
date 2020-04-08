@@ -63,9 +63,7 @@ export class LoginScreen extends Component {
         })
       } else {
         authenticate(this.state.userName, this.state.pass)
-          .then(() => {
-            this.props.navigation.navigate('RootNavigation')
-          })
+          .then(() => this.props.navigation.navigate('RootNavigation'))
           .catch(() => {
             this.setState({
               showSuccessMessage: false,
