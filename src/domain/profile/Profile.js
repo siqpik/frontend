@@ -34,10 +34,6 @@ export class Profile extends Component{
         }
     }
 
-  componentDidUpdate(prevProps, prevState) {
-    //TODO detect the change from the search
-  }
-
     render(){
         return (
             <ScrollView>

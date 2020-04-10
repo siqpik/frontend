@@ -6,7 +6,10 @@ import {logout} from '../service/AuthenticationService';
 const CustomDrawerContent = props => (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <DrawerItem label="Log out" onPress={() => logout().then(props.navigation.navigate('Login'))} />
+      <DrawerItem label="Log out" onPress={() => logout().then(() =>{
+          props.navigation.popToTop();
+          props.navigation.navigate('Login')
+      })} />
     </DrawerContentScrollView>
 )
 
