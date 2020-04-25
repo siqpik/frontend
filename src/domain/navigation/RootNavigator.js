@@ -6,6 +6,7 @@ import {NotificationsScreen} from '../notifications/NotificationsScreen';
 import ProfileScreen from './ProfileScreen';
 import React from 'react';
 import {Text} from 'react-native';
+import Icon from 'react-native-vector-icons/dist/AntDesign';
 
 const getOptions = name => ({
     tabBarLabel: name,
@@ -24,33 +25,75 @@ export default () => (<Tab.Navigator
       fontSize: 14,
     },
     style: {
-      height: 50
+      height: 100
     },
   }}
 >
+
   <Tab.Screen
     name="Home"
     component={HomeScreen}
-    options={getOptions('Home')}
+    options={{
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ color, size }) => (
+            <Icon name="home"
+                  size={size}
+                  color={color}
+            />
+        ),
+    }}
   />
+
   <Tab.Screen
     name="Search"
     component={SearchProfile}
-    options={getOptions('Search')}
+    options={{
+        tabBarLabel: 'Search',
+        tabBarIcon: ({ color, size }) => (
+            <Icon name="search1"
+                  size={size}
+                  color={color}
+            />
+        ),
+    }}
   />
   <Tab.Screen
     name="Camera"
     component={AlertBeforePic}
-    options={getOptions('Camera')}
+    options={{
+        tabBarLabel: 'Camera',
+        tabBarIcon: ({ color, size }) => (
+            <Icon name="camera"
+                  size={size}
+                  color={color}
+            />
+        ),
+    }}
   />
   <Tab.Screen
     name="Notification"
     component={NotificationsScreen}
-    options={getOptions('Notification')}
+    options={{
+        tabBarLabel: 'Notifications',
+        tabBarIcon: ({ color, size }) => (
+            <Icon name="notification"
+                  size={size}
+                  color={color}
+            />
+        ),
+    }}
   />
   <Tab.Screen
     name="ProfileScreen"
     component={ProfileScreen}
-    options={getOptions('Profile')}
+    options={{
+        tabBarLabel: 'Profile',
+        tabBarIcon: ({ color, size }) => (
+            <Icon name="profile"
+                  size={size}
+                  color={color}
+            />
+        ),
+    }}
   />
 </Tab.Navigator>)

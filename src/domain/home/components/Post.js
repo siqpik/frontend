@@ -7,6 +7,7 @@ import Image from 'react-native-scalable-image';
 function Wallpost (props) {
 
     const [picLiked, setPicLiked] = useState();
+    const [comment, setComment] = useState();
 
     return (
         <View style={styles.post}>
@@ -19,7 +20,20 @@ function Wallpost (props) {
             </View>
             <Image source={{uri: props.photo.url}} style={styles.wallPic} width={Dimensions.get('window').width} />
             <View style={styles.postDescription}>
-                <TextInput style={styles.commentInput}/>
+                <View style={styles.comments}>
+                <TextInput style={styles.commentInput}
+                           onChangeText={comment => setComment(comment)}
+                           value={comment}
+                />
+                {comment ?
+                    <Icon name="rocket1"
+                          size={30}
+                          color="black"
+                          onPress={() => {console.log(props)}}
+                    />
+                    :
+                    <Icon name="rocket1" size={30} color="white"/>}
+                </View>
                 {props.ilikeThisPic || picLiked ?
                     <Icon
                         onPress={() => {
