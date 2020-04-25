@@ -40,13 +40,21 @@ export const styles = StyleSheet.create({
         marginTop: '3%',
         alignItems: 'flex-end',
         justifyContent: 'space-around',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        height: 50,
+    },
+    comments: {
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'row',
+        flex: .7,
+        height: 40,
     },
     commentInput: {
+        height: 30,
         borderColor: 'gray',
-        height: 40,
+        flex: .8,
         borderWidth: 2,
         borderRadius: 1,
-        width: '60%'
     }
 });
