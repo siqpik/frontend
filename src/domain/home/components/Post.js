@@ -15,7 +15,7 @@ function Wallpost (props) {
                 <Image source={{uri: props.profilePicUrl}} width={60} style={styles.profilePic}/>
                 <View style={styles.titleName}>
                     <Text style={styles.name}>{props.userName}</Text>
-                    <Text> {props.photo.date}</Text>
+                    <Text style={styles.name}> {props.photo.date}</Text>
                 </View>
             </View>
             <Image source={{uri: props.photo.url}} style={styles.wallPic} width={Dimensions.get('window').width} />
@@ -33,7 +33,7 @@ function Wallpost (props) {
                     />
                     :
                     <Icon name="rocket1" size={30} color="white"/>}
-                </View>
+
                 {props.ilikeThisPic || picLiked ?
                     <Icon
                         onPress={() => {
@@ -55,6 +55,7 @@ function Wallpost (props) {
                         color="black"
                     />
                 }
+                </View>
             </View>
         </View>
     )

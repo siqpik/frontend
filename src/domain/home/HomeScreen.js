@@ -4,6 +4,7 @@ import Wallpost from './components/Post';
 import Post from './model/Post';
 import {getJson, post} from '../service/ApiService';
 import {useFocusEffect} from "@react-navigation/core";
+import {styles} from "./style/styles";
 
 function HomeScreen(props) {
 

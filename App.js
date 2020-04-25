@@ -54,8 +54,8 @@ export default () => (<NavigationContainer>
       name="RootNavigation"
       component={RootNavigator}
       options={{
-        title: '',
-          headerLeft: () => (<HeaderLogo />)
+        title: 'Siqpik',
+          headerLeft: () => ('')
       }}
     />
       <Stack.Screen

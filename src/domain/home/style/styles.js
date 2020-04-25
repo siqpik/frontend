@@ -13,20 +13,18 @@ export const styles = StyleSheet.create({
         // width: Dimensions.get('window').width,
         alignSelf: 'center',
     },
-    post: {
-        flex: 2,
-        flexDirection: 'column',
-        alignSelf: 'stretch',
-
-    },
     userTitle: {
-        flex: .3,
+        flex: 1,
         flexDirection: 'row',
-        margin: '5%'
+        alignItems: 'center',
+        width:'100%',
+        height: 70
     },
     titleName: {
-        marginLeft: '2%',
-        flexDirection: 'column'
+        flex: .7,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%',
     },
     name: {
         fontSize: 18,
@@ -37,23 +35,22 @@ export const styles = StyleSheet.create({
     },
     postDescription: {
         width: '100%',
-        marginTop: '3%',
         alignItems: 'flex-end',
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
         flexDirection: 'row',
-        height: 50,
+        height: 60,
     },
     comments: {
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
-        flex: .7,
+        flex: 1,
         height: 40,
     },
     commentInput: {
         height: 30,
         borderColor: 'gray',
-        flex: .8,
+        flex: .6,
         borderWidth: 2,
         borderRadius: 1,
     }
