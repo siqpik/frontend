@@ -29,7 +29,10 @@ function Wallpost (props) {
                     <Icon name="rocket1"
                           size={30}
                           color="black"
-                          onPress={() => {console.log(props)}}
+                          onPress={() => {
+                              props.commentPost(props.photo.id, comment);
+                              console.log(comment);
+                              }}
                     />
                     :
                     <Icon name="rocket1" size={30} color="white"/>}

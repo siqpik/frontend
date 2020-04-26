@@ -19,13 +19,14 @@ const Tab = createBottomTabNavigator();
 
 export default () => (<Tab.Navigator
   tabBarOptions={{
+    keyboardHidesTabBar: 'true',
     activeTintColor: '#D7192D',
     inactiveTintColor: '#777',
     labelStyle: {
       fontSize: 14,
     },
     style: {
-      height: 100
+      height: '10%'
     },
   }}
 >

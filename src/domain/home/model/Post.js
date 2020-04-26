@@ -7,5 +7,6 @@ export default class Post {
         this.userName = json.userName;
         this.photo = new Pic(json.photo);
         this.ilikeThisPic = json.ilikeThisPic;
+        this.comments = json.comment;
     }
 }

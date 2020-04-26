@@ -8,7 +8,7 @@ import {styles} from "./style/styles";
 
 function HomeScreen(props) {
 
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         getPosts();
@@ -34,6 +34,7 @@ function HomeScreen(props) {
                         userName={post.userName}
                         profilePicUrl={post.profilePicUrl}
                         likePost={likePost}
+                        commentPost={commentPost}
                         ilikeThisPic={post.ilikeThisPic}
                     />
                 )}
@@ -44,6 +45,18 @@ function HomeScreen(props) {
     function likePost(pictureID) {
         post('/picture/' + pictureID)
             .then(getPosts())
+            .catch(error => alert(error))
+    }
+
+    function commentPost(pictureID, comment) {
+        post('/comment/' + pictureID, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: { "commentary" : comment },
+        })
+            .then(getPosts(),
+            console.log(posts))
             .catch(error => alert(error))
     }
 
