@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {BackHandler, ScrollView} from 'react-native';
 import Wallpost from './components/Post';
 import Post from './model/Post';
-import {getJson, post} from '../service/ApiService';
+import {genericPost, getJson, post} from '../service/ApiService';
 import {useFocusEffect} from "@react-navigation/core";
 import {styles} from "./style/styles";
 
@@ -49,14 +49,8 @@ function HomeScreen(props) {
     }
 
     function commentPost(pictureID, comment) {
-        post('/comment/' + pictureID, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: { "commentary" : comment },
-        })
-            .then(getPosts(),
-            console.log(posts))
+        post('/comment/' + pictureID, comment, 'text/plain')
+            .then(console.log)
             .catch(error => alert(error))
     }
 
