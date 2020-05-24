@@ -19,6 +19,8 @@ export class AlertBeforePic extends React.Component {
             .catch(error => alert('An error has occurred: ' + error))
     }
 
+
+
     render(){
         const LIMIT_OF_ATTEMPTS = 3;
         const {navigate} = this.props.navigation;
@@ -33,13 +35,13 @@ export class AlertBeforePic extends React.Component {
                             <View style={styles.rules}>
 
                                 <View>
-                                    <Text style={styles.rulesText}>1. If you discard a picture you have taken it will not save on your phone</Text>
+                                    <Text style={styles.rulesText}>If you discard a picture you have taken it will not save on your phone</Text>
                                 </View>
                                 <View>
-                                    <Text style={styles.rulesText}>2. Once you take a picture a timer will start and you must post within that time or risk losing the photo.</Text>
+                                    <Text style={styles.rulesText}>Once you take a picture a timer will start and you must post within that time or risk losing the photo.</Text>
                                 </View>
                                 <View>
-                                    <Text style={styles.rulesText}>3. You have a maximum of three photos per day. You have used {this.state.attempts} of 3 attempts </Text>
+                                    <Text style={styles.rulesText}>You have a maximum of three photos per day. You have used {this.state.attempts} of 3 attempts </Text>
                                 </View>
                             </View>
                         </View>

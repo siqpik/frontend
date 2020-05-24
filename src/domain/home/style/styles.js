@@ -40,6 +40,19 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 60,
     },
+    firstCommentContainer: {
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
+        flex: 1,
+        height: 40,
+    },
+    firstComment: {
+        flex: 1,
+        paddingLeft: '5%',
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
+    },
     comments: {
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -53,5 +66,27 @@ export const styles = StyleSheet.create({
         flex: .6,
         borderWidth: 2,
         borderRadius: 1,
+    },
+    commentPageContainer:{
+      flex: 1,
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    commentPage: {
+        flex: 1,
+        width: '80%',
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
+    },
+    commentTitleContainer: {
+        flex: 1,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: '5%'
+    },
+    commentTitle: {
+        fontSize: 22
     }
 });
