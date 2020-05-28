@@ -10,15 +10,15 @@ function CommentsPage(props) {
             <View style={styles.commentTitleContainer}>
                 <Text style={styles.commentTitle}>Comments</Text>
             </View>
+            <View style={styles.commentPageContainer}>
             {props.route.params.comments.map((comment, i)  =>
-                    <View key={i} style={styles.commentPageContainer}>
-                        <View style={styles.commentPage}>
-                            <Text>{comment.userName} : </Text>
-                            <Text>{comment.comments}</Text>
+                        <View key={i} style={styles.commentPage}>
+                            <Text>{comment.userName}: </Text>
+                            <Text style={styles.wrapComment}>{comment.comments}</Text>
                         </View>
-                    </View>
-
             )}
+
+            </View>
 
         </ScrollView>
     )

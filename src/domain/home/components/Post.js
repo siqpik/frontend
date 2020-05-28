@@ -10,6 +10,7 @@ function Wallpost (props) {
 
     const [picLiked, setPicLiked] = useState();
     const [comment, setComment] = useState();
+
     return (
         <View style={styles.post}>
             <View style={styles.userTitle}>
@@ -71,7 +72,7 @@ function Wallpost (props) {
                         <Text>
                             {props.photo.comments[0].userName}:
                         </Text>
-                        <Text>
+                        <Text style={styles.postFirstComment}>
                             {props.photo.comments[0].comments}
                         </Text>
                     </TouchableOpacity>
