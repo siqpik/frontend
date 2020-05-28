@@ -61,7 +61,7 @@ function Wallpost (props) {
                 </View>
             </View>
 
-            {props.photo.comments.length > 1?
+            {props.photo.comments.length >= 1?
                 <View style={styles.firstCommentContainer}>
                     <TouchableOpacity style={styles.firstComment}
                           onPress={() => props.navigate('PostComments', {
