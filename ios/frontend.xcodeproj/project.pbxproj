@@ -37,6 +37,13 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "frontend-tvOS";
 		};
+		41F7764624968E2E00EA7BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = frontend;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +64,7 @@
 		2D02E47B1E0B4A5D006451C7 /* frontend-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "frontend-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* frontend-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "frontend-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DDA17EA97EC15B30090DA18 /* libPods-frontend-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-frontend-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41F776452496878F00EA7BD7 /* frontend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = frontend.entitlements; path = frontend/frontend.entitlements; sourceTree = "<group>"; };
 		471EF6B385CBF40A06117CB5 /* libPods-frontend-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-frontend-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A62D15BD185B9040A31A5E8 /* Pods-frontend-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frontend-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-frontend-tvOSTests/Pods-frontend-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		890AF2CEA867472F8943F2C7 /* Pods-frontend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frontend.debug.xcconfig"; path = "Target Support Files/Pods-frontend/Pods-frontend.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +133,7 @@
 		13B07FAE1A68108700A75B9A /* frontend */ = {
 			isa = PBXGroup;
 			children = (
+				41F776452496878F00EA7BD7 /* frontend.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -183,6 +192,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AA7DAEBC03624D22910D4FB4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		F2E05061D8F45E30ECA2B54C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,14 +213,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		AA7DAEBC03624D22910D4FB4 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -282,6 +290,7 @@
 			);
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
+				41F7764724968E2E00EA7BD7 /* PBXTargetDependency */,
 			);
 			name = "frontend-tvOSTests";
 			productName = "frontend-tvOSTests";
@@ -311,8 +320,9 @@
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = J67S2VNP69;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
 			};
@@ -624,6 +634,11 @@
 			target = 2D02E47A1E0B4A5D006451C7 /* frontend-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
+		41F7764724968E2E00EA7BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* frontend */;
+			targetProxy = 41F7764624968E2E00EA7BD7 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -689,6 +704,7 @@
 			baseConfigurationReference = 890AF2CEA867472F8943F2C7 /* Pods-frontend.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = frontend/frontend.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = J67S2VNP69;
@@ -700,7 +716,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.siqpik.www;
 				PRODUCT_NAME = frontend;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -711,6 +727,7 @@
 			baseConfigurationReference = A84D33999211EC666020CABD /* Pods-frontend.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = frontend/frontend.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J67S2VNP69;
 				INFOPLIST_FILE = frontend/Info.plist;
@@ -721,7 +738,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.siqpik.www;
 				PRODUCT_NAME = frontend;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -793,6 +810,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = J67S2VNP69;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "frontend-tvOSTests/Info.plist";
@@ -805,7 +823,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.frontend-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/frontend-tvOS.app/frontend-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/frontend.app/frontend";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -821,6 +839,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = J67S2VNP69;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "frontend-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -832,7 +851,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.frontend-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/frontend-tvOS.app/frontend-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/frontend.app/frontend";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
