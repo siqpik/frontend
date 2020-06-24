@@ -17,7 +17,8 @@ export default class SignupScreen extends Component {
             pass: '',
             showSuccessMessage: false,
             formUnFilled: false,
-            correctEmail: true
+            correctEmail: true,
+            signUpButtonEnabled: true
         }
     }
 
@@ -34,6 +35,7 @@ export default class SignupScreen extends Component {
                     readEmail={this.readEmail.bind(this)}
                     readUserName={this.readUserName.bind(this)}
                     readPass={this.readPass.bind(this)}
+                    signUpButtonEnabled={this.state.signUpButtonEnabled}
                 />
 
                 {this.state.formUnFilled && <Text style={{color: 'red'}}>Please fill the fields</Text>}
@@ -58,7 +60,9 @@ export default class SignupScreen extends Component {
     }
 
     signInClicked = async () => {
+        this.setState({signUpButtonEnabled: false})
         if (!this.isValidEmail()) {
+            this.setState({signUpButtonEnabled: true})
             return
         }
 
@@ -66,7 +70,7 @@ export default class SignupScreen extends Component {
             this.setState({
                 formUnFilled: true
             })
-
+            this.setState({signUpButtonEnabled: true})
             return
         }
 
@@ -77,12 +81,16 @@ export default class SignupScreen extends Component {
         this.signup()
             .then(() => authenticate(this.state.username, this.state.pass)
                 .then(() => this.props.navigation.navigate('RootNavigation'))
-                .catch(error => alert("Error at login: " + error.message))
+                .catch(error => {
+                    this.setState({signUpButtonEnabled: true})
+                    alert("Error at login: " + error.message)
+                })
             )
     };
 
     signup = () => genericPost('/register', {email: this.state.email, userName: this.state.username, password: this.state.pass})
         .catch(error => {
+            this.setState({signUpButtonEnabled: true})
             if (error.message === '409'){
                 alert("username or email already exist")
             }

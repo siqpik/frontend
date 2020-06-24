@@ -24,9 +24,12 @@ export const SignupForm = props => (
                    onChangeText={pass => props.readPass(pass)}
                    value={props.pass}
         />
-        <TouchableOpacity style={styles.button} onPress={() => props.signInClicked()} >
-            <Text style={styles.buttonText}> {props.type} </Text>
-        </TouchableOpacity>
+        {
+            props.signUpButtonEnabled &&
+            <TouchableOpacity style={styles.button} onPress={() => props.signInClicked()} >
+                <Text style={styles.buttonText}> {props.type} </Text>
+            </TouchableOpacity>
+        }
     </View>
 )
 
