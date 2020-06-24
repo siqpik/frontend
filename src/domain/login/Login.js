@@ -8,14 +8,15 @@ import {authenticate} from '../service/AuthenticationService';
 
 export class LoginScreen extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             userName: '',
             pass: '',
             hasLoginFailed: false,
             showSuccessMessage: false,
-            formUnFilled: false
+            formUnFilled: false,
+            loginButtonDisabled: false
         }
 
         this.backAction = this.backAction.bind(this)
@@ -34,7 +35,7 @@ export class LoginScreen extends Component {
     render() {
         return (
             <View style={styles1.container}>
-                <Logo />
+                <Logo/>
                 <Form
                     type="Login"
                     navigation={this.props.navigation}
@@ -43,6 +44,7 @@ export class LoginScreen extends Component {
                     pass={this.state.pass}
                     readUserName={this.readUserName.bind(this)}
                     readPass={this.readPass.bind(this)}
+                    loginButtonDisabled={this.state.loginButtonDisabled}
                 />
                 {this.state.hasLoginFailed && <Text style={{color: 'red'}}>Invalid Credentials</Text>}
                 {this.state.formUnFilled && <Text style={{color: 'red'}}>Please fill the fields</Text>}
@@ -57,21 +59,26 @@ export class LoginScreen extends Component {
     readPass = pass => this.setState({pass});
 
     loginClicked = () => () => {
-      if (!(this.state.userName || this.state.pass)){
-        this.setState({
-          formUnFilled: true
-        })
-      } else {
-        authenticate(this.state.userName, this.state.pass)
-          .then(() => this.props.navigation.navigate('RootNavigation'))
-          .catch(() => {
+        if (!(this.state.userName || this.state.pass)) {
             this.setState({
-              showSuccessMessage: false,
-              formUnFilled: false,
-              hasLoginFailed: true
-            });
-          })
-      }
+                formUnFilled: true
+            })
+        } else {
+            this.setState({
+                loginButtonDisabled: true,
+                hasLoginFailed: false
+            })
+            authenticate(this.state.userName, this.state.pass)
+                .then(() => this.props.navigation.navigate('RootNavigation'))
+                .catch(() => {
+                    this.setState({
+                        showSuccessMessage: false,
+                        formUnFilled: false,
+                        hasLoginFailed: true,
+                        loginButtonDisabled: false
+                    });
+                })
+        }
     }
 }
 
