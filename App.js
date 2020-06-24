@@ -16,6 +16,7 @@ import SignupScreen from './src/domain/Signin/Signup';
 import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
 import {Picture} from "./src/domain/pictureview/Picture";
 import {Profile} from "./src/domain/profile/Profile";
+import CommentsPage from './src/domain/home/components/Comments';
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import HeaderLogo from "./src/domain/shared/HeaderLogo";
@@ -77,6 +78,13 @@ export default () => (<NavigationContainer>
           component={Profile}
           options={{
               headerTitle: () => (<HeaderLogo />),
+          }}
+      />
+      <Stack.Screen
+          name="PostComments"
+          component={CommentsPage}
+          options={{
+              title: '',
           }}
       />
   </Stack.Navigator>

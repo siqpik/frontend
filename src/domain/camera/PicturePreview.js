@@ -4,7 +4,7 @@ import CountDown from 'react-native-countdown-component';
 export const PicturePreview = props => (
     <View>
         <CountDown
-            until={60 * 5}
+            until={60 * 3}
             size={30}
             onFinish={ props.showCameraAgain()}
             size={20}
