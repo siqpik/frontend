@@ -28,6 +28,8 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+	</dict>
+	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>

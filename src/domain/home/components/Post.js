@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {styles} from "../style/styles";
-import {Dimensions, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Dimensions, Text, TextInput, TouchableOpacity, View, Image} from "react-native";
 import Icon from 'react-native-vector-icons/dist/AntDesign';
-import Image from 'react-native-scalable-image';
 import {ListItem} from "react-native-elements";
 
 function Wallpost (props) {
@@ -14,13 +13,13 @@ function Wallpost (props) {
     return (
         <View style={styles.post}>
             <View style={styles.userTitle}>
-                <Image source={{uri: props.profilePicUrl}} width={60} style={styles.profilePic}/>
+                <Image source={{uri: props.profilePicUrl}} style={styles.profilePic}/>
                 <View style={styles.titleName}>
                     <Text style={styles.name}>{props.userName}</Text>
                     <Text style={styles.name}> {props.photo.date}</Text>
                 </View>
             </View>
-            <Image source={{uri: props.photo.url}} style={styles.wallPic} width={Dimensions.get('window').width} />
+            <Image source={{uri: props.photo.url}} style={styles.wallPic} />
             <View style={styles.postDescription}>
                 <View style={styles.comments}>
                     <TextInput style={styles.commentInput}

@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
     wallPic:{
         flex: 2,
         resizeMode: 'cover',
-        // width: Dimensions.get('window').width,
+        height: Dimensions.get('screen').height / 2,
+        width: Dimensions.get('screen').width,
         alignSelf: 'center',
     },
     userTitle: {
@@ -31,7 +32,10 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     profilePic: {
-        borderRadius: 80
+        borderRadius: 80,
+        width: Dimensions.get('screen').width / 8,
+        height: Dimensions.get('screen').height / 16,
+        resizeMode: 'cover',
     },
     postDescription: {
         width: '100%',
@@ -66,7 +70,7 @@ export const styles = StyleSheet.create({
         height: 40,
     },
     commentInput: {
-        height: 30,
+        height: 45,
         borderColor: 'gray',
         flex: .6,
         borderWidth: 2,
