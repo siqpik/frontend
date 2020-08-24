@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         height: 70
     },
     titleName: {
-        flex: .7,
+        flex: .5,
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: '100%',
@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
     },
     profilePic: {
         borderRadius: 80,
+        marginLeft: '2%', 
         width: Dimensions.get('screen').width / 8,
         height: Dimensions.get('screen').height / 16,
         resizeMode: 'cover',
@@ -45,22 +46,24 @@ export const styles = StyleSheet.create({
         height: 60,
     },
     firstCommentContainer: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        flexDirection: 'row',
+        flexDirection: 'column',
         width: '100%',
         flex: 1,
-        height: 40
     },
     firstComment: {
         flex: 1,
         paddingLeft: '5%',
+        paddingTop: '3%',
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start'
     },
     postFirstComment: {
-        flex: 1,
-        flexWrap: 'wrap'
+        display: 'flex',
+        flexWrap: 'wrap',
+        fontSize: 17
     },
     comments: {
         alignItems: 'center',
@@ -73,33 +76,41 @@ export const styles = StyleSheet.create({
         height: 45,
         borderColor: 'gray',
         flex: .6,
-        borderWidth: 2,
-        borderRadius: 1,
+        borderWidth: .8,
+        borderRadius: 3,
     },
     commentPageContainer:{
       flex: 1,
       width: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingTop: '4%'
+      marginLeft: '5%', 
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
     },
     commentPage: {
         flex: 1,
-        width: '80%',
+        width: '100%',
         justifyContent: 'flex-start',
         flexDirection: 'row',
         height: 'auto',
-        marginBottom: 10
+        marginBottom: 10,
+        marginTop: 10
+        
     },
-    wrapComment: {
-        flex: 1,
+    commentStyle: {
         flexWrap: 'wrap',
+        fontSize: 18,
+    },
+    commentStyleUser:  {
+        flexWrap: 'wrap',
+        fontSize: 20,
+        fontWeight: 'bold'
     },
     commentTitleContainer: {
         flex: 1,
         width: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: '2%'
     },
     commentTitle: {
         fontSize: 22

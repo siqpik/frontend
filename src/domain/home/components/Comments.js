@@ -13,8 +13,8 @@ function CommentsPage(props) {
             <View style={styles.commentPageContainer}>
             {props.route.params.comments.map((comment, i)  =>
                         <View key={i} style={styles.commentPage}>
-                            <Text>{comment.userName}: </Text>
-                            <Text style={styles.wrapComment}>{comment.comments}</Text>
+                            <Text style={styles.commentStyleUser}>{comment.userName}: </Text>
+                            <Text style={styles.commentStyle}>{comment.comments}</Text>
                         </View>
             )}
 

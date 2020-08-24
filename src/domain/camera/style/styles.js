@@ -44,11 +44,11 @@ export const styles = StyleSheet.create({
 
     },
     rules: {
-        flex: 2,
+        flex: 3,
         justifyContent: 'space-between',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '5%',
+        padding: '2%',
 
     },
     rulesText: {
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
     title: {
         flex: 1,
         fontSize: 30,
-        marginTop: '20%'
+        marginTop: '10%'
     },
     capture: {
         width: '15%',

@@ -33,7 +33,6 @@ export class AlertBeforePic extends React.Component {
                                 HOW SIQPIK WORKS:
                             </Text>
                             <View style={styles.rules}>
-
                                 <View>
                                     <Text style={styles.rulesText}>If you discard a picture you have taken it will not save on your phone</Text>
                                 </View>
