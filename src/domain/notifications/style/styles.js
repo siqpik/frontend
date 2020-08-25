@@ -2,23 +2,45 @@ import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
     img: {
-        width: 30,
-        height: 30,
+        width: 40,
+        height: 40,
         borderRadius: 100,
-        marginRight: '5%'
+        marginRight: '1.5%',
     },
     generalLayout: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: 5,
-        borderWidth: .5,
+        borderWidth: 1,
+        borderTopWidth: 0,
+        borderRightWidth: 0,
+        borderLeftWidth: 0,
         borderColor: 'black',
         margin: 5
     },
     buttonsContainer: {
+        flex: .9,
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
+    button: {
+        backgroundColor: 'black',
+        padding: 10,
+        borderRadius: 5
+    },
+    buttonText:{
+        color: 'white',
+    },
+    statusContainer: {
         flex: 1,
         flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+    userName: {
+        fontSize: 17,
+        fontWeight: 'bold'
     },
     userLayout: {
         display: 'flex',
