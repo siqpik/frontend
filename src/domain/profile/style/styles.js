@@ -12,7 +12,9 @@ export const styles = StyleSheet.create({
         height: 150,
         borderRadius: 100,
         borderWidth: 3,
-        borderColor: 'black'
+        borderColor: 'black',
+        marginBottom: '5%',
+        marginTop: '5%'
     },
     header: {
         alignItems: 'center',

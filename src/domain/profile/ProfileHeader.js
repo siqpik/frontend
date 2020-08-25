@@ -1,10 +1,10 @@
 import React from 'react'
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import {styles} from "./style/styles";
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { styles } from "./style/styles";
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 export const ProfileHeader = props => {
-    return(
+    return (
         <View>
             <TouchableOpacity style={styles.rightAlign} onPress={() => props.navigation.openDrawer()}>
                 <Icon
@@ -19,35 +19,43 @@ export const ProfileHeader = props => {
                 <Image
                     key={props.name}
                     style={styles.profilePic}
-                    source={{uri: props.profilePicUrl}}
+                    source={{ uri: props.profilePicUrl }}
                 />
                 <View style={styles.admireContainer}>
                     <View style={styles.centerHorizontal}>
                         <Text>Admirers</Text>
-                        <Text style={{fontWeight: 'bold'}}>{props.admirers}</Text>
+                        <Text style={{ fontWeight: 'bold' }}>{props.admirers}</Text>
                     </View>
                     <View>
-                        { props.isActualUser
+                        {props.isActualUser
                             ? null
                             : props.isAdmiring
                                 ? <Icon
-                                    name='check'
+                                    name='hand-grab-o'
                                     type='font-awesome'
-                                    color='#3aeb34'
+                                    color='black'
+                                    size={35}
                                 />
                                 : props.requestStatus === 'Pending'
-                                    ? <Text>Pending...</Text>
-                                    : <Icon
-                                        name='adn'
+                                    ? <Icon
+                                        name='hourglass-half'
                                         type='font-awesome'
                                         color='#293329'
+                                        size={35}
+                                        onPress={props.sendAdmireRequest}
+                                    />
+                                    : <Icon
+                                        name='user-plus'
+                                        type='font-awesome'
+                                        color='#293329'
+                                        size={35}
                                         onPress={props.sendAdmireRequest}
                                     />
                         }
                     </View>
                     <View style={styles.centerHorizontal}>
                         <Text>Admiring</Text>
-                        <Text style={{fontWeight: 'bold'}}>{props.admiring}</Text>
+                        <Text style={{ fontWeight: 'bold' }}>{props.admiring}</Text>
                     </View>
                 </View>
             </View>

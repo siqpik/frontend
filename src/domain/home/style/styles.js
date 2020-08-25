@@ -22,10 +22,10 @@ export const styles = StyleSheet.create({
         height: 70
     },
     titleName: {
-        flex: .5,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
         width: '100%',
+        alignItems: 'flex-start'
     },
     name: {
         fontSize: 18,
@@ -33,7 +33,8 @@ export const styles = StyleSheet.create({
     },
     profilePic: {
         borderRadius: 80,
-        marginLeft: '2%', 
+        marginLeft: '2%',
+        marginRight: '2%', 
         width: Dimensions.get('screen').width / 8,
         height: Dimensions.get('screen').height / 16,
         resizeMode: 'cover',

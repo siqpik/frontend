@@ -77,7 +77,8 @@ export default () => (<NavigationContainer>
           name="ProfileOther"
           component={Profile}
           options={{
-              headerTitle: () => (<HeaderLogo />),
+            title: 'Siqpik',
+            headerCenter: () => ('')
           }}
       />
       <Stack.Screen

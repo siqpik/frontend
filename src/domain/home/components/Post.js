@@ -16,7 +16,7 @@ function Wallpost(props) {
                 <Image source={{ uri: props.profilePicUrl }} style={styles.profilePic} />
                 <View style={styles.titleName}>
                     <Text style={styles.name}>{props.userName}</Text>
-                    <Text style={styles.name}> {props.photo.date}</Text>
+                    <Text style={styles.name}>{props.photo.date}</Text>
                 </View>
             </View>
             <Image source={{ uri: props.photo.url }} style={styles.wallPic} />
@@ -72,15 +72,21 @@ function Wallpost(props) {
                             {props.photo.comments[0].comments}
                         </Text>
                     </View>
+                    {props.photo.comments[1] ?
                     <TouchableOpacity style={styles.firstComment}
                         onPress={() => props.navigate('PostComments', {
                             comments: props.photo.comments
                         })}
                     >
                         <Text style={styles.postFirstComment}>
-                            View {props.photo.comments.length} more
+                            View all {props.photo.comments.length} comments
                         </Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> 
+                    :
+                    <View style={styles.firstCommentContainer}>
+                    <Text style={styles.firstComment}> </Text>
+                    </View>
+                    }
                 </View>
                 :
                 <View style={styles.firstCommentContainer}>

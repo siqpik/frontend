@@ -1,19 +1,23 @@
 import React from 'react'
-import {View, Text, Image, Button} from "react-native";
-import {styles} from "./style/styles";
+import { View, Text, Image, Button } from "react-native";
+import { styles } from "./style/styles";
 
 
 export const RequestAdmireNotification = props => {
     return (
         <View style={styles.generalLayout}>
+            <View style={styles.userLayout}>
             <Image
                 key={props.id}
                 style={styles.img}
-                source={{uri: props.image}}
+                source={{ uri: props.image }}
             />
-            <Text>
-                {props.name} wants to be your admirer
-            </Text>
+           
+                <Text>
+                    {props.name}
+                </Text>
+                <Text> admires you! </Text>
+            </View>
             {props.status === 'Pending'
                 ? (<View style={styles.buttonsContainer}>
                     <Button
