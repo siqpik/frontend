@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {Image, Text, View} from "react-native"
-import {styles} from "../camera/style/styles"
+import {Image, Text, View, ScrollView} from "react-native"
+import {styles} from "./style/styles"
 import ViewPager from '@react-native-community/viewpager';
 
 export class Picture extends Component {
@@ -14,7 +14,7 @@ export class Picture extends Component {
 
         return(
             <View style={styles.container}>
-                <Text>{username}</Text>
+                <Text style={styles.userTop}>{username}</Text>
                 <ViewPager style={styles.takenPic} initialPage={index} showPageIndicator={true} orientation={'horizontal'}>
                     {getPics(pics, username)}
                 </ViewPager>
@@ -24,7 +24,17 @@ export class Picture extends Component {
 }
 
 const getPics = (pics) => pics.map((pic, index) =>
-    <View key={index + 'pictureView'} style={styles.container}>
-        <Text>{pic.date}</Text>
-        <Image source={{uri: pic.url}} style={styles.takenPic} />
+    <View key={index + 'pictureView'}>
+        <Image source={{uri: pic.url}} style={styles.pic} />
+        <ScrollView style={styles.commentContainer} alwaysBounceHorizontal={false}>
+        <Text style={styles.date}>{pic.date}</Text>
+        {getComments(pic)}
+        </ScrollView>
     </View>)
+
+const getComments = (pic) => pic.comments.map((post, index) =>
+    <View key={index} style={styles.comments}>
+            <Text style={styles.user}>{post.userName}</Text>
+            <Text style={styles.comment}>{post.comments}</Text>
+    </View>
+)
