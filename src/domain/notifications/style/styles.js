@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     statusContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'flex-start',
         alignItems: 'center'
     },
     userName: {
