@@ -22,7 +22,7 @@ export class AlertBeforePic extends React.Component {
 
 
     render(){
-        const LIMIT_OF_ATTEMPTS = 10;
+        const LIMIT_OF_ATTEMPTS = 3;
         const {navigate} = this.props.navigation;
         return(
             this.state.attempts >= 0 && this.state.attempts < LIMIT_OF_ATTEMPTS
