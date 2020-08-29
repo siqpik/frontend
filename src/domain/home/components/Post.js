@@ -66,7 +66,7 @@ function Wallpost(props) {
                 <View style={styles.firstCommentContainer}>
                     <View style={styles.firstComment}>
                         <Text style={styles.postFirstComment}>
-                            {props.photo.comments[0].userName}: <Text> </Text>
+                            {props.photo.comments[0].userName}: <Text></Text>
                         </Text>
                         <Text style={styles.postFirstComment}>
                             {props.photo.comments[0].comments}
