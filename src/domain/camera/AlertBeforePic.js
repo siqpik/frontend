@@ -22,7 +22,7 @@ export class AlertBeforePic extends React.Component {
 
 
     render(){
-        const LIMIT_OF_ATTEMPTS = 3;
+        const LIMIT_OF_ATTEMPTS = 10;
         const {navigate} = this.props.navigation;
         return(
             this.state.attempts >= 0 && this.state.attempts < LIMIT_OF_ATTEMPTS
@@ -60,7 +60,7 @@ export class AlertBeforePic extends React.Component {
                             <Text style={styles.removeWarningText}>Don't Show Warning Again</Text>
 
 
-                            {this.state.stopAlerts === false ?
+                            {this.state.stopAlert ?
                                 <TouchableOpacity  onPress={() => this.setState ({stopAlerts:  true})}>
                                     <Icon
                                         name="staro"

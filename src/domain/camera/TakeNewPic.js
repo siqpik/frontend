@@ -78,10 +78,10 @@ export class TakeNewPic extends Component {
                                 imageUri: photo.uri
                             })
                         })
-                        .catch(error => alert("An error has occurred: " + error))
+                        .catch(error => console.log("An error has occurred: " + error))
                 }
             })
-            .catch(error => alert("An error has occurred: " + error))
+            .catch(error => console.log("An error has occurred: " + error))
     };
 
     savePic = () => () => {
@@ -94,7 +94,7 @@ export class TakeNewPic extends Component {
             if (response.status !== 201) throw new Error(response.status)
             AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
                 .then(() => this.props.navigation.navigate('ProfileScreen'))
-        }).catch(error => alert("Something went wrong: " + error))
+        }).catch(error => console.log("Something went wrong: " + error))
     }
 
     getFormData = () => {

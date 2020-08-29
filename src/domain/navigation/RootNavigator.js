@@ -26,7 +26,7 @@ export default () => (<Tab.Navigator
       fontSize: 14,
     },
     style: {
-      height: '10%'
+      height: '12%'
     },
   }}
 >

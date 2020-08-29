@@ -8,9 +8,9 @@ export const styles = StyleSheet.create({
         alignSelf: 'stretch',
     },
     wallPic:{
-        flex: 2,
+        flex: 1,
         resizeMode: 'cover',
-        height: Dimensions.get('screen').height / 2,
+        height: Dimensions.get('screen').height / 3,
         width: Dimensions.get('screen').width,
         alignSelf: 'center',
     },

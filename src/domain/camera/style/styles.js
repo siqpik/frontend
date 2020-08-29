@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
     takenPic:{
         flex: 1,
         resizeMode: 'contain',
+        justifyContent: 'flex-start',
     },
     preview: {
         flex: 1,
@@ -47,7 +48,7 @@ export const styles = StyleSheet.create({
         flex: 3,
         justifyContent: 'space-between',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         padding: '2%',
 
     },
@@ -109,5 +110,22 @@ export const styles = StyleSheet.create({
     removeWarningText: {
         fontSize: 15,
         marginHorizontal: '5%'
-    }
+    },
+    previewButtonsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: "space-around",
+        alignItems: "flex-end",
+        width: '80%',
+        paddingBottom: '10%'
+    },
+    previewButtons: {
+        width: 100,
+        height: 55,
+        backgroundColor: '#000',
+        borderRadius: 15,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        paddingVertical: 10,
+    },
 });

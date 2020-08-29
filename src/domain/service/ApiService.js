@@ -32,7 +32,7 @@ const genericFetch = (url, method, headers, body) => fetch(API_URL + url, {
 
 function handleErrors(response) {
     if (!response.ok) {
-        alert("Something went wrong: " + JSON.stringify(response))
+        console.log("Something went wrong: " + JSON.stringify(response))
         throw Error(response.status);
     }
     return response;
