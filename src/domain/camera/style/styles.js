@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         height: Dimensions.get('window').height,
-        alignSelf: 'stretch',
+        width: '100%',
     },
     post: {
         flex: 1,
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     },
     takenPic:{
         flex: 1,
-        resizeMode: 'contain',
+        resizeMode: 'cover',
         justifyContent: 'flex-start',
     },
     preview: {

@@ -8,8 +8,7 @@ export class AlertBeforePic extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            attempts: undefined,
-            stopAlerts: false
+            attempts: undefined
         };
     }
 
@@ -56,26 +55,6 @@ export class AlertBeforePic extends React.Component {
 
                         </View>
 
-                        <View style={styles.removeWarning}>
-                            <Text style={styles.removeWarningText}>Don't Show Warning Again</Text>
-
-
-                            {this.state.stopAlert ?
-                                <TouchableOpacity  onPress={() => this.setState ({stopAlerts:  true})}>
-                                    <Icon
-                                        name="staro"
-                                        size={30}
-                                        color="black"/>
-                                </TouchableOpacity>
-                                :
-                                <TouchableOpacity onPress={() => this.setState ({stopAlerts:  false})}>
-                                    <Icon
-                                        name="staro"
-                                        size={30}
-                                        color="black"/>
-                                </TouchableOpacity>
-                            }
-                        </View>
                     </View>
                 )
                 : this.state.attempts >= LIMIT_OF_ATTEMPTS

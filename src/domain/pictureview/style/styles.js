@@ -7,12 +7,10 @@ export const styles = StyleSheet.create({
     },
     takenPic:{
         flex: 1,
-        resizeMode: 'contain',
     },
     pic: {
         flex: 1,
-        resizeMode: 'contain',
-
+        resizeMode: 'cover',
     },
     commentContainer:{
         flex: 1,
@@ -25,7 +23,8 @@ export const styles = StyleSheet.create({
         borderBottomWidth: .5,
         height: 50,
         width: '95%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        justifyContent:'flex-start'
     },
     comment:{
         flex: 1,
@@ -39,10 +38,9 @@ export const styles = StyleSheet.create({
         marginRight: '5%'
     },
     user: {
-        flex: .2,
+        marginRight: '3%',
         fontSize: 18,
         fontWeight: 'bold',
-
     },
     userTop: {
         fontSize: 18,

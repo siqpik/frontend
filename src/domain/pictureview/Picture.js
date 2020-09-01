@@ -15,7 +15,7 @@ export class Picture extends Component {
         return(
             <View style={styles.container}>
                 <Text style={styles.userTop}>{username}</Text>
-                <ViewPager style={styles.takenPic} initialPage={index} showPageIndicator={true} orientation={'horizontal'}>
+                <ViewPager style={styles.takenPic} initialPage={index} showPageIndicator={false} orientation={'horizontal'}>
                     {getPics(pics, username)}
                 </ViewPager>
             </View>
