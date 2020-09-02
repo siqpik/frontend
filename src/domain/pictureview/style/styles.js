@@ -5,6 +5,12 @@ export const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
     },
+    container__header:{
+        flex: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
     takenPic:{
         flex: 1,
     },
@@ -48,6 +54,11 @@ export const styles = StyleSheet.create({
         marginLeft: '5%',
         paddingTop: '2%',
         paddingBottom: '2%'
+    },
+    delete_button: {
+        marginRight: '5%',
+        flex:0,
+        alignSelf:'flex-end'
     }
 
 });

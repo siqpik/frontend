@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {Image, Text, View, ScrollView} from "react-native"
+import {Image, Text, View, ScrollView, TouchableOpacity} from "react-native"
 import {styles} from "./style/styles"
 import ViewPager from '@react-native-community/viewpager';
+import {deleteItem} from '../service/ApiService';
 
 export class Picture extends Component {
 
@@ -10,11 +11,11 @@ export class Picture extends Component {
     }
 
     render(){
-        const {pics, username, index} = this.props.route.params
+        const {pics, username, index} = this.props.route.params;
 
         return(
             <View style={styles.container}>
-                <Text style={styles.userTop}>{username}</Text>
+                    <Text style={styles.userTop}>{username}</Text>
                 <ViewPager style={styles.takenPic} initialPage={index} showPageIndicator={false} orientation={'horizontal'}>
                     {getPics(pics, username)}
                 </ViewPager>
@@ -23,8 +24,19 @@ export class Picture extends Component {
     }
 }
 
+const deletePic = (picID) =>
+    deleteItem('/picture/' + picID)
+            .then(resp => {
+                if (resp.status === 204) {
+                    console.log('DELETED', resp.status);
+                }
+    }).catch(error => alert(error));
+
 const getPics = (pics) => pics.map((pic, index) =>
     <View key={index + 'pictureView'}>
+        <TouchableOpacity onPress={() => deletePic(pic.id)} style={styles.delete_button}>
+            <Text>DELETE</Text>
+        </TouchableOpacity>
         <Image source={{uri: pic.url}} style={styles.pic} />
         <ScrollView style={styles.commentContainer} alwaysBounceHorizontal={false}>
         <Text style={styles.date}>{pic.date}</Text>

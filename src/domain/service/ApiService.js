@@ -7,6 +7,8 @@ export const API_URL = HOST_URL + '/api';
 
 export const post = (url, body, contentType) => authenticatedRequest(url, 'POST', body, contentType);
 
+export const deleteItem = (url, body, contentType) => authenticatedRequest(url, 'DELETE', body, contentType);
+
 export const getJson = url => authenticatedRequest(url, 'GET')
     .then(response => response.json());
 
