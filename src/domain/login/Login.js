@@ -5,6 +5,7 @@ import {Logo} from './Logo';
 import {Form} from './Form';
 import {SignUpButton} from './SignUpButton';
 import {authenticate} from '../service/AuthenticationService';
+import {KeyboardAvoidingScrollView} from 'react-native-keyboard-avoiding-scroll-view';
 
 export class LoginScreen extends Component {
 
@@ -34,7 +35,8 @@ export class LoginScreen extends Component {
 
     render() {
         return (
-            <View style={styles1.container}>
+
+                <KeyboardAvoidingScrollView flex={0} containerStyle={styles1.container}>
                 <Logo/>
                 <Form
                     type="Login"
@@ -50,7 +52,8 @@ export class LoginScreen extends Component {
                 {this.state.formUnFilled && <Text style={{color: 'red'}}>Please fill the fields</Text>}
                 {this.state.showSuccessMessage && <Text>Login Successful</Text>}
                 <SignUpButton navigation={this.props.navigation}/>
-            </View>
+                </KeyboardAvoidingScrollView>
+
         );
     }
 

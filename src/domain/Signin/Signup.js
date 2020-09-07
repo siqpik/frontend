@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {KeyboardAvoidingView, StyleSheet, Text, View} from 'react-native';
 import {SignupForm} from './SignupForm';
 import {LoginButton} from "./LoginButton";
 import {genericPost} from "../service/ApiService";
 import {authenticate} from "../service/AuthenticationService";
 import {Logo} from "../login/Logo";
+import {KeyboardAvoidingScrollView} from 'react-native-keyboard-avoiding-scroll-view';
 
 
 export default class SignupScreen extends Component {
@@ -24,7 +25,7 @@ export default class SignupScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingScrollView containerStyle={styles.container}>
                 <Logo />
                 <SignupForm
                     type="Signup"
@@ -42,7 +43,7 @@ export default class SignupScreen extends Component {
                 {!this.state.correctEmail && <Text style={{color: 'red'}}>Email is not correct</Text>}
 
                 <LoginButton navigation={this.props.navigation}/>
-            </View>
+            </KeyboardAvoidingScrollView>
         );
     }
 
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#e0e0e0",
         flexGrow: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     signupTextCont: {
         flexGrow: 1,

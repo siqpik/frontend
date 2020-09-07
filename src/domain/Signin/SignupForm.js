@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, TextInput, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
 
 
 export const SignupForm = props => (
+
     <View style={styles.container}>
         <TextInput style={styles.inputBox}
                    placeholder='Email'
@@ -38,7 +39,6 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 15
     },
     inputBox: {
         width: 250,

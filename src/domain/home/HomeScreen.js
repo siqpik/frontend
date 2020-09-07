@@ -4,6 +4,7 @@ import Wallpost from './components/Post';
 import Post from './model/Post';
 import {genericPost, getJson, post} from '../service/ApiService';
 import {useFocusEffect} from "@react-navigation/core";
+import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';
 import {styles} from "./style/styles";
 
 function HomeScreen(props) {
@@ -26,7 +27,7 @@ function HomeScreen(props) {
     );
 
         return (
-            <ScrollView>
+            <KeyboardAvoidingScrollView>
                 {posts.map((post, index) =>
                     <Wallpost
                         navigate={navigate}
@@ -40,7 +41,7 @@ function HomeScreen(props) {
                     />
                 )}
 
-            </ScrollView>
+            </KeyboardAvoidingScrollView>
         );
 
 
