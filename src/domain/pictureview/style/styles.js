@@ -55,10 +55,22 @@ export const styles = StyleSheet.create({
         paddingTop: '2%',
         paddingBottom: '2%'
     },
+    buttonContainer:{
+        flex: 0,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end'
+    },
     delete_button: {
         marginRight: '5%',
         flex:0,
-        alignSelf:'flex-end'
+        alignSelf:'flex-end',
+        borderWidth: 1,
+        padding: '1.5%',
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     }
 
 });

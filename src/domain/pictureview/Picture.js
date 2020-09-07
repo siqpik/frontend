@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Image, Text, View, ScrollView, TouchableOpacity} from "react-native"
 import {styles} from "./style/styles"
 import ViewPager from '@react-native-community/viewpager';
-import {deleteItem} from '../service/ApiService';
+import {deleteItem, post} from '../service/ApiService';
 
 export class Picture extends Component {
 
@@ -11,13 +11,13 @@ export class Picture extends Component {
     }
 
     render(){
-        const {pics, username, index} = this.props.route.params;
+        const {pics, username, index, actualUser} = this.props.route.params;
 
         return(
             <View style={styles.container}>
                     <Text style={styles.userTop}>{username}</Text>
                 <ViewPager style={styles.takenPic} initialPage={index} showPageIndicator={false} orientation={'horizontal'}>
-                    {getPics(pics, username)}
+                    {getPics(pics, actualUser)}
                 </ViewPager>
             </View>
         )
@@ -32,11 +32,27 @@ const deletePic = (picID) =>
                 }
     }).catch(error => alert(error));
 
-const getPics = (pics) => pics.map((pic, index) =>
+const changeProfilePic = pidId =>
+    post('/profile/changeProfilePic/' + pidId)
+        .then(resp => {
+            if (resp.status === 200) {
+                console.log(resp.status);
+            }
+        }).catch(error => alert(error));
+
+const getPics = (pics, actualUser) => pics.map((pic, index) =>
     <View key={index + 'pictureView'}>
-        <TouchableOpacity onPress={() => deletePic(pic.id)} style={styles.delete_button}>
-            <Text>DELETE</Text>
-        </TouchableOpacity>
+        {actualUser ?  <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={() => changeProfilePic(pic.id)} style={styles.delete_button}>
+                <Text>Make Profile Picture</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => deletePic(pic.id)} style={styles.delete_button}>
+                <Text>Delete</Text>
+            </TouchableOpacity>
+        </View>:
+        <View></View>
+        }
+
         <Image source={{uri: pic.url}} style={styles.pic} />
         <ScrollView style={styles.commentContainer} alwaysBounceHorizontal={false}>
         <Text style={styles.date}>{pic.date}</Text>

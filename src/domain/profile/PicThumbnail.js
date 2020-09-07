@@ -7,7 +7,8 @@ export default props =>
         onPress={() => props.navigate('Picture', {
             index: props.index,
             pics: props.pics,
-            username: props.username
+            username: props.username,
+            actualUser: props.actualUser
         })}
 
         key={props.index + 'thumbnail'}

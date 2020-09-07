@@ -53,6 +53,7 @@ export class Profile extends Component{
                                 navigation={this.props.navigation}
                             />
                             <PicsContainer
+                                isActualUser={this.state.user.isActualUser}
                                 pics={this.state.user.pics}
                                 navigate={this.props.navigation.navigate}
                                 username={this.state.user.name}
