@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text, Image, Button, TouchableOpacity } from "react-native";
+import { View, Text, Image,TouchableOpacity } from "react-native";
 import { styles } from "./style/styles";
+import { shortenName } from '../shared/utils/functions';
 
 
 export const RequestAdmireNotification = props => {
@@ -14,8 +15,10 @@ export const RequestAdmireNotification = props => {
                 />
                 {props.status === 'Pending' ? (
                     <View style={styles.statusContainer}>
-                        <Text style={styles.userName}>{props.name}</Text>
-                        <Text>Wants to admire you!</Text>
+                        <View style={styles.userContainer}>
+                        <Text style={styles.userName}>{shortenName(props.name)}</Text>
+                        <Text> Wants to admire you!</Text>
+                        </View>
                         <View style={styles.buttonsContainer}>
                             <TouchableOpacity
                                 style={styles.button}

@@ -19,15 +19,22 @@ export const styles = StyleSheet.create({
         borderColor: 'black',
         margin: 5
     },
+    userContainer:{
+        flex: 2,
+        flexDirection: 'row', 
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
     buttonsContainer: {
-        flex: .9,
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
     button: {
         backgroundColor: 'black',
-        padding: 10,
-        borderRadius: 5
+        padding: '2%',
+        borderRadius: 5,
+        
     },
     buttonText:{
         color: 'white',

@@ -25,6 +25,7 @@ function Wallpost(props) {
                     <TextInput style={styles.commentInput}
                         onChangeText={comment => setComment(comment)}
                         value={comment}
+                        onSubmitEditing={() => {props.commentPost(props.photo.id, comment); setComment('')}} 
                     />
                     {comment ?
                         <Icon name="rocket1"

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {BackHandler, ScrollView, Text, View} from 'react-native';
+import {BackHandler, ScrollView, Text, View, RefreshControl} from 'react-native';
 import Wallpost from './components/Post';
 import Post from './model/Post';
 import {genericPost, getJson, post} from '../service/ApiService';
@@ -8,6 +8,22 @@ import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scrol
 import {styles} from "./style/styles";
 
 function HomeScreen(props) {
+
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    
+    const wait = (timeout) => {
+        return new Promise(resolve => {
+        getPosts();
+        setTimeout(resolve, timeout);
+        });
+    }
+  
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+      }, []);
 
     const [posts, setPosts] = useState([]);
     const {navigate} = props.navigation;
@@ -27,7 +43,7 @@ function HomeScreen(props) {
     );
 
         return (
-            <KeyboardAvoidingScrollView>
+            <KeyboardAvoidingScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                 {posts.map((post, index) =>
                     <Wallpost
                         navigate={navigate}
