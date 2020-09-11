@@ -80,7 +80,6 @@ function HomeScreen(props) {
             .then(json => json.map(post => new Post(post)))
             .then(posts => {
                 setPosts(posts)
-
             })
             .catch(error => {
                 if (error.message === '403'){
