@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     wallPic:{
         flex: 1,
         resizeMode: 'cover',
-        height: Dimensions.get('screen').height / 3,
+        height: Dimensions.get('screen').height / 2,
         width: Dimensions.get('screen').width,
         alignSelf: 'center',
     },
