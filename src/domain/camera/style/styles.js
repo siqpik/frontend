@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         borderStyle: 'solid'
     },
     takenPic:{
-        flex: 1,
+        flex: 1.5,
         resizeMode: 'cover',
         justifyContent: 'flex-start',
     },

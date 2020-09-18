@@ -43,7 +43,7 @@ function HomeScreen(props) {
     );
 
         return (
-            <KeyboardAvoidingScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+            <KeyboardAvoidingScrollView scrollEventThrottle={16} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                 {posts.map((post, index) =>
                     <Wallpost
                         navigate={navigate}
