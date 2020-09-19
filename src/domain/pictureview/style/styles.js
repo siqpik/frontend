@@ -27,15 +27,16 @@ export const styles = StyleSheet.create({
         alignItems:'flex-end',
         flexDirection: 'row',
         borderBottomWidth: .5,
-        height: 50,
         width: '95%',
         alignSelf: 'center',
-        justifyContent:'flex-start'
+        justifyContent:'flex-start',
+        paddingTop: '2%'
     },
     comment:{
-        flex: 1,
+        flex: 2,
         flexWrap: 'wrap',
         fontSize: 18,
+        alignSelf: 'flex-start'
     },
     date: {
         flex: 1,
@@ -44,9 +45,11 @@ export const styles = StyleSheet.create({
         marginRight: '5%'
     },
     user: {
+        flex: 1,
         marginRight: '3%',
         fontSize: 18,
         fontWeight: 'bold',
+        alignSelf: 'flex-start'
     },
     userTop: {
         fontSize: 18,

@@ -55,15 +55,20 @@ export const styles = StyleSheet.create({
     },
     firstComment: {
         flex: 1,
-        paddingLeft: '5%',
+        paddingLeft: '3%',
         paddingTop: '3%',
         flexDirection: 'row',
         alignItems: 'flex-start',
-        justifyContent: 'flex-start'
+        justifyContent: 'space-between'
+    },
+    postUserName: {
+        flex: 1,
+        flexWrap: 'wrap', 
+        fontSize: 17
     },
     postFirstComment: {
-        display: 'flex',
-        flexWrap: 'wrap',
+        flex: 2,
+        flexWrap: 'wrap', 
         fontSize: 17
     },
     comments: {
@@ -83,7 +88,7 @@ export const styles = StyleSheet.create({
     commentPageContainer:{
       flex: 1,
       width: '100%',
-      marginLeft: '5%', 
+      marginLeft: '2%', 
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
     },
@@ -95,9 +100,9 @@ export const styles = StyleSheet.create({
         height: 'auto',
         marginBottom: 10,
         marginTop: 10
-        
     },
     commentStyle: {
+        flex: 1,
         flexWrap: 'wrap',
         fontSize: 18,
     },
