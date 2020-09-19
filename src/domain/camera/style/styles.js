@@ -45,8 +45,8 @@ export const styles = StyleSheet.create({
 
     },
     rules: {
-        flex: 3,
-        justifyContent: 'space-between',
+        flex: 2,
+        justifyContent: 'space-evenly',
         flexDirection: 'column',
         alignItems: 'flex-start',
         padding: '2%',
@@ -57,20 +57,19 @@ export const styles = StyleSheet.create({
         margin: '2%'
     },
     title: {
-        flex: 1,
-        fontSize: 30,
-        marginTop: '10%'
+        flex: .2,
+        fontSize: 25,
+        marginTop: '5%'
     },
     capture: {
-        width: '15%',
-        height: '15%',
+        width: '10%',
+        height: '10%',
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-
     },
     alertButtons: {
-        flex: 1,
+        flex: .8,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',

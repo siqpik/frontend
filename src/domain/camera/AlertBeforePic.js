@@ -33,7 +33,7 @@ export class AlertBeforePic extends React.Component {
                             </Text>
                             <View style={styles.rules}>
                                 <View>
-                                    <Text style={styles.rulesText}>If you discard a picture you have taken it will not save on your phone</Text>
+                                    <Text style={styles.rulesText}>You cannot upload pictures from your camera roll. All the pictures and videos (Future) will have to come in the moment you take them.</Text>
                                 </View>
                                 <View>
                                     <Text style={styles.rulesText}>Once you take a picture a timer will start and you must post within that time or risk losing the photo.</Text>
