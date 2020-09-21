@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     },
     takenPic:{
         flex: 1.5,
+        height: Dimensions.get('screen').height / 1.7,
         resizeMode: 'cover',
         justifyContent: 'flex-start',
     },
