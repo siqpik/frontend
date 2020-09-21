@@ -12,12 +12,11 @@ export class Picture extends Component {
 
     render(){
         const {pics, username, index, actualUser} = this.props.route.params;
-
         return(
             <View style={styles.container}>
-                    <Text style={styles.userTop}>{username}</Text>
+                  
                 <ViewPager style={styles.takenPic} initialPage={index} showPageIndicator={false} orientation={'horizontal'}>
-                    {getPics(pics, actualUser)}
+                    {getPics(pics, actualUser, username)}
                 </ViewPager>
             </View>
         )
@@ -40,9 +39,11 @@ const changeProfilePic = pidId =>
             }
         }).catch(error => alert(error));
 
-const getPics = (pics, actualUser) => pics.map((pic, index) =>
+const getPics = (pics, actualUser, username) => pics.map((pic, index) =>
     <View key={index + 'pictureView'}>
-        {actualUser ?  <View style={styles.buttonContainer}>
+        {actualUser ?  
+        <View style={styles.buttonContainer} style={styles.titleContainer}>
+            <Text style={styles.userTop}>{username}</Text>
             <TouchableOpacity onPress={() => changeProfilePic(pic.id)} style={styles.delete_button}>
                 <Text>Make Profile Picture</Text>
             </TouchableOpacity>

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     wallPic:{
         flex: 1,
         resizeMode: 'cover',
-        height: Dimensions.get('screen').height / 2,
+        height: Dimensions.get('screen').height / 1.7,
         width: Dimensions.get('screen').width,
         alignSelf: 'center',
     },
@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     postUserName: {
-        flex: 1,
+        flex: 0,
         flexWrap: 'wrap', 
         fontSize: 17
     },

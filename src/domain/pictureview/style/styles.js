@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     pic: {
-        flex: 1,
+        flex: 2,
         resizeMode: 'cover',
     },
     commentContainer:{
@@ -58,6 +58,13 @@ export const styles = StyleSheet.create({
         paddingTop: '2%',
         paddingBottom: '2%'
     },
+    titleContainer:{
+        flex: 0, 
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginBottom: '1%'
+        
+    },
     buttonContainer:{
         flex: 0,
         flexDirection: 'row',
@@ -65,7 +72,6 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     delete_button: {
-        marginRight: '5%',
         flex:0,
         alignSelf:'flex-end',
         borderWidth: 1,
