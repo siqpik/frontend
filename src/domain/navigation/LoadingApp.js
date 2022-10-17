@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text} from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {TOKEN_SESSION} from "../service/AuthenticationService";
 
 export class LoadingApp extends Component {

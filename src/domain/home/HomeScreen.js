@@ -11,14 +11,14 @@ function HomeScreen(props) {
 
     const [refreshing, setRefreshing] = React.useState(false);
 
-    
+
     const wait = (timeout) => {
         return new Promise(resolve => {
-        getPosts();
+        getFeed();
         setTimeout(resolve, timeout);
         });
     }
-  
+
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
@@ -28,7 +28,7 @@ function HomeScreen(props) {
     const [posts, setPosts] = useState([]);
     const {navigate} = props.navigation;
     useEffect(() => {
-         getPosts();
+         getFeed();
     },[]);
 
     useFocusEffect(
@@ -63,20 +63,22 @@ function HomeScreen(props) {
 
     function likePost(pictureID) {
         post('/picture/' + pictureID)
-            .then(getPosts())
+            .then(getFeed())
             .catch(error => alert(error))
     }
 
     function commentPost(pictureID, comment) {
         post('/comment/' + pictureID, comment, 'text/plain')
             .then(response => {
-                getPosts()
+                getFeed()
             })
             .catch(error => alert(error))
     }
 
-    function getPosts() {
-        getJson('/posts')
+    function getFeed() {
+        const page = 1;
+        const numberOfPostsPerPage = 7;
+        getJson(`/feed/${page}`)
             .then(json => json.map(post => new Post(post)))
             .then(posts => {
                 setPosts(posts)

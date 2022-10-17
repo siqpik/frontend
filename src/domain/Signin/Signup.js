@@ -16,6 +16,7 @@ export default class SignupScreen extends Component {
             email: '',
             username: '',
             pass: '',
+            displayName: '',
             showSuccessMessage: false,
             formUnFilled: false,
             correctEmail: true,
@@ -32,6 +33,7 @@ export default class SignupScreen extends Component {
                     navigation={this.props.navigation}
                     signInClicked={this.signInClicked.bind(this)}
                     username={this.state.username}
+                    displayName={this.state.displayName}
                     pass={this.state.pass}
                     readEmail={this.readEmail.bind(this)}
                     readUserName={this.readUserName.bind(this)}
@@ -89,7 +91,7 @@ export default class SignupScreen extends Component {
             )
     };
 
-    signup = () => genericPost('/register', {email: this.state.email, userName: this.state.username, password: this.state.pass})
+    signup = () => genericPost('/user', {email: this.state.email, userName: this.state.username, password: this.state.pass, displayName: this.state.displayName})
         .catch(error => {
             this.setState({signUpButtonEnabled: true})
             if (error.message === '409'){

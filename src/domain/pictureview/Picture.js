@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Image, Text, View, ScrollView, TouchableOpacity} from "react-native"
 import {styles} from "./style/styles"
-import ViewPager from '@react-native-community/viewpager';
 import {deleteItem, post} from '../service/ApiService';
+import PagerView from "react-native-pager-view";
 
 export class Picture extends Component {
 
@@ -14,10 +14,10 @@ export class Picture extends Component {
         const {pics, username, index, actualUser} = this.props.route.params;
         return(
             <View style={styles.container}>
-                  
-                <ViewPager style={styles.takenPic} initialPage={index} showPageIndicator={false} orientation={'horizontal'}>
+
+                <PagerView style={styles.takenPic} initialPage={index} showPageIndicator={false} orientation={'horizontal'}>
                     {getPics(pics, actualUser, username)}
-                </ViewPager>
+                </PagerView>
             </View>
         )
     }
@@ -41,7 +41,7 @@ const changeProfilePic = pidId =>
 
 const getPics = (pics, actualUser, username) => pics.map((pic, index) =>
     <View key={index + 'pictureView'}>
-        {actualUser ?  
+        {actualUser ?
         <View style={styles.buttonContainer} style={styles.titleContainer}>
             <Text style={styles.userTop}>{username}</Text>
             <TouchableOpacity onPress={() => changeProfilePic(pic.id)} style={styles.delete_button}>

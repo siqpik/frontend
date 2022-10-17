@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { styles } from "../style/styles";
 import { Dimensions, Text, TextInput, TouchableOpacity, View, Image } from "react-native";
-import Icon from 'react-native-vector-icons/dist/AntDesign';
-import { ListItem } from "react-native-elements";
+import Icon from 'react-native-vector-icons/AntDesign';
 
 function Wallpost(props) {
 
@@ -25,7 +24,7 @@ function Wallpost(props) {
                     <TextInput style={styles.commentInput}
                         onChangeText={comment => setComment(comment)}
                         value={comment}
-                        onSubmitEditing={() => {comment ? (props.commentPost(props.photo.id, comment), setComment('')): setComment('') }} 
+                        onSubmitEditing={() => {comment ? (props.commentPost(props.photo.id, comment), setComment('')): setComment('') }}
                     />
                     {comment ?
                         <Icon name="rocket1"
@@ -82,7 +81,7 @@ function Wallpost(props) {
                         <Text style={styles.postFirstComment}>
                             View all {props.photo.comments.length} comments
                         </Text>
-                    </TouchableOpacity> 
+                    </TouchableOpacity>
                     :
                     <View style={styles.firstCommentContainer}>
                     <Text style={styles.firstComment}> </Text>

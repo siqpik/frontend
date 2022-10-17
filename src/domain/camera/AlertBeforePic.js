@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './style/styles';
-import Icon from 'react-native-vector-icons/dist/AntDesign';
 import {getJson} from '../service/ApiService';
 
 export class AlertBeforePic extends React.Component {
@@ -13,7 +12,7 @@ export class AlertBeforePic extends React.Component {
     }
 
     componentDidMount() {
-        getJson('/attempts')
+        getJson('/attempt')
             .then(json => this.setState({attempts: json.attempts}))
             .catch(error => alert('An error has occurred: ' + error))
     }

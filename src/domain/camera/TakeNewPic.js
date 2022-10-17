@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {CameraView} from "./CameraView";
 import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import {post} from "../service/ApiService";
 
 export class TakeNewPic extends Component {

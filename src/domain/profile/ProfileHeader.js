@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from "./style/styles";
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const ProfileHeader = props => {
     return (
@@ -24,19 +24,19 @@ export const ProfileHeader = props => {
                 <View style={styles.admireContainer}>
                     <View style={styles.centerHorizontal}>
                         <Text>Admirers</Text>
-                        <Text style={{ fontWeight: 'bold' }}>{props.admirers}</Text>
+                        <Text style={{ fontWeight: 'bold' }}>{props.admirersCount}</Text>
                     </View>
                     <View>
-                        {props.isActualUser
+                        {props.isLoggedUser
                             ? null
-                            : props.isAdmiring
+                            : props.amIAdmirer
                                 ? <Icon
                                     name='hand-grab-o'
                                     type='font-awesome'
                                     color='black'
                                     size={35}
                                 />
-                                : props.requestStatus === 'Pending'
+                                : props.hasPendingRequest
                                     ? <Icon
                                         name='hourglass-half'
                                         type='font-awesome'
@@ -54,8 +54,8 @@ export const ProfileHeader = props => {
                         }
                     </View>
                     <View style={styles.centerHorizontal}>
-                        <Text>Admiring</Text>
-                        <Text style={{ fontWeight: 'bold' }}>{props.admiring}</Text>
+                        <Text>Admired</Text>
+                        <Text style={{ fontWeight: 'bold' }}>{props.admiredCount}</Text>
                     </View>
                 </View>
             </View>
