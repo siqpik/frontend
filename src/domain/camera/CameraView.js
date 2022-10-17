@@ -13,9 +13,6 @@ export const CameraView = props => {
     const device = devices.back
     const camera = useRef(null)
 
-    const cameraPermission = await Camera.getCameraPermissionStatus()
-
-    if
     return (
         <View style={styles.container}>
             {!props.showImage &&
