@@ -1,39 +1,44 @@
 import React from 'react';
-import { Text, TextInput, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
 
 
 export const SignupForm = props => (
 
-            <View style={styles.container}>
-                <Text>Sign up here!</Text>
+    <View style={styles.container}>
+        <TextInput style={styles.inputBox}
+                   placeholder='Email'
+                   placeholderTextColor='#000'
+                   onChangeText={email => props.readEmail(email)}
+                   value={props.email}
+        />
 
-                <TextInput style={styles.inputBox}
-                           placeholder='Email'
-                           placeholderTextColor='#000'
-                           onChangeText={username => props.readUserName(username)}
-                           value={props.username}
-                />
-
-                <TextInput style={styles.inputBox}
-                           placeholder='Password'
-                           secureTextEntry={true}
-                           placeholderTextColor='#000'
-                           onChangeText={pass => props.readPass(pass)}
-                           value={props.pass}
-                />
-                <TouchableOpacity style={styles.button} onPress={() => props.signInClicked()} >
-                    <Text style={styles.buttonText}> {props.type} </Text>
-                </TouchableOpacity>
-            </View>
-
-        );
+        <TextInput style={styles.inputBox}
+                   placeholder='Username'
+                   placeholderTextColor='#000'
+                   onChangeText={userName => props.readUserName(userName)}
+                   value={props.username}
+        />
+        <TextInput style={styles.inputBox}
+                   placeholder='Password'
+                   secureTextEntry={true}
+                   placeholderTextColor='#000'
+                   onChangeText={pass => props.readPass(pass)}
+                   value={props.pass}
+        />
+        {
+            props.signUpButtonEnabled &&
+            <TouchableOpacity style={styles.button} onPress={() => props.signInClicked()} >
+                <Text style={styles.buttonText}> {props.type} </Text>
+            </TouchableOpacity>
+        }
+    </View>
+)
 
 const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 15
     },
     inputBox: {
         width: 250,

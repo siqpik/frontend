@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         height: Dimensions.get('window').height,
-        alignSelf: 'stretch',
+        width: '100%',
     },
     post: {
         flex: 1,
@@ -15,8 +15,10 @@ export const styles = StyleSheet.create({
         borderStyle: 'solid'
     },
     takenPic:{
-        flex: 1,
-        resizeMode: 'contain',
+        flex: 1.5,
+        height: Dimensions.get('screen').height / 1.7,
+        resizeMode: 'cover',
+        justifyContent: 'flex-start',
     },
     preview: {
         flex: 1,
@@ -45,10 +47,10 @@ export const styles = StyleSheet.create({
     },
     rules: {
         flex: 2,
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         flexDirection: 'column',
-        alignItems: 'center',
-        padding: '5%',
+        alignItems: 'flex-start',
+        padding: '2%',
 
     },
     rulesText: {
@@ -56,20 +58,19 @@ export const styles = StyleSheet.create({
         margin: '2%'
     },
     title: {
-        flex: 1,
-        fontSize: 30,
-        marginTop: '20%'
+        flex: .2,
+        fontSize: 25,
+        marginTop: '5%'
     },
     capture: {
-        width: '15%',
-        height: '15%',
+        width: '10%',
+        height: '10%',
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-
     },
     alertButtons: {
-        flex: 1,
+        flex: .8,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -109,5 +110,22 @@ export const styles = StyleSheet.create({
     removeWarningText: {
         fontSize: 15,
         marginHorizontal: '5%'
-    }
+    },
+    previewButtonsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: "space-around",
+        alignItems: "flex-end",
+        width: '80%',
+        paddingBottom: '10%'
+    },
+    previewButtons: {
+        width: 100,
+        height: 55,
+        backgroundColor: '#000',
+        borderRadius: 15,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        paddingVertical: 10,
+    },
 });

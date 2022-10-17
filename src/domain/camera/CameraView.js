@@ -1,21 +1,30 @@
 'use strict';
-import React from 'react';
+import React, {useRef} from 'react';
 import {Image, View} from 'react-native';
-import {RNCamera} from 'react-native-camera';
 import {styles} from "./style/styles";
-import {AUDIO_RECORDING_PERMISSIONS, CAMERA_PERMISSIONS} from "./constants/permissions";
 import {CameraButtons} from "./CameraButtons";
 import {PicturePreview} from "./PicturePreview";
+import {Camera, useCameraDevices} from "react-native-vision-camera";
+import {useIsFocused} from "@react-navigation/core";
+
+const isFocused = useIsFocused()
+const devices = useCameraDevices()
+const device = devices.back
+const camera = useRef(null)
+const takePhotoOptions = {
+    qualityPrioritization: 'speed',
+    flash: 'off'
+};
 
 export const CameraView = props => (
     <View style={styles.container}>
         {!props.showImage &&
-        <RNCamera
-            style={styles.preview}
-            type={props.deviceCamera}
-            flashMode={props.flashMode}
-            androidCameraPermissionOptions={CAMERA_PERMISSIONS}
-            androidRecordAudioPermissionOptions={AUDIO_RECORDING_PERMISSIONS}
+        <Camera
+            ref={camera}
+            style={StyleSheet.absoluteFill}
+            device={device}
+            isActive={isFocused}
+            photo={true}
         >
             {({ camera }) => (
                 <CameraButtons
@@ -26,7 +35,7 @@ export const CameraView = props => (
                     flashMode={props.flashMode}
                 />
                 )}
-        </RNCamera>}
+        </Camera>}
 
         {props.showImage && <Image source={{uri: props.imageUri}} style={styles.takenPic} />}
 

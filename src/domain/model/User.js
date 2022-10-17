@@ -1,14 +1,14 @@
 import Pic from "../shared/model/Pic";
 
 export default class User {
-    constructor(json){
-        this.name = json.name;
-        this.pics = json.pics.map(jsonPic => new Pic(jsonPic));
-        this.admirers = json.admirers;
-        this.admiring = json.admiring;
-        this.profilePicUrl = json.profilePicUrl;
-        this.requestStatus = json.requestStatus;
-        this.isAdmiring = json.isAdmiring;
-        this.isActualUser = json.isActualUser;
-    }
+  constructor(json) {
+    this.name = json.name;
+    this.postsCount = json.postsCount
+    this.admirersCount = json.admirersCount;
+    this.admiredCount = json.admiredCount;
+    this.profilePicUrl = json.profilePicUrl;
+    this.hasPendingRequest = json.hasPendingRequest;
+    this.amIAdmirer = json.amIAdmirer;
+    this.isLoggedUser = json.isLoggedUser;
+  }
 }

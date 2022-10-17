@@ -1,6 +1,6 @@
 import React from 'react';
-import {PicThumbnail} from "./PicThumbnail";
 import {FlatGrid} from "react-native-super-grid";
+import PicThumbnail from "./PicThumbnail";
 
 export const PicsContainer = props =>
     (<FlatGrid
@@ -13,6 +13,7 @@ export const PicsContainer = props =>
                 pics={props.pics}
                 username={props.username}
                 navigate={props.navigate}
+                actualUser={props.isActualUser}
             />
         )}
     />)

@@ -8,8 +8,8 @@ export class Logo extends Component {
         return (
             <View style={styles.container}>
                 <Image
-                    style={{ width: 100, height: 100 }}
-                    source={require('../Assets/images/logo.jpg')}
+                    style={{ width: 130, height: 130 }}
+                    source={require('../../../src/assets/images/round-logo.png')}
                 />
                 <Text style={styles.logoText}>Siqpik</Text>
             </View>

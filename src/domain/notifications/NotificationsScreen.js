@@ -1,8 +1,8 @@
 import React from 'react';
-import {ScrollView, Text, FlatList, View} from "react-native";
-import {getJson, post} from "../service/AuthenticationService";
-import {RequestAdmireNotification} from './RequestAdmireNotification'
-import Notification from './model/Notification'
+import {ScrollView, Text} from 'react-native';
+import {RequestAdmireNotification} from './RequestAdmireNotification';
+import Notification from './model/Notification';
+import {getJson, post} from '../service/ApiService';
 
 export class NotificationsScreen extends React.Component {
 

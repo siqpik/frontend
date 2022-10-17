@@ -1,0 +1,50 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "postinstall": "patch-package",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "1.17.10",
+    "@react-navigation/bottom-tabs": "6.4.0",
+    "@react-navigation/core": "6.4.0",
+    "@react-navigation/drawer": "6.5.0",
+    "@react-navigation/native": "6.0.13",
+    "@react-navigation/stack": "6.3.2",
+    "deprecated-react-native-prop-types": "^2.2.0",
+    "expo": "~46.0.16",
+    "expo-status-bar": "~1.4.0",
+    "patch-package": "^6.4.7",
+    "react": "18.0.0",
+    "react-native": "0.69.6",
+    "react-native-base64": "0.0.2",
+    "react-native-countdown-component": "2.7.1",
+    "react-native-elements": "3.4.2",
+    "react-native-gesture-handler": "2.5.0",
+    "react-native-keyboard-avoiding-scroll-view": "^1.0.1",
+    "react-native-pager-view": "5.4.24",
+    "react-native-reanimated": "2.9.1",
+    "react-native-safe-area-context": "^3.1.9",
+    "react-native-screens": "3.15.0",
+    "react-native-super-grid": "3.1.2",
+    "react-native-vector-icons": "9.2.0",
+    "react-native-vision-camera": "^2.14.1",
+    "undefined": "react-native-masked-view/masked-view"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "7.8.7",
+    "@react-native-community/eslint-config": "0.0.5",
+    "babel-jest": "24.9.0",
+    "jest": "24.9.0",
+    "jetifier": "1.6.5",
+    "metro-react-native-babel-preset": "0.56.4",
+    "react-test-renderer": "18.0.0"
+  },
+  "private": true
+}

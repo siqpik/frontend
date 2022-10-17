@@ -1,8 +1,9 @@
 'use strict';
 import React, {Component} from 'react';
 import {CameraView} from "./CameraView";
-import {post, USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
-import AsyncStorage from '@react-native-community/async-storage'
+import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import {post} from "../service/ApiService";
 
 export class TakeNewPic extends Component {
 
@@ -77,10 +78,10 @@ export class TakeNewPic extends Component {
                                 imageUri: photo.uri
                             })
                         })
-                        .catch(error => alert("An error has occurred: " + error))
+                        .catch(error => console.log("An error has occurred: " + error))
                 }
             })
-            .catch(error => alert("An error has occurred: " + error))
+            .catch(error => console.log("An error has occurred: " + error))
     };
 
     savePic = () => () => {
@@ -92,8 +93,8 @@ export class TakeNewPic extends Component {
             .then(response => {
             if (response.status !== 201) throw new Error(response.status)
             AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
-                .then(userName => this.props.navigation.navigate('MyProfile'))
-        }).catch(error => alert("Something went wrong: " + error))
+                .then(() => this.props.navigation.navigate('ProfileScreen'))
+        }).catch(error => console.log("Something went wrong: " + error))
     }
 
     getFormData = () => {
