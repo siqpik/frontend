@@ -18,16 +18,37 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera."
+      },
+      "bundleIdentifier": "com.siqpik.frontend"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.jpg",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "package": "com.siqpik.frontend"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "500c4266-d15d-4616-a52b-4a9c25c3cd76"
+      }
     }
   }
 }
