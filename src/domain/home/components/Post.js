@@ -41,7 +41,7 @@ function Wallpost(props) {
                 <Icon name="rocket1" size={30} color="white"/>}
 
 
-            {props.alreadyReacted || picLiked ?
+            {props.iReacted || picLiked ?
                 <Icon
                     onPress={() => {
                       props.likePost(props.id, true);

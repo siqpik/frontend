@@ -71,7 +71,7 @@ function HomeScreen(props) {
                 commentPost={commentPost}
                 commentsCount={post.commentsCount}
                 comments={post.comments}
-                alreadyReacted={true}
+                iReacted={post.iReacted}
             />
         )}
       </KeyboardAvoidingScrollView>

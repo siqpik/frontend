@@ -11,5 +11,6 @@ export default class Post {
     this.mediaUrl = json.mediaUrl
     this.comments = []
     this.likes = []
+    this.iReacted = json.iReacted
   }
 }
