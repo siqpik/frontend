@@ -19,6 +19,12 @@ function Wallpost(props) {
           </View>
         </View>
         <Image source={{uri: props.mediaUrl}} style={styles.wallPic}/>
+
+        <View style={styles.comments}>
+          <Text style={styles.firstComment}> {props.likesCount} like{props.likesCount < 1 ? 's' : ''} </Text>
+          <Text style={styles.firstComment}> {props.commentsCount} comments </Text>
+        </View>
+
         <View style={styles.postDescription}>
           <View style={styles.comments}>
             <TextInput style={styles.commentInput}
@@ -97,7 +103,6 @@ function Wallpost(props) {
               <View style={styles.firstCommentContainer}>
                 <Text style={styles.firstComment}> </Text>
               </View>
-
         }
       </View>
   )

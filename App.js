@@ -51,6 +51,7 @@ export default function App() {
               name="RootNavigation"
               component={RootNavigator}
               options={{
+                headerShown: false,
                 title: 'Siqpik',
                 headerLeft: () => ('')
               }}

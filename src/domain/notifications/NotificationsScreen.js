@@ -14,10 +14,10 @@ export class NotificationsScreen extends React.Component {
     }
 
     componentDidMount() {
-        getJson('/notifications')
+        getJson('/notification')
             .then(json => json.map(notification => new Notification(notification)))
             .then(notifications => this.setState({notifications}))
-            .catch(alert);
+            .catch(/*alert*/);
     }
 
     responseToAdmireRequest = (requestId, result) => {
@@ -30,6 +30,7 @@ export class NotificationsScreen extends React.Component {
                 this.setState({notifications: this.state.notifications})
             })
             .catch(alert);
+
         getJson('/newNotifications')
             .then()
             // .then(json => alert(JSON.stringify(json)))

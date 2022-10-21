@@ -5,7 +5,7 @@ export default class Post {
     this.id = json.id
     this.userInfo = new PostUserInfo(json.userInfo)
     this.date = json.date
-    this.likesCount = json.likesCount
+    this.likesCount = json.reactionsCount
     this.commentsCount = json.commentsCount
     this.statement = json.statement
     this.mediaUrl = json.mediaUrl

@@ -28,10 +28,11 @@ export default () => (<Tab.Navigator
 >
 
   <Tab.Screen
-      name="Home"
+      name="Siqpik"
       component={HomeScreen}
       options={{
-        tabBarLabel: 'Home',
+        //headerShown: false,
+        tabBarShowLabel: false,
         tabBarIcon: ({color, size}) => (
             <Icon name="home"
                   size={size}
@@ -45,7 +46,7 @@ export default () => (<Tab.Navigator
       name="Search"
       component={SearchProfile}
       options={{
-        tabBarLabel: 'Search',
+        tabBarShowLabel: false,
         tabBarIcon: ({color, size}) => (
             <Icon name="search1"
                   size={size}
@@ -58,7 +59,7 @@ export default () => (<Tab.Navigator
       name="Camera"
       component={AlertBeforePic}
       options={{
-        tabBarLabel: 'Camera',
+        tabBarShowLabel: false,
         tabBarIcon: ({color, size}) => (
             <Icon name="camera"
                   size={size}
@@ -68,10 +69,10 @@ export default () => (<Tab.Navigator
       }}
   />
   <Tab.Screen
-      name="Notification"
+      name="Notifications"
       component={NotificationsScreen}
       options={{
-        tabBarLabel: 'Notifications',
+        tabBarShowLabel: false,
         tabBarIcon: ({color, size}) => (
             <Icon name="notification"
                   size={size}
@@ -84,7 +85,7 @@ export default () => (<Tab.Navigator
       name="ProfileScreen"
       component={ProfileScreen}
       options={{
-        tabBarLabel: 'Profile',
+        tabBarShowLabel: false,
         tabBarIcon: ({color, size}) => (
             <Icon name="profile"
                   size={size}
