@@ -8,7 +8,7 @@ export const PicturePreview = props => (
         <CountDown
             until={60 * 3}
             size={30}
-            onFinish={props.showCameraAgain()}
+            // onFinish={props.showCameraAgain()}
             digitStyle={{borderWidth: 0, borderColor: '#000', marginTop: '10%'}}
             size={25}
             timeToShow={['M', 'S']}
@@ -17,11 +17,11 @@ export const PicturePreview = props => (
         />
 
         <View style={styles.previewButtonsContainer}>
-            <TouchableOpacity style={styles.previewButtons} title={'Discard'} onPress={props.showCameraAgain()}>
+            <TouchableOpacity style={styles.previewButtons} title={'Discard'} >
                 <Text style={styles.buttonText}>Discard</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.previewButtons} onPress={props.savePic()}>
+            <TouchableOpacity style={styles.previewButtons} >
                 <Text style={styles.buttonText}>Post!</Text>
             </TouchableOpacity>
         </View>

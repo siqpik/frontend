@@ -17,9 +17,11 @@
     "@react-navigation/stack": "6.3.2",
     "deprecated-react-native-prop-types": "^2.2.0",
     "expo": "~46.0.16",
+    "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
     "patch-package": "^6.4.7",
     "react": "18.0.0",
+    "react-dom": "18.0.0",
     "react-native": "0.69.6",
     "react-native-base64": "0.0.2",
     "react-native-countdown-component": "2.7.1",
@@ -32,11 +34,9 @@
     "react-native-screens": "3.15.0",
     "react-native-super-grid": "3.1.2",
     "react-native-vector-icons": "9.2.0",
-    "react-native-vision-camera": "^2.14.1",
-    "undefined": "react-native-masked-view/masked-view",
-    "expo-splash-screen": "~0.16.2",
-    "react-dom": "18.0.0",
-    "react-native-web": "~0.18.7"
+    "react-native-vision-camera": "^2.15.0",
+    "react-native-web": "~0.18.7",
+    "undefined": "react-native-masked-view/masked-view"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

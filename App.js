@@ -8,7 +8,7 @@ import {LoginScreen} from './src/domain/login/Login';
 import RootNavigator from './src/domain/navigation/RootNavigator';
 import {LoadingApp} from './src/domain/navigation/LoadingApp';
 import SignupScreen from './src/domain/Signin/Signup';
-import {TakeNewPic} from "./src/domain/camera/TakeNewPic";
+import CameraView from "./src/domain/camera/CameraView";
 import {Picture} from "./src/domain/pictureview/Picture";
 import {Profile} from "./src/domain/profile/Profile";
 import CommentsPage from './src/domain/home/components/Comments';
@@ -57,10 +57,8 @@ export default function App() {
           />
           <Stack.Screen
               name="TakePic"
-              component={TakeNewPic}
-              options={{
-                title: '',
-              }}
+              component={CameraView}
+              options={{headerShown: false, tabBarStyle: { display: 'none' }}}
           />
           <Stack.Screen
               name="Picture"
