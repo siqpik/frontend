@@ -1,30 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
-
-import {
-  Text,
-  View,
-  StyleSheet
-} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
 // API FUNCTIONS
-import { post } from '../service/ApiService'
 
-// ASYNC 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// ASYNC
 
 // react-native-vision-camera
-import { Camera, CameraPermissionStatus, useCameraDevices } from 'react-native-vision-camera';
-import { useIsFocused } from "@react-navigation/native"
+import {Camera, useCameraDevices} from 'react-native-vision-camera';
+import {useIsFocused} from "@react-navigation/native"
 
 // Camera buttons
-import { CameraButtons } from './CameraButtons';
+import {CameraButtons} from './CameraButtons';
 
-const CameraView = ({ navigation, props }) => {
-
+export const CameraView = props => {
 
   const [hasPermission, setHasPermission] = useState(false);
 
-  const [imagePath, setImagePath] = useState();
   const isFocused = useIsFocused()
   const devices = useCameraDevices()
   const device = devices.back
@@ -44,12 +35,12 @@ const CameraView = ({ navigation, props }) => {
   const takePhoto = async () => {
     try {
       //Error Handle better
-      if (camera.current == null) throw new Error('Camera Ref is Null');
-      console.log('Photo taking ....');
-      const photo = await camera.current.takePhoto(takePhotoOptions);
-      setImagePath(photo.path)
-     
-      savePic()
+      if (camera.current == null) {
+        throw new Error('Camera Ref is Null');
+      }
+
+      return camera.current.takePhoto(takePhotoOptions)
+      .then(pic => props.post(pic.path))
     } catch (error) {
       console.log(error);
     }
@@ -64,67 +55,38 @@ const CameraView = ({ navigation, props }) => {
   //   }
   // }
 
-  const savePic = () => {
-    console.log('posting Image!')
-    console.log(imagePath)
-
-    const fd = {
-        "file": imagePath
-      }
-  
-      // const fdNew = new FormData();
-      // fdNew.append("file", fd);
-  
-      console.log(fd)
-      console.log(imagePath)
-      
-      post(
-        '/post',
-        fd,
-      )
-      .then(response => {
-        if (response.status !== 201) throw new Error(response.status)
-        AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
-          .then(() => navigation.navigate('Home'))
-      }).catch(error => console.log("Something went wrong: " + error))
-  }
-
-
   function renderCamera() {
     if (device == null) {
       return (
-        <View>
-          <Text style={{ color: '#fff' }}>Loading</Text>
-        </View>
+          <View>
+            <Text style={{color: '#fff'}}>Loading</Text>
+          </View>
       )
-    }
-    else {
+    } else {
       return (
-        <View style={{ flex: 1 }}>
-          {device != null &&
-            hasPermission && (
-              <>
-                <Camera
-                  ref={camera}
-                  style={StyleSheet.absoluteFill}
-                  device={device}
-                  isActive={isFocused}
-                  photo={true}
-                />
-                <CameraButtons takePicture={takePhoto} />
-              </>
-            )}
-        </View>
+          <View style={{flex: 1}}>
+            {device != null &&
+                hasPermission && (
+                    <>
+                      <Camera
+                          ref={camera}
+                          style={StyleSheet.absoluteFill}
+                          device={device}
+                          isActive={isFocused}
+                          photo={true}
+                      />
+                      <CameraButtons takePicture={takePhoto}/>
+                    </>
+                )}
+          </View>
       )
     }
-
 
   }
+
   return (
-    <View style={{ flex: 1 }}>
-      {renderCamera()}
-    </View>
+      <View style={{flex: 1}}>
+        {renderCamera()}
+      </View>
   );
 }
-
-export default CameraView; 

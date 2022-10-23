@@ -1,5 +1,4 @@
-import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
@@ -8,13 +7,12 @@ import {LoginScreen} from './src/domain/login/Login';
 import RootNavigator from './src/domain/navigation/RootNavigator';
 import {LoadingApp} from './src/domain/navigation/LoadingApp';
 import SignupScreen from './src/domain/Signin/Signup';
-import CameraView from "./src/domain/camera/CameraView";
 import {Picture} from "./src/domain/pictureview/Picture";
 import {Profile} from "./src/domain/profile/Profile";
 import CommentsPage from './src/domain/home/components/Comments';
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import HeaderLogo from "./src/domain/shared/HeaderLogo";
+import TakeNewPic from "./src/domain/camera/TakeNewPic";
 
 Icon.loadFont();
 
@@ -57,8 +55,8 @@ export default function App() {
           />
           <Stack.Screen
               name="TakePic"
-              component={CameraView}
-              options={{headerShown: false, tabBarStyle: { display: 'none' }}}
+              component={TakeNewPic}
+              options={{headerShown: false, tabBarStyle: {display: 'none'}}}
           />
           <Stack.Screen
               name="Picture"
