@@ -6,7 +6,7 @@ import IonIcon from 'react-native-vector-icons/Ionicons';
 
 export const CameraButtons = props => (
     <View style={styles.buttonsContainer}>
-      <TouchableOpacity onPress={props.toggleDeviceCamera()}
+      <TouchableOpacity
                         style={styles.capture}>
         <IonIcon
             name="md-reverse-camera"
@@ -14,7 +14,7 @@ export const CameraButtons = props => (
             size={45}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => props.takePicture(props.camera)}
+      <TouchableOpacity onPress={() => props.takePicture()}
                         style={styles.capture}>
         <Icon
             name="circle-thin"
@@ -22,7 +22,7 @@ export const CameraButtons = props => (
             color="white"
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={props.toggleFlash()} style={styles.capture}>
+      <TouchableOpacity>
 
         {props.flashMode === 'on' ?
             <IonIcon
