@@ -40,7 +40,6 @@ export class TakeNewPic extends Component {
   }
 
   getFormData = mediaPath => {
-    console.log('Form data, papi')
     const imageUri = "file:///" + mediaPath.split("file:/").join("");
 
     const fd = new FormData();
@@ -50,8 +49,6 @@ export class TakeNewPic extends Component {
       type: mime.getType(imageUri),
       name: imageUri.split("/").pop()
     });
-
-    console.log('Muthaaaa')
 
     return fd;
   }
