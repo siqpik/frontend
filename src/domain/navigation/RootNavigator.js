@@ -85,6 +85,7 @@ export default () => (<Tab.Navigator
       name="ProfileScreen"
       component={ProfileScreen}
       options={{
+        headerShown: false,
         tabBarShowLabel: false,
         tabBarIcon: ({color, size}) => (
             <Icon name="profile"

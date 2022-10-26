@@ -4,8 +4,8 @@ import {Profile} from '../profile/Profile';
 import {logout} from '../service/AuthenticationService';
 
 const CustomDrawerContent = props => (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
+    <DrawerContentScrollView keyboardShouldPersistTaps='always' {...props}>
+
       <DrawerItem label="Log out" onPress={() => logout().then(() =>{
           props.navigation.popToTop();
           props.navigation.navigate('Login')

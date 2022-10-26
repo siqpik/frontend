@@ -33,7 +33,7 @@ export class Profile extends Component {
 
   render() {
     return (
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps='always'>
           {this.state.user
               ? (
                   <View>
