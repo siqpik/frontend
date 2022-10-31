@@ -42,12 +42,12 @@ export class Profile extends Component {
                         profilePicUrl={this.state.user.profilePicUrl}
                         admirersCount={this.state.user.admirersCount}
                         admiredCount={this.state.user.admiredCount}
-                        user={this.state.user}
+                        user={this.state.userName}
                         amIAdmirer={this.state.user.amIAdmirer}
                         isLoggedUser={this.state.user.isLoggedUser}
                         requestStatus={this.state.user.hasPendingRequest}
                         sendAdmireRequest={() => this.sendAdmireRequest(
-                            this.state.user.name)}
+                            this.state.user.userName)}
                         navigation={this.props.navigation}
                     />
                     <PicsContainer
@@ -73,8 +73,10 @@ export class Profile extends Component {
     .then(user => this.setState({user}))
     .catch(error => alert(error))
   };
+
   sendAdmireRequest = userName => {
-    post('/request/' + userName)
+    console.log(JSON.stringify(userName))
+    return post('/admire-request/' + userName)
     .then(resp => {
       if (resp.status === 201) {
         this.setState(prevState => (
