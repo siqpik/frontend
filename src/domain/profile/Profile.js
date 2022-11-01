@@ -8,6 +8,9 @@ import {getJson, post} from '../service/ApiService';
 import {
   USER_NAME_SESSION_ATTRIBUTE_NAME
 } from '../service/AuthenticationService';
+import {
+  KeyboardAvoidingScrollView
+} from "react-native-keyboard-avoiding-scroll-view";
 
 export class Profile extends Component {
 
@@ -33,8 +36,7 @@ export class Profile extends Component {
 
   render() {
     return (
-        <ScrollView keyboardShouldPersistTaps='always'>
-          {this.state.user
+        this.state.user
               ? (
                   <View>
                     <ProfileHeader
@@ -59,8 +61,6 @@ export class Profile extends Component {
                   </View>
               )
               : (<Text>Loading...</Text>)
-          }
-        </ScrollView>
     )
   }
 
