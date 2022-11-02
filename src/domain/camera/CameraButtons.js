@@ -9,7 +9,7 @@ export const CameraButtons = props => (
       <TouchableOpacity
                         style={styles.capture}>
         <IonIcon
-            name="md-reverse-camera"
+            name="camera-reverse"
             color="white"
             size={45}
         />

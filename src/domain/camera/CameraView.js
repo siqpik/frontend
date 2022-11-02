@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 // API FUNCTIONS
+import { post } from '../service/ApiService'
 
 // ASYNC
 
@@ -33,6 +34,8 @@ export const CameraView = props => {
   }, []);
 
   const takePhoto = async () => {
+    await addAttempt(); 
+
     try {
       //Error Handle better
       if (camera.current == null) {
@@ -46,14 +49,15 @@ export const CameraView = props => {
     }
   };
 
-  // addAttempt = async () => {
-  //   try {
-  //     const response = await post('/attempts', null, 'application/json');
-  //     return response.status === 200;
-  //   } catch (error) {
-  //     alert("An error has ocurred: " + error)
-  //   }
-  // }
+  const addAttempt = async () => {
+    console.log("adding attempt"); 
+    try {
+      const response = await post('/attempt', null, 'application/json');
+      return response.status === 200;
+    } catch (error) {
+      alert("An error has ocurred: " + error)
+    }
+  }
 
   function renderCamera() {
     if (device == null) {
