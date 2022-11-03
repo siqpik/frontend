@@ -1,95 +1,91 @@
 import React, {Component} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import User from '../model/User';
 import {PicsContainer} from './PicsContainer';
 import {ProfileHeader} from './ProfileHeader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getJson, post} from '../service/ApiService';
-import {
-  USER_NAME_SESSION_ATTRIBUTE_NAME
-} from '../service/AuthenticationService';
-import {
-  KeyboardAvoidingScrollView
-} from "react-native-keyboard-avoiding-scroll-view";
+import {USER_NAME_SESSION_ATTRIBUTE_NAME} from '../service/AuthenticationService';
 
 export class Profile extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      user: undefined,
-      userName: props.route.params ? props.route.params.userName : undefined
+    constructor(props) {
+        super(props)
+        this.state = {
+            user: undefined,
+            userName: props.route.params ? props.route.params.userName : undefined
+        }
     }
-  }
 
-  componentDidMount() {
-    if (this.state.userName) {
-      this.getUser(this.state.userName)
-    } else {
-      AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
-      .then(userName => {
-        this.setState({userName})
-        this.getUser(this.state.userName)
-      })
+    componentDidMount() {
+        if (this.state.userName) {
+            this.getUser(this.state.userName)
+        } else {
+            AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+                .then(userName => {
+                    this.setState({userName})
+                    this.getUser(this.state.userName)
+                })
+        }
+        console.log
     }
-  }
 
-  render() {
-    return (
-        this.state.user
-              ? (
-                  <View>
-                    <ProfileHeader
-                        name={this.state.user.name}
-                        profilePicUrl={this.state.user.profilePicUrl}
-                        admirersCount={this.state.user.admirersCount}
-                        admiredCount={this.state.user.admiredCount}
-                        user={this.state.userName}
-                        amIAdmirer={this.state.user.amIAdmirer}
-                        isLoggedUser={this.state.user.isLoggedUser}
-                        requestStatus={this.state.user.hasPendingRequest}
-                        sendAdmireRequest={() => this.sendAdmireRequest(
-                            this.state.user.userName)}
-                        navigation={this.props.navigation}
-                    />
-                    <PicsContainer
-                        isActualUser={this.state.user.isLoggedUser}
-                        pics={this.state.user.pics}
-                        navigate={this.props.navigation.navigate}
-                        username={this.state.user.name}
-                    />
-                  </View>
-              )
-              : (<Text>Loading...</Text>)
-    )
-  }
+    render() {
+        return (
+            this.state.user
+                ? (
+                    <View>
+                        <ProfileHeader
+                            name={this.state.user.name}
+                            profilePicUrl={this.state.user.profilePicUrl}
+                            admirersCount={this.state.user.admirersCount}
+                            admiredCount={this.state.user.admiredCount}
+                            user={this.state.userName}
+                            amIAdmirer={this.state.user.amIAdmirer}
+                            isLoggedUser={this.state.user.isLoggedUser}
+                            hasPendingRequest={this.state.user.hasPendingRequest}
+                            sendAdmireRequest={() => this.sendAdmireRequest(
+                                this.state.user.userName)}
+                            navigation={this.props.navigation}
+                        />
+                        {(this.state.user.amIAdmirer || this.state.user.isLoggedUser) && <PicsContainer
+                            isActualUser={this.state.user.isLoggedUser}
+                            pics={this.state.user.pics}
+                            navigate={this.props.navigation.navigate}
+                            username={this.state.user.name}
+                        />}
+                    </View>
+                )
+                : (<Text>Loading...</Text>)
+        )
+    }
 
-  getUser = userName => {
-    getJson('/profile/' + userName)
-    .then(json => {
-      console.log(JSON.stringify(json))
-      return new User(json)
-    })
-    .then(user => this.setState({user}))
-    .catch(error => alert(error))
-  };
+    getUser = userName => {
+        getJson('/profile/' + userName)
+            .then(json => {
+                console.log(JSON.stringify(json))
+                return new User(json)
+            })
+            .then(user => this.setState({user}))
+            .catch(error => alert(error))
+    };
 
-  sendAdmireRequest = userName => {
-    console.log(JSON.stringify(userName))
-    return post('/admire-request/' + userName)
-    .then(resp => {
-      if (resp.status === 201) {
-        this.setState(prevState => (
-                {
-                  user: {
-                    ...prevState.user,
-                    requestStatus: 'Pending'
-                  },
-                  userName: prevState.userName
+    sendAdmireRequest = userName => {
+        console.log(JSON.stringify(userName))
+        return post('/admire-request/' + userName)
+            .then(resp => {
+                if (resp.status === 201) {
+                    this.setState(prevState => (
+                            {
+                                user: {
+                                    ...prevState.user,
+                                    hasPendingRequest: true
+                                },
+                                userName: prevState.userName
+                            }
+                        )
+                    );
                 }
-            )
-        );
-      }
-    }).catch(error => alert(error))
-  };
+            }).catch(error => alert(error))
+    };
 }
