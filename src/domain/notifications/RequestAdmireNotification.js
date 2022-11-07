@@ -27,7 +27,7 @@ export const RequestAdmireNotification = props => {
                                 <Text style={styles.buttonText}>Accept</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                style={styles.button} 
+                                style={styles.button}
                                 onPress={props.dismiss}
                             >
                                 <Text style={styles.buttonText}>Dismiss</Text>
@@ -37,7 +37,7 @@ export const RequestAdmireNotification = props => {
                 )
                     :
                     <View style={styles.statusContainer}>
-                        <Text style={styles.userName}>You have {props.status.toLowerCase()} {props.name}'s request!</Text>
+                        <Text style={styles.userName}>You have {props.status} {props.name}'s request!</Text>
                     </View>
                 }
             </View>
