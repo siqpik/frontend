@@ -35,6 +35,12 @@ buildscript {
 }
 
 allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force 'com.facebook.react:react-native:0.69.6'
+        }
+    }
+
     repositories {
         mavenLocal()
         maven {
