@@ -19,6 +19,8 @@ export default () => {
         getNotificationsCount();
     }, []);
 
+    const resetNotificationsCount = () => setNotificationsCount(0)
+
     const getNotificationsCount = ()  => {
         getJson('/notification/new/count')
             .then(count => {
@@ -48,7 +50,6 @@ export default () => {
             name="Siqpik"
             component={HomeScreen}
             options={{
-                //headerShown: false,
                 tabBarShowLabel: false,
                 tabBarIcon: ({color, size}) => (
                     <Icon name="home"
@@ -88,6 +89,10 @@ export default () => {
         <Tab.Screen
             name="Notifications"
             component={NotificationsScreen}
+            listeners={{
+                tabPress: e => {
+                    resetNotificationsCount()
+                }}}
             options={{
                 tabBarShowLabel: false,
                 tabBarIcon: ({color, size}) => (

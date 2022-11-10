@@ -1,12 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TOKEN_SESSION} from "../shared/Consts";
 
-//const API_URL = 'http://172.30.0.139:8080';
-export const API_URL = 'https://siqpik-dev.herokuapp.com';
+//const API_URL = 'http://localhost:8080';
+const API_URL = 'https://siqpik-dev.herokuapp.com';
 
 export const post = (url, body, contentType) => {
   return authenticatedRequest(url,
       'POST', body, contentType);
+}
+
+export const patch = (url, body, contentType) => {
+    return authenticatedRequest(url,
+        'PATCH', body, contentType);
 }
 
 export const uploadMedia = media =>
@@ -59,7 +64,6 @@ const genericFetch = (url, method, headers, body) => {
 }
 
 function handleErrors(response) {
-  console.log('response: ', response.status)
   if (!response.ok) {
     console.log("Something went wrong fetching: " + JSON.stringify(response))
     throw Error(response.status);
