@@ -52,8 +52,8 @@ export class SearchProfile extends Component {
                 >
                   <Avatar source={{uri: profile.avatarUrl}}/>
                   <ListItem.Content>
-                    <ListItem.Title>{profile.name}</ListItem.Title>
-                    <ListItem.Subtitle>{profile.userName}</ListItem.Subtitle>
+                    <ListItem.Title>{profile.userName}</ListItem.Title>
+                    <ListItem.Subtitle>{profile.name}</ListItem.Subtitle>
                   </ListItem.Content>
                 </ListItem>
             ))

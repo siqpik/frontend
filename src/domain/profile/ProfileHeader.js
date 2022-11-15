@@ -14,10 +14,10 @@ export const ProfileHeader = props => {
             </TouchableOpacity>
             <View style={styles.header}>
                 <View>
-                    <Text style={styles.name}>{props.name}</Text>
+                    <Text style={styles.name}>{props.username}</Text>
                 </View>
                 <Image
-                    key={props.name}
+                    key={props.username}
                     style={styles.profilePic}
                     source={{ uri: props.profilePicUrl }}
                 />

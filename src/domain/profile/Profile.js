@@ -40,7 +40,7 @@ export class Profile extends Component {
                             profilePicUrl={this.state.user.profilePicUrl}
                             admirersCount={this.state.user.admirersCount}
                             admiredCount={this.state.user.admiredCount}
-                            user={this.state.userName}
+                            username={this.state.userName}
                             amIAdmirer={this.state.user.amIAdmirer}
                             isLoggedUser={this.state.user.isLoggedUser}
                             hasPendingRequest={this.state.user.hasPendingRequest}

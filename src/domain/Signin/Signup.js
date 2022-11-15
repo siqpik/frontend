@@ -62,7 +62,8 @@ export default class SignupScreen extends Component {
         return correctEmail
     }
 
-    signInClicked = async () => {
+    signInClicked = async () => { //TODO Add displayName in any form CheckBReal
+        console.log('Dislayyy: ' + this.state.displayName)
         this.setState({signUpButtonEnabled: false})
         if (!this.isValidEmail()) {
             this.setState({signUpButtonEnabled: true})
