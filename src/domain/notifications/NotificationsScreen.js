@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView, Text} from 'react-native';
 import Notification from './model/Notification';
-import {getJson, patch} from '../service/ApiService';
+import {deleteItem, getJson, patch} from '../service/ApiService';
 import {AdmireRequestNotification} from "./AdmireRequestNotification";
 
 export class NotificationsScreen extends React.Component {
@@ -21,30 +21,57 @@ export class NotificationsScreen extends React.Component {
     getAllNotifications = async () => {
         const notifs = await getJson('/notification')
         notifs.map(n => this.getAdmireRequests(n))
-        //todo    //Añadir adm-request al state: What? o.O
+        //todo    //Añadir adm-request al state: What? o.O= change the request in the state to know is already admire inmidiatly and hide the buttons
         //    // añadir backend para aceptar admireRequest
     }
 
     getAdmireRequests(notification) {
         getJson(`/admire-request/${notification.eventId}`)
-            .then(admireRequest => new Notification(notification, admireRequest))
+            .then(admireRequest => {
+                console.log(JSON.stringify(admireRequest))
+                return new Notification(notification, admireRequest)
+            })
             .then(ar => {
-                this.setState(previous => ({
-                    notifications: [...previous.notifications, ar]
-                }))
-            }).then(x => this.justClear())
+                if (ar.status !== 'DISMISSED') {
+                    this.setState(previous => ({
+                        notifications: [...previous.notifications, ar]
+                    }))
+                }
+            }).then(_ => this.clearNewNotifications())
             .then()
     }
 
-    justClear = () => {
+    clearNewNotifications = () => {
         this.state.notifications.map(notification => notification.id)
             .forEach(notificationId =>
                 patch(`/notification/${notificationId}`, JSON.stringify({status: 'READ'}))
             )
     }
 
-    acceptAdmireRequest = (requestId, result) => {
-        patch(`/admire-request/${requestId}`)
+    acceptAdmireRequest = requestId => patch(`/admire-request/${requestId}`)
+        .then(_ => {
+            this.setState(previousState => {
+                const notifications = [...previousState.notifications];
+                const indexToChange = notifications.findIndex(req => req.notifiableId === requestId)
+
+                notifications[indexToChange] = {
+                    ...notifications[indexToChange],
+                    status: "ACCEPTED"
+                }
+
+                return {notifications}
+            })
+        })
+
+    dismissAdmirerRequest = requestId => {
+        deleteItem(`/admire-request/${requestId}`)
+            .then(_ => {
+                this.setState(previousState => {
+                    const notifications = previousState.notifications.filter(n => n.notifiableId !== requestId)
+
+                    return {notifications}
+                })
+            })
     }
 
     render() {
@@ -61,7 +88,7 @@ export class NotificationsScreen extends React.Component {
                                 image={notification.userInfo.profilePicUrl}
                                 status={notification.status}
                                 accept={() => this.acceptAdmireRequest(notification.notifiableId)}
-                                dismiss={() => alert('Will be deleted :)')}
+                                dismiss={() => this.dismissAdmirerRequest(notification.notifiableId)}
                             />
                         )
                     }
