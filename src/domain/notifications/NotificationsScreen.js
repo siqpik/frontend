@@ -21,21 +21,22 @@ export class NotificationsScreen extends React.Component {
     getAllNotifications = async () => {
         const notifs = await getJson('/notification')
         notifs.map(n => this.getAdmireRequests(n))
-        //todo    //Añadir adm-request al state: What? o.O= change the request in the state to know is already admire inmidiatly and hide the buttons
-        //    // añadir backend para aceptar admireRequest
     }
 
     getAdmireRequests(notification) {
         getJson(`/admire-request/${notification.eventId}`)
-            .then(admireRequest => {
-                console.log(JSON.stringify(admireRequest))
-                return new Notification(notification, admireRequest)
-            })
+            .then(admireRequest =>
+                null !== admireRequest
+                    ? new Notification(notification, admireRequest)
+                    : null
+            )
             .then(ar => {
-                if (ar.status !== 'DISMISSED') {
-                    this.setState(previous => ({
-                        notifications: [...previous.notifications, ar]
-                    }))
+                if (ar !== null) {
+                    if (ar?.status !== 'DISMISSED') {
+                        this.setState(previous => ({
+                            notifications: [...previous.notifications, ar]
+                        }))
+                    }
                 }
             }).then(_ => this.clearNewNotifications())
             .then()
@@ -63,16 +64,14 @@ export class NotificationsScreen extends React.Component {
             })
         })
 
-    dismissAdmirerRequest = requestId => {
-        deleteItem(`/admire-request/${requestId}`)
-            .then(_ => {
-                this.setState(previousState => {
-                    const notifications = previousState.notifications.filter(n => n.notifiableId !== requestId)
+    dismissAdmirerRequest = requestId => deleteItem(`/admire-request/${requestId}`)
+        .then(_ => {
+            this.setState(previousState => {
+                const notifications = previousState.notifications.filter(n => n.notifiableId !== requestId)
 
-                    return {notifications}
-                })
+                return {notifications}
             })
-    }
+        })
 
     render() {
         return (

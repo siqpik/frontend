@@ -125,7 +125,7 @@ export default () => {
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarIcon: ({color, size}) => (
-                    <Icon name="profile"
+                    <Icon name="user"
                           size={size}
                           color={color}
                     />
