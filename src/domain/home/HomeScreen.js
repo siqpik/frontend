@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {BackHandler, RefreshControl} from 'react-native';
+import {BackHandler, RefreshControl, Text} from 'react-native';
 import Wallpost from './components/Post';
 import Post from './model/Post';
 import {deleteItem, getJson, post} from '../service/ApiService';
@@ -57,6 +57,12 @@ function HomeScreen(props) {
                                   refreshControl={<RefreshControl
                                       refreshing={refreshing}
                                       onRefresh={onRefresh}/>}>
+        {
+          posts.length === 0 && <Text>{"\n"}
+              {}      No posts yet! {"\n"}
+              {}      Try admiring some friends :)</Text>
+
+        }
         {posts.map((post, index) =>
             <Wallpost
                 navigate={navigate}
