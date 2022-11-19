@@ -27,7 +27,6 @@ export class Profile extends Component {
                     this.getUser(this.state.userName)
                 })
         }
-        console.log
     }
 
     render() {
@@ -60,32 +59,25 @@ export class Profile extends Component {
         )
     }
 
-    getUser = userName => {
-        getJson('/profile/' + userName)
-            .then(json => {
-                console.log(JSON.stringify(json))
-                return new User(json)
-            })
+    getUser = userName =>
+        getJson('/profile/' + userName)// change to /user/username/profile
+            .then(json => new User(json))
             .then(user => this.setState({user}))
             .catch(error => alert(error))
-    };
 
-    sendAdmireRequest = userName => {
-        console.log(JSON.stringify(userName))
-        return post('/admire-request/' + userName)
-            .then(resp => {
-                if (resp.status === 201) {
-                    this.setState(prevState => (
-                            {
-                                user: {
-                                    ...prevState.user,
-                                    hasPendingRequest: true
-                                },
-                                userName: prevState.userName
-                            }
-                        )
-                    );
-                }
-            }).catch(error => alert(error))
-    };
+    sendAdmireRequest = userName => post('/admire-request/' + userName)
+        .then(resp => {
+            if (resp.status === 201) {
+                this.setState(prevState => (
+                        {
+                            user: {
+                                ...prevState.user,
+                                hasPendingRequest: true
+                            },
+                            userName: prevState.userName
+                        }
+                    )
+                );
+            }
+        }).catch(error => alert(error))
 }

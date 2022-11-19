@@ -73,6 +73,11 @@ export class NotificationsScreen extends React.Component {
             })
         })
 
+    goToProfile = username => this.props.navigation
+        .navigate('ProfileOther', {
+            userName: username
+        })
+
     render() {
         return (
             this.state.notifications
@@ -88,6 +93,7 @@ export class NotificationsScreen extends React.Component {
                                 status={notification.status}
                                 accept={() => this.acceptAdmireRequest(notification.notifiableId)}
                                 dismiss={() => this.dismissAdmirerRequest(notification.notifiableId)}
+                                goToProfile={() => this.goToProfile(notification.userInfo.username)}
                             />
                         )
                     }

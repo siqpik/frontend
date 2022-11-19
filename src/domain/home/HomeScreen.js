@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {BackHandler, RefreshControl, Text} from 'react-native';
-import Wallpost from './components/Post';
+import WallPost from './components/Post';
 import Post from './model/Post';
 import {deleteItem, getJson, post} from '../service/ApiService';
 import {useFocusEffect} from "@react-navigation/core";
 import {
   KeyboardAvoidingScrollView
 } from 'react-native-keyboard-avoiding-scroll-view';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
 
 function HomeScreen(props) {
 
@@ -25,12 +27,18 @@ function HomeScreen(props) {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
+    wait(1000).then(() => setRefreshing(false));
   }, []);
 
   const [posts, setPosts] = useState([]);
+  const [loggedUsername, setLoggedUsername] = useState([]);
   const {navigate} = props.navigation;
+
   useEffect(() => {
+    AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+        .then(username => {
+          setLoggedUsername(username)
+        })
     getFeed();
   }, []);
 
@@ -64,13 +72,13 @@ function HomeScreen(props) {
 
         }
         {posts.map((post, index) =>
-            <Wallpost
+            <WallPost
                 navigate={navigate}
                 id={post.id}
                 key={index + ':postView'}
                 date={getFormattedDate(post.date)}
                 mediaUrl={post.mediaUrl}
-                userName={post.userInfo.displayName}
+                username={post.userInfo.username}
                 profilePicUrl={post.userInfo.profilePicUrl}
                 likePost={togglePostReaction}
                 likesCount={post.likesCount}
@@ -78,6 +86,7 @@ function HomeScreen(props) {
                 commentsCount={post.commentsCount}
                 comments={post.comments}
                 iReacted={post.iReacted}
+                loggedUsername={loggedUsername}
             />
         )}
       </KeyboardAvoidingScrollView>
