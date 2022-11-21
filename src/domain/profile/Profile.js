@@ -13,21 +13,39 @@ export class Profile extends Component {
         super(props)
         this.state = {
             user: undefined,
-            userName: props.route.params ? props.route.params.userName : undefined
+            userName: props.route.params ? props.route.params.userName : undefined,
+            posts: [],
+            postsPage: 1
         }
     }
 
-    componentDidMount() {
+    componentDidMount() {//TODO simplify
         if (this.state.userName) {
             this.getUser(this.state.userName)
+            this.getProfilePosts(this.state.userName)
         } else {
             AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
                 .then(userName => {
                     this.setState({userName})
                     this.getUser(this.state.userName)
+                    this.getProfilePosts(this.state.userName)
                 })
         }
     }
+
+    getUser = userName =>
+        getJson('/profile/' + userName)// change to /user/username/profile
+            .then(json => new User(json))
+            .then(user => this.setState({user}))
+            .catch(error => alert(error))
+
+    getProfilePosts = userName => getJson(`/post/${userName}/${this.state.postsPage}`)
+        .then(json => this.setState(prevState => (
+            {...prevState,
+                posts: json.postUrls
+            }
+        )))
+        .then(json => console.log(this.state.user))
 
     render() {
         return (
@@ -47,23 +65,19 @@ export class Profile extends Component {
                                 this.state.user.userName)}
                             navigation={this.props.navigation}
                         />
-                        {(this.state.user.amIAdmirer || this.state.user.isLoggedUser) && <PicsContainer
-                            isActualUser={this.state.user.isLoggedUser}
-                            pics={this.state.user.pics}
-                            navigate={this.props.navigation.navigate}
-                            username={this.state.user.name}
-                        />}
+                        {(this.state.user.amIAdmirer || this.state.user.isLoggedUser) &&
+                            <PicsContainer
+                                isActualUser={this.state.user.isLoggedUser}
+                                posts={this.state.posts}
+                                navigate={this.props.navigation.navigate}
+                                username={this.state.user.name}
+                            />
+                        }
                     </View>
                 )
                 : (<Text>Loading...</Text>)
         )
     }
-
-    getUser = userName =>
-        getJson('/profile/' + userName)// change to /user/username/profile
-            .then(json => new User(json))
-            .then(user => this.setState({user}))
-            .catch(error => alert(error))
 
     sendAdmireRequest = userName => post('/admire-request/' + userName)
         .then(resp => {

@@ -53,7 +53,6 @@ const HomeScreen = props => {
     );
 
     const getFeed = () => {
-        console.log(postsPage)
         getJson(`/feed/${postsPage}`)
             .then(json => json.map(post => new Post(post)))
             .then(nextPosts => {
