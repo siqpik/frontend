@@ -4,7 +4,8 @@ import {StyleSheet, Text, View} from 'react-native';
 // API FUNCTIONS
 import { post } from '../service/ApiService'
 
-// ASYNC
+// NAVIGATION
+
 
 // react-native-vision-camera
 import {Camera, useCameraDevices} from 'react-native-vision-camera';
@@ -13,9 +14,11 @@ import {useIsFocused} from "@react-navigation/native"
 // Camera buttons
 import {CameraButtons} from './CameraButtons';
 
-export const CameraView = props => {
+function CameraView (props) {
 
   const [hasPermission, setHasPermission] = useState(false);
+
+ 
 
   const isFocused = useIsFocused()
   const devices = useCameraDevices()
@@ -26,6 +29,8 @@ export const CameraView = props => {
     flash: 'off'
   };
 
+    
+
   useEffect(() => {
     (async () => {
       const status = await Camera.requestCameraPermission();
@@ -34,16 +39,16 @@ export const CameraView = props => {
   }, []);
 
   const takePhoto = async () => {
-    await addAttempt(); 
+    // await addAttempt(); 
 
     try {
       //Error Handle better
       if (camera.current == null) {
         throw new Error('Camera Ref is Null');
       }
-
+      
       return camera.current.takePhoto(takePhotoOptions)
-      .then(pic => props.post(pic.path))
+      .then(media => /*props.postMedia(media.path)*/ props.navigation.navigate('Preview', { state: { image: media } }) )
     } catch (error) {
       console.log(error);
     }
@@ -94,3 +99,5 @@ export const CameraView = props => {
       </View>
   );
 }
+
+export default CameraView;

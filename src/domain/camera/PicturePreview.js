@@ -1,9 +1,13 @@
-import {Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import {Text, TouchableOpacity, View, Image} from 'react-native';
+import React, {useMemo} from 'react';
 import CountDown from 'react-native-countdown-component';
 import {styles} from "./style/styles";
 
-export const PicturePreview = props => (
+
+
+function Preview(props){ 
+
+    return (
     <View style={styles.preview}>
         <CountDown
             until={60 * 3}
@@ -15,7 +19,7 @@ export const PicturePreview = props => (
             timeLabels={{m: null, s: null}}
             showSeparator
         />
-
+        <Image source={{ uri: `file://${props.route.params.state.image.path}` }} style={styles.takenPic}/>
         <View style={styles.previewButtonsContainer}>
             <TouchableOpacity style={styles.previewButtons} title={'Discard'} >
                 <Text style={styles.buttonText}>Discard</Text>
@@ -26,4 +30,7 @@ export const PicturePreview = props => (
             </TouchableOpacity>
         </View>
     </View>
-)
+    )
+    }
+
+    export default Preview;

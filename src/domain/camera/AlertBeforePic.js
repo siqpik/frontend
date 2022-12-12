@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {styles} from './style/styles';
-import {getJson} from '../service/ApiService';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { styles } from './style/styles';
+import { getJson } from '../service/ApiService';
 
 export class AlertBeforePic extends React.Component {
     constructor(props) {
@@ -13,16 +13,16 @@ export class AlertBeforePic extends React.Component {
 
     componentDidMount() {
         getJson('/attempt')
-            .then(json => this.setState({attempts: json.attempts}))
+            .then(json => this.setState({ attempts: json.attempts }))
             .catch(error => alert('An error has occurred: ' + error))
     }
 
 
 
-    render(){
+    render() {
         const LIMIT_OF_ATTEMPTS = 3;
-        const {navigate} = this.props.navigation;
-        return(
+        const { navigate } = this.props.navigation;
+        return (
             this.state.attempts >= 0 && this.state.attempts < LIMIT_OF_ATTEMPTS
                 ? (
                     <View style={styles.alertContainer}>
@@ -69,9 +69,9 @@ export class AlertBeforePic extends React.Component {
 
                             </View>
                             <View>
-                            <TouchableOpacity style={styles.buttonHome} onPress={() => navigate('Home')}>
-                                <Text style={styles.buttonText}> Back To Home Page </Text>
-                            </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttonHome} onPress={() => navigate('Home')}>
+                                    <Text style={styles.buttonText}> Back To Home Page </Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     )

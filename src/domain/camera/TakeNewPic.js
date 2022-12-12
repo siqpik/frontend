@@ -1,6 +1,6 @@
 'use strict';
-import React, {Component} from 'react';
-import {CameraView} from "./CameraView";
+import React, {useState} from 'react';
+import CameraView from "./CameraView";
 import mime from "mime";
 import {uploadMedia} from "../service/ApiService";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -8,50 +8,41 @@ import {
   USER_NAME_SESSION_ATTRIBUTE_NAME
 } from "../service/AuthenticationService";
 
-export class TakeNewPic extends Component {
+function TakeNewPic ({navigation}) {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      showImage: false,
-      imageUri: undefined,
-      deviceCamera: 'back',
-      flashMode: 'off',
+    const [imageUri, setImageUri] = useState();
+    
+    function postMedia(imagePath) {
+      uploadMedia(getFormData(imagePath)).then(response => {
+        if (response.status !== 201) {
+          throw new Error(response.status)
+        }
+        AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+        .then(() => console.log('Home'))
+      }).catch(error => console.log("Something went wrong posting: " + error))
     }
+  
+    function getFormData (mediaPath) {
+      setImageUri( "file:///" + mediaPath.split("file:/").join(""))
+  
+      const fd = new FormData();
+  
+      fd.append('pic', {
+        uri: imageUri,
+        type: mime.getType(imageUri),
+        name: imageUri.split("/").pop()
+      });
+  
+      return fd;
+    }
+  
 
-  }
-
-  render() {
     return (
         <CameraView
-            post={this.postMedia}
+        postMedia={postMedia}
+        navigation={navigation}
         />
     )
-  }
-
-  postMedia = imagePath => {
-    uploadMedia(this.getFormData(imagePath)).then(response => {
-      if (response.status !== 201) {
-        throw new Error(response.status)
-      }
-      AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
-      .then(() => console.log('Home'))
-    }).catch(error => console.log("Something went wrong posting: " + error))
-  }
-
-  getFormData = mediaPath => {
-    const imageUri = "file:///" + mediaPath.split("file:/").join("");
-
-    const fd = new FormData();
-
-    fd.append('pic', {
-      uri: imageUri,
-      type: mime.getType(imageUri),
-      name: imageUri.split("/").pop()
-    });
-
-    return fd;
-  }
 }
 
 export default TakeNewPic;

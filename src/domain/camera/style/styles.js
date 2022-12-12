@@ -15,18 +15,19 @@ export const styles = StyleSheet.create({
         borderStyle: 'solid'
     },
     takenPic:{
-        flex: 1.5,
-        height: Dimensions.get('screen').height / 1.7,
-        resizeMode: 'cover',
-        justifyContent: 'flex-start',
+        flex: 8,
+        height: "100%",
+        width: "100%",
     },
     preview: {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
+        height: Dimensions.get('screen').height / 1.7,
+        resizeMode: 'cover',
     },
     buttonsContainer: {
-        flex: 2,
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'flex-end',
         width: "100%",

@@ -22,7 +22,7 @@ export const CameraButtons = props => (
             color="white"
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity  style={styles.capture}>
 
         {props.flashMode === 'on' ?
             <IonIcon
