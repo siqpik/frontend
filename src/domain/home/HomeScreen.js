@@ -135,9 +135,17 @@ const HomeScreen = props => {
             }
         >
             {
-                posts.length === 0 && <Text>{"\n"}
-                    {} No posts yet! {"\n"}
-                    {} Try admiring some friends :)</Text>
+                posts.length === 0 && <WallPost
+                    date={getFormattedDate(new Date())}
+                    mediaUrl={'https://res.cloudinary.com/siqpik/image/upload/v1670515879/ibscji05tdziedxvfz7p.jpg'}
+                    username={'Siqpik'}
+                    profilePicUrl={'https://res.cloudinary.com/siqpik/image/upload/v1670515879/ibscji05tdziedxvfz7p.jpg'}
+                    likesCount={999}
+                    commentsCount={999}
+                    comments={[]}
+                    iReacted={true}
+                    loggedUsername={loggedUsername}
+                />
 
             }
             {posts.map((post, index) =>
@@ -149,7 +157,7 @@ const HomeScreen = props => {
                     mediaUrl={post.mediaUrl}
                     username={post.userInfo.username}
                     profilePicUrl={post.userInfo.profilePicUrl}
-                    likePost={togglePostReaction}//TODO likes not working :(
+                    likePost={togglePostReaction}
                     likesCount={post.likesCount}
                     commentPost={commentPost}
                     commentsCount={post.commentsCount}

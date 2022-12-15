@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import User from '../model/User';
 import {PicsContainer} from './PicsContainer';
 import {ProfileHeader} from './ProfileHeader';
@@ -19,7 +19,7 @@ export class Profile extends Component {
         }
     }
 
-    componentDidMount() {//TODO simplify
+    componentDidMount() {
         if (this.state.userName) {
             this.getUser(this.state.userName)
             this.getProfilePosts(this.state.userName)
@@ -51,7 +51,7 @@ export class Profile extends Component {
         return (
             this.state.user
                 ? (
-                    <View>
+                    <ScrollView>
                         <ProfileHeader
                             name={this.state.user.name}
                             profilePicUrl={this.state.user.profilePicUrl}
@@ -73,7 +73,7 @@ export class Profile extends Component {
                                 username={this.state.user.name}
                             />
                         }
-                    </View>
+                    </ScrollView>
                 )
                 : (<Text>Loading...</Text>)
         )

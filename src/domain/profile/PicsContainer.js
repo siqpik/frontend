@@ -12,7 +12,7 @@ export const PicsContainer = props =>
             <PicThumbnail
                 index={index}
                 url={item.mediaUrl}
-                //posts={props.posts}
+                posts={props.posts}
                 username={props.username}
                 navigate={props.navigate}
                 actualUser={props.isActualUser}
