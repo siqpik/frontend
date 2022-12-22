@@ -36,12 +36,33 @@ export default props => {
             <View style={styles.comments}>
                 <Text
                     style={styles.firstComment}> {props.likesCount} like{props.likesCount < 1 ? 's' : ''} </Text>
-                <Text style={styles.firstComment}> {props.commentsCount} comments </Text>
+                {/*<Text style={styles.firstComment}> {props.commentsCount} comments </Text>*/}
+                {props.iReacted || picLiked ?
+                    <Icon
+                        onPress={() => {
+                            props.likePost(props.id, true);
+                            setPicLiked(false);
+                        }}
+                        name="star"
+                        size={35}
+                        color="black"
+                    />
+                    :
+                    <Icon
+                        onPress={() => {
+                            props.likePost(props.id, false);
+                            setPicLiked(true);
+                        }}
+                        name="staro"
+                        size={35}
+                        color="black"
+                    />
+                }
             </View>
 
             <View style={styles.postDescription}>
                 <View style={styles.comments}>
-                    <TextInput style={styles.commentInput}
+                    {/*<TextInput style={styles.commentInput}
                                onChangeText={comment => setComment(comment)}
                                value={comment}
                                onSubmitEditing={() => {
@@ -58,30 +79,10 @@ export default props => {
                               }}
                         />
                         :
-                        <Icon name="rocket1" size={30} color="white"/>}
+                        <Icon name="rocket1" size={30} color="white"/>}*/}
 
 
-                    {props.iReacted || picLiked ?
-                        <Icon
-                            onPress={() => {
-                                props.likePost(props.id, true);
-                                setPicLiked(false);
-                            }}
-                            name="star"
-                            size={35}
-                            color="black"
-                        />
-                        :
-                        <Icon
-                            onPress={() => {
-                                props.likePost(props.id, false);
-                                setPicLiked(true);
-                            }}
-                            name="staro"
-                            size={35}
-                            color="black"
-                        />
-                    }
+
                 </View>
             </View>
 
