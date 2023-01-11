@@ -48,7 +48,7 @@ function CameraView (props) {
       }
       
       return camera.current.takePhoto(takePhotoOptions)
-      .then(media => /*props.postMedia(media.path)*/ props.navigation.navigate('Preview', { state: { image: media } }) )
+      .then(media => /*props.postMedia(media.path)*/ props.navigation.navigate('Preview', { state: { image: media, post: props.postMedia } }) )
     } catch (error) {
       console.log(error);
     }

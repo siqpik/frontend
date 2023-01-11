@@ -4,7 +4,6 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        height: Dimensions.get('window').height,
         width: '100%',
     },
     post: {
@@ -15,16 +14,17 @@ export const styles = StyleSheet.create({
         borderStyle: 'solid'
     },
     takenPic:{
-        flex: 8,
-        height: "100%",
-        width: "100%",
+       flex: 1
+    },
+    countdown:{
+        flex: 1.2,
+        flexDirection: 'column',
+        justifyContent:'space-between'
     },
     preview: {
         flex: 1,
-        justifyContent: 'flex-end',
         alignItems: 'center',
-        height: Dimensions.get('screen').height / 1.7,
-        resizeMode: 'cover',
+        justifyContent: 'space-around',
     },
     buttonsContainer: {
         flex: 1,
@@ -117,8 +117,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-around",
         alignItems: "flex-end",
-        width: '80%',
-        paddingBottom: '10%'
+        width: '100%',
+        paddingBottom:'5%'
     },
     previewButtons: {
         width: 100,
