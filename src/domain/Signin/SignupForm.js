@@ -1,9 +1,8 @@
 import React from 'react';
-import { Text, TextInput, View, StyleSheet, TouchableOpacity, KeyboardAvoidingView  } from 'react-native';
+import {StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 
 
-export const SignupForm = props => (
-
+export const SignupForm = props =>
     <View style={styles.container}>
         <TextInput style={styles.inputBox}
                    placeholder='Email'
@@ -19,6 +18,12 @@ export const SignupForm = props => (
                    value={props.username}
         />
         <TextInput style={styles.inputBox}
+                   placeholder='Display Name'
+                   placeholderTextColor='#000'
+                   onChangeText={displayName => props.readDisplayName(displayName)}
+                   value={props.displayName}
+        />
+        <TextInput style={styles.inputBox}
                    placeholder='Password'
                    secureTextEntry={true}
                    placeholderTextColor='#000'
@@ -27,12 +32,12 @@ export const SignupForm = props => (
         />
         {
             props.signUpButtonEnabled &&
-            <TouchableOpacity style={styles.button} onPress={() => props.signInClicked()} >
+            <TouchableOpacity style={styles.button} onPress={() => props.signInClicked()}>
                 <Text style={styles.buttonText}> {props.type} </Text>
             </TouchableOpacity>
         }
     </View>
-)
+
 
 const styles = StyleSheet.create({
     container: {

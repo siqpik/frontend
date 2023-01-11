@@ -37,6 +37,7 @@ export default class SignupScreen extends Component {
                     pass={this.state.pass}
                     readEmail={this.readEmail.bind(this)}
                     readUserName={this.readUserName.bind(this)}
+                    readDisplayName={this.readDisplayName.bind(this)}
                     readPass={this.readPass.bind(this)}
                     signUpButtonEnabled={this.state.signUpButtonEnabled}
                 />
@@ -51,6 +52,7 @@ export default class SignupScreen extends Component {
 
     readEmail = email => this.setState({email});
     readUserName = username => this.setState({username});
+    readDisplayName = displayName => this.setState({displayName});
     readPass = pass => this.setState({pass})
 
     isValidEmail = () => {
@@ -63,6 +65,7 @@ export default class SignupScreen extends Component {
     }
 
     signInClicked = async () => {
+        console.log('Dislayyy: ' + this.state.displayName)
         this.setState({signUpButtonEnabled: false})
         if (!this.isValidEmail()) {
             this.setState({signUpButtonEnabled: true})

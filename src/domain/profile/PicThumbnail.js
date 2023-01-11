@@ -6,7 +6,7 @@ export default props =>
     <TouchableOpacity
         onPress={() => props.navigate('Picture', {
             index: props.index,
-            pics: props.pics,
+            posts: props.posts,
             username: props.username,
             actualUser: props.actualUser
         })}

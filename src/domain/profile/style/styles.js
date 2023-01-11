@@ -2,10 +2,10 @@ import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
     picStyle: {
-        justifyContent: 'flex-end',
-        width: 120,
+        justifyContent: 'flex-start',
+        width: 170,
         height: 140,
-        borderRadius: 10,
+        borderRadius: 5,
     },
     profilePic: {
         width: 150,

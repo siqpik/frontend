@@ -3,6 +3,7 @@ import Pic from "../shared/model/Pic";
 export default class User {
   constructor(json) {
     this.name = json.name;
+    this.userName = json.userName;
     this.postsCount = json.postsCount
     this.admirersCount = json.admirersCount;
     this.admiredCount = json.admiredCount;

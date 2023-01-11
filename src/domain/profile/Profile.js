@@ -5,89 +5,93 @@ import {PicsContainer} from './PicsContainer';
 import {ProfileHeader} from './ProfileHeader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getJson, post} from '../service/ApiService';
-import {
-  USER_NAME_SESSION_ATTRIBUTE_NAME
-} from '../service/AuthenticationService';
+import {USER_NAME_SESSION_ATTRIBUTE_NAME} from '../service/AuthenticationService';
 
 export class Profile extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      user: undefined,
-      userName: props.route.params ? props.route.params.userName : undefined
+    constructor(props) {
+        super(props)
+        this.state = {
+            user: undefined,
+            userName: props.route.params ? props.route.params.userName : undefined,
+            posts: [],
+            postsPage: 1
+        }
     }
-  }
 
-  componentDidMount() {
-    if (this.state.userName) {
-      this.getUser(this.state.userName)
-    } else {
-      AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
-      .then(userName => {
-        this.setState({userName})
-        this.getUser(this.state.userName)
-      })
+    componentDidMount() {
+        if (this.state.userName) {
+            this.getUser(this.state.userName)
+            this.getProfilePosts(this.state.userName)
+        } else {
+            AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+                .then(userName => {
+                    this.setState({userName})
+                    this.getUser(this.state.userName)
+                    this.getProfilePosts(this.state.userName)
+                })
+        }
     }
-  }
 
-  render() {
-    return (
-        <ScrollView keyboardShouldPersistTaps='always'>
-          {this.state.user
-              ? (
-                  <View>
-                    <ProfileHeader
-                        name={this.state.user.name}
-                        profilePicUrl={this.state.user.profilePicUrl}
-                        admirersCount={this.state.user.admirersCount}
-                        admiredCount={this.state.user.admiredCount}
-                        user={this.state.user}
-                        amIAdmirer={this.state.user.amIAdmirer}
-                        isLoggedUser={this.state.user.isLoggedUser}
-                        requestStatus={this.state.user.hasPendingRequest}
-                        sendAdmireRequest={() => this.sendAdmireRequest(
-                            this.state.user.name)}
-                        navigation={this.props.navigation}
-                    />
-                    <PicsContainer
-                        isActualUser={this.state.user.isLoggedUser}
-                        pics={this.state.user.pics}
-                        navigate={this.props.navigation.navigate}
-                        username={this.state.user.name}
-                    />
-                  </View>
-              )
-              : (<Text>Loading...</Text>)
-          }
-        </ScrollView>
-    )
-  }
+    getUser = userName =>
+        getJson('/profile/' + userName)// change to /user/username/profile
+            .then(json => new User(json))
+            .then(user => this.setState({user}))
+            .catch(error => alert(error))
 
-  getUser = userName => {
-    getJson('/profile/' + userName)
-    .then(json => {
-      console.log(JSON.stringify(json))
-      return new User(json)
-    })
-    .then(user => this.setState({user}))
-    .catch(error => alert(error))
-  };
-  sendAdmireRequest = userName => {
-    post('/request/' + userName)
-    .then(resp => {
-      if (resp.status === 201) {
-        this.setState(prevState => (
-                {
-                  user: {
-                    ...prevState.user,
-                    requestStatus: 'Pending'
-                  },
-                  userName: prevState.userName
-                }
-            )
-        );
-      }
-    }).catch(error => alert(error))
-  };
+    getProfilePosts = userName => getJson(`/post/${userName}/${this.state.postsPage}`)
+        .then(json => this.setState(prevState => (
+            {...prevState,
+                posts: json.postUrls
+            }
+        )))
+        .then(json => console.log(this.state.user))
+
+    render() {
+        return (
+            this.state.user
+                ? (
+                    <ScrollView>
+                        <ProfileHeader
+                            name={this.state.user.name}
+                            profilePicUrl={this.state.user.profilePicUrl}
+                            admirersCount={this.state.user.admirersCount}
+                            admiredCount={this.state.user.admiredCount}
+                            username={this.state.userName}
+                            amIAdmirer={this.state.user.amIAdmirer}
+                            isLoggedUser={this.state.user.isLoggedUser}
+                            hasPendingRequest={this.state.user.hasPendingRequest}
+                            sendAdmireRequest={() => this.sendAdmireRequest(
+                                this.state.user.userName)}
+                            navigation={this.props.navigation}
+                        />
+                        {(this.state.user.amIAdmirer || this.state.user.isLoggedUser) &&
+                            <PicsContainer
+                                isActualUser={this.state.user.isLoggedUser}
+                                posts={this.state.posts}
+                                navigate={this.props.navigation.navigate}
+                                username={this.state.user.name}
+                            />
+                        }
+                    </ScrollView>
+                )
+                : (<Text>Loading...</Text>)
+        )
+    }
+
+    sendAdmireRequest = userName => post('/admire-request/' + userName)
+        .then(resp => {
+            if (resp.status === 201) {
+                this.setState(prevState => (
+                        {
+                            user: {
+                                ...prevState.user,
+                                hasPendingRequest: true
+                            },
+                            userName: prevState.userName
+                        }
+                    )
+                );
+            }
+        }).catch(error => alert(error))
 }
