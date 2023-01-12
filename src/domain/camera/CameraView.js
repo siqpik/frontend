@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
+
 // API FUNCTIONS
 import { post } from '../service/ApiService'
 
@@ -18,7 +19,6 @@ function CameraView (props) {
 
   const [hasPermission, setHasPermission] = useState(false);
 
- 
 
   const isFocused = useIsFocused()
   const devices = useCameraDevices()
@@ -29,7 +29,6 @@ function CameraView (props) {
     flash: 'off'
   };
 
-    
 
   useEffect(() => {
     (async () => {
@@ -48,7 +47,7 @@ function CameraView (props) {
       }
       
       return camera.current.takePhoto(takePhotoOptions)
-      .then(media => /*props.postMedia(media.path)*/ props.navigation.navigate('Preview', { state: { image: media, post: props.postMedia } }) )
+      .then(media => props.navigation.navigate('Preview', { state: { image: media } }) )
     } catch (error) {
       console.log(error);
     }

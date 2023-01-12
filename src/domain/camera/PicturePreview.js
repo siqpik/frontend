@@ -1,12 +1,43 @@
 import {ImageBackground , Text, TouchableOpacity, View, Image } from 'react-native';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import CountDown from 'react-native-countdown-component';
 import { styles } from "./style/styles";
+
+// Post Media
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { uploadMedia } from "../service/ApiService";
+import mime from "mime";
 
 
 
 function Preview(props) {
-    console.log(props)
+    const [imageUri, setImageUri] = useState("file:///" + props.route.params.state.image.path.split("file:/").join(""));
+    
+  function postMedia(imagePath) {
+    uploadMedia(getFormData(imagePath)).then(response => {
+      if (response.status !== 201) {
+        throw new Error(response.status)
+      }
+      AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+      .then(() => console.log('Home'))
+    }).catch(error => console.log("Something went wrong posting: " + error))
+  }
+
+  function getFormData () {
+
+    const fd = new FormData();
+
+    fd.append('pic', {
+      uri: imageUri,
+      type: mime.getType(imageUri),
+      name: imageUri.split("/").pop()
+    });
+
+
+
+    return fd;
+  }
+
 
     return (
         <View style={styles.preview}>
@@ -25,7 +56,9 @@ function Preview(props) {
                         showSeparator
                     />
                     <View style={styles.previewButtonsContainer}>
-                        <TouchableOpacity style={styles.previewButtons} >
+                        <TouchableOpacity style={styles.previewButtons} onPress={() =>{
+                            postMedia(imageUri)
+                        }} >
                             <Text style={styles.buttonText}>Post!</Text>
                         </TouchableOpacity>
 

@@ -10,36 +10,35 @@ import {
 
 function TakeNewPic ({navigation}) {
 
-    const [imageUri, setImageUri] = useState();
+    // const [imageUri, setImageUri] = useState();
     
-    function postMedia(imagePath) {
-      uploadMedia(getFormData(imagePath)).then(response => {
-        if (response.status !== 201) {
-          throw new Error(response.status)
-        }
-        AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
-        .then(() => console.log('Home'))
-      }).catch(error => console.log("Something went wrong posting: " + error))
-    }
+    // function postMedia(imagePath) {
+    //   uploadMedia(getFormData(imagePath)).then(response => {
+    //     if (response.status !== 201) {
+    //       throw new Error(response.status)
+    //     }
+    //     AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+    //     .then(() => console.log('Home'))
+    //   }).catch(error => console.log("Something went wrong posting: " + error))
+    // }
   
-    function getFormData (mediaPath) {
-      setImageUri( "file:///" + mediaPath.split("file:/").join(""))
+    // function getFormData (mediaPath) {
+    //   setImageUri( "file:///" + mediaPath.split("file:/").join(""))
   
-      const fd = new FormData();
+    //   const fd = new FormData();
   
-      fd.append('pic', {
-        uri: imageUri,
-        type: mime.getType(imageUri),
-        name: imageUri.split("/").pop()
-      });
+    //   fd.append('pic', {
+    //     uri: imageUri,
+    //     type: mime.getType(imageUri),
+    //     name: imageUri.split("/").pop()
+    //   });
   
-      return fd;
-    }
+    //   return fd;
+    // }
   
 
     return (
         <CameraView
-        postMedia={postMedia}
         navigation={navigation}
         />
     )
