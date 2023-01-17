@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {FlatList, Text} from 'react-native';
 import User from '../model/User';
 import {PicsContainer} from './PicsContainer';
 import {ProfileHeader} from './ProfileHeader';
@@ -41,7 +41,8 @@ export class Profile extends Component {
 
     getProfilePosts = userName => getJson(`/post/${userName}/${this.state.postsPage}`)
         .then(json => this.setState(prevState => (
-            {...prevState,
+            {
+                ...prevState,
                 posts: json.postUrls
             }
         )))
@@ -51,8 +52,8 @@ export class Profile extends Component {
         return (
             this.state.user
                 ? (
-                    <ScrollView>
-                        <ProfileHeader
+                    <FlatList
+                        ListHeaderComponent={<ProfileHeader
                             name={this.state.user.name}
                             profilePicUrl={this.state.user.profilePicUrl}
                             admirersCount={this.state.user.admirersCount}
@@ -64,16 +65,18 @@ export class Profile extends Component {
                             sendAdmireRequest={() => this.sendAdmireRequest(
                                 this.state.user.userName)}
                             navigation={this.props.navigation}
-                        />
-                        {(this.state.user.amIAdmirer || this.state.user.isLoggedUser) &&
+                        />}
+                        ListFooterComponent={
+                            (this.state.user.amIAdmirer || this.state.user.isLoggedUser) &&
                             <PicsContainer
                                 isActualUser={this.state.user.isLoggedUser}
                                 posts={this.state.posts}
                                 navigate={this.props.navigation.navigate}
                                 username={this.state.user.name}
                             />
+
                         }
-                    </ScrollView>
+                    />
                 )
                 : (<Text>Loading...</Text>)
         )
