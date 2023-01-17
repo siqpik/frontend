@@ -38,7 +38,7 @@ function CameraView (props) {
   }, []);
 
   const takePhoto = async () => {
-    // await addAttempt(); 
+    await addAttempt(); 
 
     try {
       //Error Handle better
@@ -51,6 +51,7 @@ function CameraView (props) {
     } catch (error) {
       console.log(error);
     }
+      
   };
 
   const addAttempt = async () => {

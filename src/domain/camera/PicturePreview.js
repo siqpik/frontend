@@ -2,6 +2,7 @@ import {ImageBackground , Text, TouchableOpacity, View, Image } from 'react-nati
 import React, { useMemo, useState } from 'react';
 import CountDown from 'react-native-countdown-component';
 import { styles } from "./style/styles";
+import { useNavigation } from '@react-navigation/native';
 
 // Post Media
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -10,34 +11,30 @@ import mime from "mime";
 
 
 
-function Preview(props) {
+function Preview( props) {
     const [imageUri, setImageUri] = useState("file:///" + props.route.params.state.image.path.split("file:/").join(""));
+    const navigation = useNavigation();
     
   function postMedia(imagePath) {
     uploadMedia(getFormData(imagePath)).then(response => {
       if (response.status !== 201) {
         throw new Error(response.status)
       }
-      AsyncStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
-      .then(() => console.log('Home'))
-    }).catch(error => console.log("Something went wrong posting: " + error))
+     
+    }).then(navigation.navigate("Siqpik"))
+    .catch(error => console.log("Something went wrong posting: " + error))
+
   }
 
   function getFormData () {
-
     const fd = new FormData();
-
     fd.append('pic', {
       uri: imageUri,
       type: mime.getType(imageUri),
       name: imageUri.split("/").pop()
     });
-
-
-
     return fd;
   }
-
 
     return (
         <View style={styles.preview}>
@@ -47,7 +44,7 @@ function Preview(props) {
                     <CountDown
                         until={60 * 3}
                         size={40}
-                        onFinish={console.log("FINISHED")}
+                        onFinish={() => navigation.navigate("Siqpik")}
                         digitStyle={{ borderWidth: 0, borderColor: '#000',  }}
                         digitTxtStyle={{color: '#fff'}}
                         separatorStyle={{color: '#fff'}}
@@ -62,7 +59,9 @@ function Preview(props) {
                             <Text style={styles.buttonText}>Post!</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.previewButtons} title={'Discard'} >
+                        <TouchableOpacity style={styles.previewButtons} title={'Discard'} onPress={() =>{
+                            navigation.goBack();
+                        }} >
                             <Text style={styles.buttonText}>Discard</Text>
                         </TouchableOpacity>
                     </View>
