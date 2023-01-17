@@ -21,7 +21,7 @@ function Preview( props) {
         throw new Error(response.status)
       }
      
-    }).then(navigation.navigate("Siqpik"))
+    }).then(_ => navigation.navigate("Siqpik"))
     .catch(error => console.log("Something went wrong posting: " + error))
 
   }
@@ -60,7 +60,7 @@ function Preview( props) {
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.previewButtons} title={'Discard'} onPress={() =>{
-                            navigation.goBack();
+                            props.navigation.navigate('Siqpik')
                         }} >
                             <Text style={styles.buttonText}>Discard</Text>
                         </TouchableOpacity>

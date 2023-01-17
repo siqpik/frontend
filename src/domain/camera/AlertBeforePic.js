@@ -69,7 +69,7 @@ export class AlertBeforePic extends React.Component {
 
                             </View>
                             <View>
-                                <TouchableOpacity style={styles.buttonHome} onPress={() => navigate('Home')}>
+                                <TouchableOpacity style={styles.buttonHome} onPress={() => navigate('Siqpik')}>
                                     <Text style={styles.buttonText}> Back To Home Page </Text>
                                 </TouchableOpacity>
                             </View>
