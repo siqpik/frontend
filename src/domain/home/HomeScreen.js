@@ -66,22 +66,13 @@ const HomeScreen = props => {
             })
     }
 
-    const toggleReaction = (postId, toDelete) => {
-        setPosts(previous => {
-            const prev = [...previous]
-            const indexToChange = prev.findIndex(p => p.id === postId)
+     const togglePostReaction = (postId, toDelete) => {
+        callApiToToggleReaction(toDelete, postId);
 
-            prev[indexToChange] = {
-                ...prev[indexToChange],
-                iReacted: !toDelete,
-                likesCount: prev[indexToChange].likesCount + (toDelete ? -1 : 1)
-            }
-
-            return prev
-        })
+        toggleReaction(postId, toDelete);
     }
 
-    const togglePostReaction = (postId, toDelete) => {
+    const callApiToToggleReaction = (toDelete, postId) => {
         if (toDelete) {
             deleteItem('/post/' + postId + '/reaction')
                 .then(response => {
@@ -99,8 +90,21 @@ const HomeScreen = props => {
                 })
                 .catch(error => alert('posteando: ' + error))
         }
+    }
 
-        toggleReaction(postId, toDelete);
+     const toggleReaction = (postId, toDelete) => {
+        setPosts(previous => {
+            const prev = [...previous]
+            const indexToChange = prev.findIndex(p => p.id === postId)
+
+            prev[indexToChange] = {
+                ...prev[indexToChange],
+                iReacted: !toDelete,
+                likesCount: prev[indexToChange].likesCount + (toDelete ? -1 : 1)
+            }
+
+            return prev
+        })
     }
 
     const commentPost = (pictureID, comment) =>
