@@ -4,11 +4,13 @@
   },
   "build": {
     "development": {
+      "releaseChannel": "local-simulator",
       "distribution": "internal",
       "android": {
         "gradleCommand": ":app:assembleDebug"
       },
       "ios": {
+        "simulator": true,
         "buildConfiguration": "Debug"
       }
     },

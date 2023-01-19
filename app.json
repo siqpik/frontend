@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "Siqpik",
-    "slug": "Siqpik",
+    "slug": "frontend",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/logo.jpg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
