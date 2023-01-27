@@ -17,7 +17,7 @@
     "@react-navigation/stack": "6.3.11",
     "deprecated-react-native-prop-types": "^2.2.0",
     "expo": "^47.0.13",
-    "expo-cli": "^6.1.0",
+    "expo-cli": "^6.2.1",
     "expo-dev-client": "~2.0.1",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
@@ -44,8 +44,8 @@
     "undefined": "react-native-masked-view/masked-view"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/runtime": "7.8.7",
+    "@babel/core": "7.20.12",
+    "@babel/runtime": "7.20.13",
     "@react-native-community/eslint-config": "0.0.5",
     "babel-jest": "24.9.0",
     "jest": "29.2.0",
