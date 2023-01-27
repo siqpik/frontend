@@ -5,7 +5,7 @@ import PicThumbnail from "./PicThumbnail";
 export const PicsContainer = props =>
     (<FlatGrid
         contentContainerStyle={{alignItems: 'center'}}
-        items={props.posts}
+        data={props.posts}
         itemDimension={170}
         fixed={true}
         renderItem={({item, index}) => (
