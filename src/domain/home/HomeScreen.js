@@ -150,7 +150,6 @@ const HomeScreen = props => {
                     iReacted={true}
                     loggedUsername={loggedUsername}
                 />
-
             }
             {posts.map((post, index) =>
                 <WallPost

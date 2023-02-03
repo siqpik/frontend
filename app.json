@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Siqpik",
-    "slug": "frontend",
-    "version": "1.0.0",
+    "slug": "siqpik",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/logo.jpg",
     "userInterfaceStyle": "light",
@@ -25,6 +25,7 @@
       "bundleIdentifier": "com.siqpik.frontend"
     },
     "android": {
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.jpg",
         "backgroundColor": "#FFFFFF"

@@ -20,7 +20,8 @@ export const uploadMedia = media =>
           method: 'POST',
           body: media,
           headers: {
-            'Authorization': 'Bearer ' + jwt
+              'Authorization': 'Bearer ' + jwt,
+              'Content-Type': 'multipart/form-data'
           }
         })
     ).then(response => {

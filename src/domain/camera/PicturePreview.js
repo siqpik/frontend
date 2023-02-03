@@ -1,6 +1,6 @@
 import {ImageBackground , Text, TouchableOpacity, View, Image } from 'react-native';
 import React, { useMemo, useState } from 'react';
-import CountDown from 'react-native-countdown-component';
+
 import { styles } from "./style/styles";
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { uploadMedia } from "../service/ApiService";
 import mime from "mime";
+import CountDown from "./CountDown";
 
 
 
@@ -44,7 +45,7 @@ function Preview( props) {
                     <CountDown
                         until={60 * 3}
                         size={40}
-                        onFinish={() => navigation.navigate("Siqpik")}
+                        onFinish={() => navigation.navigate('Siqpik')}
                         digitStyle={{ borderWidth: 0, borderColor: '#000',  }}
                         digitTxtStyle={{color: '#fff'}}
                         separatorStyle={{color: '#fff'}}
