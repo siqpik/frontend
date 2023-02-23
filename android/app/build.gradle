@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply plugin: "com.facebook.react"
 
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
@@ -90,7 +91,7 @@ project.ext.react = [
     composeSourceMapsPath: "${reactNativeRoot}/scripts/compose-source-maps.js",
 ]
 
-apply from: new File(reactNativeRoot, "react.gradle")
+//apply from: new File(reactNativeRoot, "react.gradle")
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -328,7 +329,7 @@ dependencies {
         }
     }
 
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
     }
