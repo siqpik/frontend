@@ -42,6 +42,8 @@
     "react-native-vector-icons": "9.2.0",
     "react-native-vision-camera": "^2.15.4",
     "react-native-web": "~0.18.12",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
     "sprintf-js": "^1.1.2",
     "undefined": "react-native-masked-view/masked-view"
   },
