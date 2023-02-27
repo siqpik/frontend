@@ -1,5 +1,8 @@
 export default class PostUserInfo {
-  constructor(userInfo) {
+
+  username: String
+  profilePicUrl: String
+  constructor(userInfo: PostUserInfo) {
     this.username = userInfo.username;
     this.profilePicUrl = userInfo.profilePicUrl;
   }
