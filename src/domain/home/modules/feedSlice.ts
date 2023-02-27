@@ -1,61 +1,82 @@
-//Action Creators
-
 import {REQUEST} from "../../service/model/Request";
 import {createSlice} from "@reduxjs/toolkit";
 import Post from "../model/Post";
 
 interface FeedSate {
-    posts: Array<Post>,
-    postsPage: number,
+    posts: Post[],
+    page: number,
     request: REQUEST
 }
 
 const initialState: FeedSate = {
     posts: [],
-    postsPage: 1,
+    page: 1,
     request: REQUEST.NONE
 }
 
+
 const feedSlice = createSlice({
-    name: 'feed',
+    name: "feed",
     initialState,
     reducers: {
-        fetchFeed(state){
+        reset(state) {
+            state.posts = []
+            state.page = 1
+            state.request = REQUEST.NONE
+        },
+        searchingFeed(state) {
             state.request = REQUEST.PENDING
-        }
+        },
+        errorSearchingFeed(state) {
+            state.request = REQUEST.ERROR
+        },
+        successSearchingFeed(state, posts) {
+            state.request = REQUEST.SUCCESS
+            state.posts = state.page === 1 ? posts.payload : [...state.posts, ...posts.payload]
+            state.page = state.page + 1
+        },
+        likingPost(state) {
+            state.request = REQUEST.PENDING
+        },
+        errorLikingPost(state) {
+            state.request = REQUEST.ERROR
+        },
+        successLikingPost(state, postId) {
+            state.request = REQUEST.SUCCESS
+            state.posts = state.posts.map(post => {
+                return post.id === postId.payload
+                    ? {...post, likesCount: post.likesCount + 1}
+                    : post
+            })
+        },
+        unReactingToPost(state) {
+            state.request = REQUEST.PENDING
+        },
+        errorUnReactingPost(state) {
+            state.request = REQUEST.ERROR
+        },
+        successUnReactingPost(state, postId) {
+            state.request = REQUEST.SUCCESS
+            state.posts = state.posts.map(post => {
+                return post.id === postId.payload
+                    ? {...post, likesCount: post.likesCount - 1, username: 'hpta!'}
+                    : post
+            })
+        },
     }
 })
 
 
-export const { fetchFeed } = feedSlice.actions
+export const {
+    searchingFeed,
+    successSearchingFeed,
+    errorSearchingFeed,
+    successLikingPost,
+    likingPost,
+    errorLikingPost,
+    unReactingToPost,
+    errorUnReactingPost,
+    successUnReactingPost,
+    reset
+} = feedSlice.actions
 export default feedSlice.reducer
-
-
-const GET_FEED = "GET_FEED"
-const ERROR_FETCHING_FEED = 'ERROR_FETCHING_FEED'
-const GET_FEED_SUCCESS = 'GET_FEED_SUCCESS'
-
-export const errorFetchingFeed = () => ({
-    type: ERROR_FETCHING_FEED
-})
-
-export const getFeedSuccess = posts => ({
-    type: GET_FEED_SUCCESS,
-    posts
-})
-
-export const reducer = (state = initialState, action) => {
-    switch (action.type){
-        case ERROR_FETCHING_FEED: return {
-            ...state,
-            request: REQUEST.ERROR
-        }
-        case GET_FEED_SUCCESS: return {
-            ...state,
-            request: REQUEST.SUCCESS,
-            posts: [...state.posts, ...action.posts],
-            postsPage: state.postsPage + 1
-        }
-        default: return state
-    }
-}
