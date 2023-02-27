@@ -1,6 +1,6 @@
-export default ({
-    ERROR: "ERROR",
-    PENDING: "PENDING",
-    SUCCESS: "SUCCESS",
-    NONE: "NONE"
-})
+export enum REQUEST {
+    ERROR = 'ERROR',
+    PENDING = 'PENDING',
+    SUCCESS = 'SUCCESS',
+    NONE = 'NONE'
+}
