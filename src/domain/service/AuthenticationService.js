@@ -17,7 +17,7 @@ export const registerSuccessfulLogin = (token, username) => {
 export const logout = () => authenticatedRequest('/logout', 'GET')
         .then(response => {
             if (!response.ok){
-                alert(JSON.stringify(response))
+                console.log(JSON.stringify(response))
             } else {
                 AsyncStorage.removeItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
                 AsyncStorage.removeItem(TOKEN_SESSION)

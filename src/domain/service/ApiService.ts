@@ -34,8 +34,8 @@ export const deleteItem = (url, body, contentType) => authenticatedRequest(url,
 export const getJson = url => authenticatedRequest(url, 'GET')
 .then(response => response.json());
 
-export const authenticatedRequest = (url, method, body,
-    contentType) => AsyncStorage.getItem(TOKEN_SESSION)
+export const authenticatedRequest = (url, method, body?,
+    contentType?) => AsyncStorage.getItem(TOKEN_SESSION)
 .then(token => {
   return genericFetch(url, method,
       {
