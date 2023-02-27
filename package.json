@@ -15,6 +15,7 @@
     "@react-navigation/drawer": "6.6.0",
     "@react-navigation/native": "6.1.4",
     "@react-navigation/stack": "6.3.14",
+    "@reduxjs/toolkit": "^1.9.3",
     "deprecated-react-native-prop-types": "^4.0.0",
     "expo": "^47.0.13",
     "expo-cli": "^6.3.1",
@@ -44,6 +45,7 @@
     "react-native-web": "~0.18.12",
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2",
     "sprintf-js": "^1.1.2",
     "undefined": "react-native-masked-view/masked-view"
   },

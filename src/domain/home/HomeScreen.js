@@ -7,11 +7,15 @@ import {useFocusEffect} from "@react-navigation/core";
 import {KeyboardAvoidingScrollView} from 'react-native-keyboard-avoiding-scroll-view';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "../service/AuthenticationService";
+import {connect} from "react-redux";
+import {getFeed} from "../../modules/reducer";
+import {bindActionCreators} from "redux";
+import {fetchFeed} from "./service/feed";
 
 const HomeScreen = props => {
 
-    const [posts, setPosts] = useState([]);
-    const [postsPage, setPostsPage] = useState(1);
+    //const [posts, setPosts] = useState([]);
+    //const [postsPage, setPostsPage] = useState(1);
     const [loggedUsername, setLoggedUsername] = useState([]);
     const [refreshing, setRefreshing] = React.useState(false);
 
@@ -21,7 +25,7 @@ const HomeScreen = props => {
 
     const wait = timeout => {
         return new Promise(resolve => {
-            getFeed();
+            props.fetchFeed;
             setTimeout(resolve, timeout);
         });
     }
@@ -38,7 +42,7 @@ const HomeScreen = props => {
             .then(username => {
                 setLoggedUsername(username)
             })
-        getFeed();
+        fetchFeed();
     }, []);
 
     useFocusEffect(
@@ -52,8 +56,10 @@ const HomeScreen = props => {
         }, [])
     );
 
-    const getFeed = () => {
-        getJson(`/feed/${postsPage}`)
+    const fetchFeed = () => dispatch => {
+        dispatch(getFeed())
+        console.log("Ronn: " + props.postsPage)
+        getJson(`/feed/${props.postsPage}`)
             .then(json => json.map(post => new Post(post)))
             .then(nextPosts => {
                 setPosts([...posts, ...nextPosts])
@@ -66,7 +72,7 @@ const HomeScreen = props => {
             })
     }
 
-     const togglePostReaction = (postId, toDelete) => {
+    const togglePostReaction = (postId, toDelete) => {
         callApiToToggleReaction(toDelete, postId);
 
         toggleReaction(postId, toDelete);
@@ -92,7 +98,7 @@ const HomeScreen = props => {
         }
     }
 
-     const toggleReaction = (postId, toDelete) => {
+    const toggleReaction = (postId, toDelete) => {
         setPosts(previous => {
             const prev = [...previous]
             const indexToChange = prev.findIndex(p => p.id === postId)
@@ -130,7 +136,7 @@ const HomeScreen = props => {
         <KeyboardAvoidingScrollView
             onScroll={({nativeEvent}) => {
                 if (isCloseToBottom(nativeEvent)) {
-                    getFeed()
+                    fetchFeed()
                 }
             }}
             scrollEventThrottle={900}
@@ -139,7 +145,7 @@ const HomeScreen = props => {
             }
         >
             {
-                posts.length === 0 && <WallPost
+                (props.posts.length === 0 || props.request !== Request.SUCCESS) && <WallPost
                     date={getFormattedDate(new Date())}
                     mediaUrl={'https://res.cloudinary.com/siqpik/image/upload/v1670515879/ibscji05tdziedxvfz7p.jpg'}
                     username={'Siqpik'}
@@ -151,7 +157,7 @@ const HomeScreen = props => {
                     loggedUsername={loggedUsername}
                 />
             }
-            {posts.map((post, index) =>
+            {props.posts.map((post, index) =>
                 <WallPost
                     navigate={navigate}
                     id={post.id}
@@ -173,4 +179,16 @@ const HomeScreen = props => {
     );
 }
 
-export default HomeScreen;
+const mapStateToProps = state => ({
+    posts: state.posts,
+    postsPage: state.postsPage,
+    request: state.request
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    fetchFeed
+}, dispatch)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(HomeScreen)
