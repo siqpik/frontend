@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {KeyboardAvoidingView, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {SignupForm} from './SignupForm';
 import {LoginButton} from "./LoginButton";
 import {genericPost} from "../service/ApiService";
@@ -10,7 +10,7 @@ import {KeyboardAvoidingScrollView} from 'react-native-keyboard-avoiding-scroll-
 
 export default class SignupScreen extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             email: '',
@@ -27,7 +27,7 @@ export default class SignupScreen extends Component {
     render() {
         return (
             <KeyboardAvoidingScrollView containerStyle={styles.container}>
-                <Logo />
+                <Logo/>
                 <SignupForm
                     type="Signup"
                     navigation={this.props.navigation}
@@ -59,20 +59,19 @@ export default class SignupScreen extends Component {
         let reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
         const correctEmail = reg.test(this.state.email)
-        this.setState({ correctEmail })
+        this.setState({correctEmail})
 
         return correctEmail
     }
 
     signInClicked = async () => {
-        console.log('Dislayyy: ' + this.state.displayName)
         this.setState({signUpButtonEnabled: false})
         if (!this.isValidEmail()) {
             this.setState({signUpButtonEnabled: true})
             return
         }
 
-        if (!(this.state.email && this.state.username && this.state.pass)){
+        if (!(this.state.email && this.state.username && this.state.pass)) {
             this.setState({
                 formUnFilled: true
             })
@@ -85,7 +84,7 @@ export default class SignupScreen extends Component {
         })
 
         this.signup()
-            .then(() => authenticate(this.state.username, this.state.pass)
+            .then(() => authenticate(this.state.username, this.state.pass)// todo Dont do it if error
                 .then(() => this.props.navigation.navigate('RootNavigation'))
                 .catch(error => {
                     this.setState({signUpButtonEnabled: true})
@@ -94,16 +93,23 @@ export default class SignupScreen extends Component {
             )
     };
 
-    signup = () => genericPost('/user', {email: this.state.email, userName: this.state.username, password: this.state.pass, displayName: this.state.displayName})
+    signup = () => genericPost('/user', {
+        email: this.state.email,
+        userName: this.state.username,
+        password: this.state.pass,
+        displayName: this.state.displayName
+    })
         .catch(error => {
             this.setState({signUpButtonEnabled: true})
-            if (error.message === '409'){
-                alert("username or email already exist")
+            if (error.message === '409') {
+                alert("username or email already exist") // TODO DON'T CALL login, it's doing it...
+                this.props.navigation.popToTop();
+                this.props.navigation.navigate('Signup')
+
+                throw Error(error);
             }
         })
 }
-
-
 
 const styles = StyleSheet.create({
     container: {
