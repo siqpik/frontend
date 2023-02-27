@@ -38,31 +38,18 @@ function CameraView (props) {
   }, []);
 
   const takePhoto = async () => {
-    await addAttempt(); 
-
     try {
       //Error Handle better
       if (camera.current == null) {
         throw new Error('Camera Ref is Null');
       }
-      
+
       return camera.current.takePhoto(takePhotoOptions)
       .then(media => props.navigation.navigate('Preview', { state: { image: media } }) )
     } catch (error) {
       console.log(error);
     }
-      
   };
-
-  const addAttempt = async () => {
-    console.log("adding attempt"); 
-    try {
-      const response = await post('/attempt', null, 'application/json');
-      return response.status === 200;
-    } catch (error) {
-      alert("An error has ocurred: " + error)
-    }
-  }
 
   function renderCamera() {
     if (device == null) {
