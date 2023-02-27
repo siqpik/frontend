@@ -35,7 +35,7 @@ export default props => {
 
             <View style={styles.comments}>
                 <Text
-                    style={styles.firstComment}> {props.likesCount} like{props.likesCount < 1 ? 's' : ''} </Text>
+                    style={styles.firstComment}> {props.likesCount} like{props.likesCount > 1 ? 's' : ''} </Text>
                 {/*<Text style={styles.firstComment}> {props.commentsCount} comments </Text>*/}
                 {props.iReacted || picLiked ?
                     <Icon
