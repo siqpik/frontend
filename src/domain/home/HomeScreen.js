@@ -142,6 +142,7 @@ export default props => {
                     username={'Siqpik'}
                     profilePicUrl={'https://res.cloudinary.com/siqpik/image/upload/v1670515879/ibscji05tdziedxvfz7p.jpg'}
                     likesCount={9999}
+                    likePost={() => {}}
                     commentsCount={999}
                     comments={[]}
                     iReacted={true}
