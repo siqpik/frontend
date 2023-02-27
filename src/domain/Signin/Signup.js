@@ -84,7 +84,7 @@ export default class SignupScreen extends Component {
         })
 
         this.signup()
-            .then(() => authenticate(this.state.username, this.state.pass)// todo Dont do it if error
+            .then(() => authenticate(this.state.username, this.state.pass)
                 .then(() => this.props.navigation.navigate('RootNavigation'))
                 .catch(error => {
                     this.setState({signUpButtonEnabled: true})
@@ -102,7 +102,7 @@ export default class SignupScreen extends Component {
         .catch(error => {
             this.setState({signUpButtonEnabled: true})
             if (error.message === '409') {
-                alert("username or email already exist") // TODO DON'T CALL login, it's doing it...
+                alert("username or email already exist")
                 this.props.navigation.popToTop();
                 this.props.navigation.navigate('Signup')
 
