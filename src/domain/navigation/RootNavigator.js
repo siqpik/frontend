@@ -8,7 +8,7 @@ import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {getJson} from "../service/ApiService";
 import IconBadge from 'react-native-icon-badge';
-import {Text, View} from "react-native";
+import {Text} from "react-native";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +21,7 @@ export default () => {
 
     const resetNotificationsCount = () => setNotificationsCount(0)
 
-    const getNotificationsCount = ()  => {
+    const getNotificationsCount = () => {
         getJson('/notification/new/count')
             .then(count => {
                 setNotificationsCount(count)
@@ -92,7 +92,8 @@ export default () => {
             listeners={{
                 tabPress: e => {
                     resetNotificationsCount()
-                }}}
+                }
+            }}
             options={{
                 tabBarShowLabel: false,
                 tabBarIcon: ({color, size}) => (
@@ -104,12 +105,12 @@ export default () => {
                             />
                         }
                         BadgeElement={
-                            <Text style={{color:'#FFFFFF'}}>{notificationsCount}</Text>
+                            <Text style={{color: '#FFFFFF'}}>{notificationsCount}</Text>
                         }
                         IconBadgeStyle={
                             {
-                                width:10,
-                                height:20,
+                                width: 10,
+                                height: 20,
                                 backgroundColor: '#FF0000'
                             }
                         }
