@@ -1,90 +1,80 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-
-// API FUNCTIONS
-import { post } from '../service/ApiService'
-
-// NAVIGATION
-
-
-// react-native-vision-camera
 import {Camera, useCameraDevices} from 'react-native-vision-camera';
 import {useIsFocused} from "@react-navigation/native"
-
-// Camera buttons
 import {CameraButtons} from './CameraButtons';
 
-function CameraView (props) {
+const CameraView = props => {
 
-  const [hasPermission, setHasPermission] = useState(false);
+    const [hasPermission, setHasPermission] = useState(false);
+    const isFocused = useIsFocused()
+    const devices = useCameraDevices()
+    const camera = useRef(null)
+    const takePhotoOptions = {
+        qualityPrioritization: 'speed',
+        flash: 'off'
+    };
+
+    const [device, setDevice] = useState(devices.back)
 
 
-  const isFocused = useIsFocused()
-  const devices = useCameraDevices()
-  const device = devices.back
-  const camera = useRef(null)
-  const takePhotoOptions = {
-    qualityPrioritization: 'speed',
-    flash: 'off'
-  };
+    useEffect(() => {
+        (async () => {
+            const status = await Camera.requestCameraPermission();
+            setHasPermission(status === 'authorized');
+        })();
+        setDevice(devices.back)
+    }, [devices]);
 
+    const takePhoto = async () => {
+        try {
+            //Error Handle better
+            if (camera.current == null) {
+                throw new Error('Camera Ref is Null');
+            }
 
-  useEffect(() => {
-    (async () => {
-      const status = await Camera.requestCameraPermission();
-      setHasPermission(status === 'authorized');
-    })();
-  }, []);
+            return camera.current.takePhoto(takePhotoOptions)
+                .then(media => props.navigation.navigate('Preview', {state: {image: media}}))
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-  const takePhoto = async () => {
-    try {
-      //Error Handle better
-      if (camera.current == null) {
-        throw new Error('Camera Ref is Null');
-      }
+    const flipCamera = () => setDevice(device === devices.back ? devices.front : devices.back)
 
-      return camera.current.takePhoto(takePhotoOptions)
-      .then(media => props.navigation.navigate('Preview', { state: { image: media } }) )
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  function renderCamera() {
-    if (device == null) {
-      return (
-          <View>
-            <Text style={{color: '#fff'}}>Loading</Text>
-          </View>
-      )
-    } else {
-      return (
-          <View style={{flex: 1}}>
-            {device != null &&
-                hasPermission && (
+    const renderCamera = () => device == null
+        ? (
+            <View>
+                <Text style={{color: '#fff'}}>Loading</Text>
+            </View>
+        )
+        : (
+            <View style={{flex: 1}}>
+                {hasPermission && (
                     <>
-                      <Camera
-                          ref={camera}
-                          style={StyleSheet.absoluteFill}
-                          device={device}
-                          isActive={isFocused}
-                          photo={true}
-                      />
-                      <CameraButtons takePicture={takePhoto}/>
+                        <Camera
+                            ref={camera}
+                            style={StyleSheet.absoluteFill}
+                            device={device}
+                            isActive={isFocused}
+                            photo={true}
+                        />
+                        <CameraButtons
+                            takePicture={takePhoto}
+                            flipCamera={flipCamera}
+                        />
                     </>
                 )}
-          </View>
-      )
-    }
+            </View>
+        )
 
-  }
 
-  return (
-      <View style={{flex: 1}}>
-        {renderCamera()}
-      </View>
-  );
+    return (
+        <View style={{flex: 1}}>
+            {renderCamera()}
+        </View>
+    );
 }
 
 export default CameraView;
