@@ -17,7 +17,7 @@
     "@react-navigation/stack": "6.3.14",
     "@reduxjs/toolkit": "^1.9.3",
     "deprecated-react-native-prop-types": "^4.0.0",
-    "expo": "^47.0.13",
+    "expo": "^47.0.0",
     "expo-cli": "^6.3.1",
     "expo-dev-client": "~2.0.1",
     "expo-splash-screen": "~0.17.5",
@@ -47,7 +47,8 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "sprintf-js": "^1.1.2",
-    "undefined": "react-native-masked-view/masked-view"
+    "undefined": "react-native-masked-view/masked-view",
+    "expo-updates": "~0.15.6"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
